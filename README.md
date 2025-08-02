@@ -1,11 +1,8 @@
-# Next.js + Tailwind CSS + ShadCN + Biome
+# AppHub
 
-## Getting Started
+Curated list of apps for your new machine. Select all apps you want and we'll
+install them for you.
 
-First, install the dependencies and run the development server:
+## License
 
-```bash
-bun install && bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Licensed under the MIT License. See the [LICENSE](LICENSE.md) file for details.
