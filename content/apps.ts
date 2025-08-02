@@ -185,6 +185,20 @@ export const APPS: AppType[] = [
       linux: 'cursor',
     },
   },
+
+  {
+    slug: 'iina',
+    name: 'IINA',
+    description: 'The modern video player for Mac.',
+    developer: 'IINA',
+    category: ['video-player'],
+    platform: ['mac'],
+    website: 'https://iina.io',
+    download: 'https://iina.io/download',
+    command: {
+      mac: 'iina',
+    },
+  },
   {
     slug: 'warp',
     name: 'Warp',

@@ -9,6 +9,7 @@ export type CategoriesType =
   | 'screenshot'
   | 'utility'
   | 'network'
+  | 'video-player'
   | 'docker'
   | 'recording'
   | 'terminal'
@@ -27,6 +28,7 @@ export const CATEGORIES: CategoriesType[] = [
   'screenshot',
   'utility',
   'network',
+  'video-player',
   'docker',
   'recording',
   'terminal',
