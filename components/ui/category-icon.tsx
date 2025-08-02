@@ -1,4 +1,4 @@
-import type { AvailableCategoryType } from '@/content/apps'
+import type { CategoriesType } from '@/content/categories'
 import {
   ChartNoAxesColumnIncreasing,
   Code,
@@ -21,10 +21,10 @@ interface CategoryIconProps extends React.ComponentProps<LucideIcon> {
   /**
    * The category to display
    */
-  data: AvailableCategoryType
+  data: CategoriesType
 }
 
-const CATEGORY_ICONS: Record<AvailableCategoryType, LucideIcon> = {
+const CATEGORY_ICONS: Record<CategoriesType, LucideIcon> = {
   productivity: ChartNoAxesColumnIncreasing,
   security: Shield,
   communication: MessageCircle,

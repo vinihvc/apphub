@@ -2,6 +2,7 @@
 
 import { EmptyState } from '@/components/blocks/empty-state'
 import { AppCard } from '@/components/ui/app-card'
+import type { AppType } from '@/content/apps'
 import { cn } from '@/lib/cn'
 import type React from 'react'
 import { useAppList } from './use-app-list'
@@ -29,6 +30,8 @@ export const AppsListBlock = (props: AppsListBlockProps) => {
     )
   }
 
+  const slicedApps: AppType[] = apps.slice(0, limit)
+
   return (
     <section
       className={cn(
@@ -37,7 +40,7 @@ export const AppsListBlock = (props: AppsListBlockProps) => {
       )}
       {...rest}
     >
-      {apps.slice(0, limit).map((app) => (
+      {slicedApps.map((app) => (
         <AppCard key={app.slug} data={app} />
       ))}
     </section>

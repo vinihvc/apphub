@@ -1,8 +1,22 @@
-export type AppType = (typeof APPS)[number]
+import type { CategoriesType } from './categories'
 
-export type AvailableCategoryType = AppType['category'][number]
+export type AppType = {
+  slug: string
+  name: string
+  description: string
+  developer: string
+  category: CategoriesType[]
+  platform: string[]
+  website: string
+  download: string
+  command: {
+    mac?: string
+    windows?: string
+    linux?: string
+  }
+}
 
-export const APPS = [
+export const APPS: AppType[] = [
   {
     slug: '1password',
     name: '1Password',
@@ -148,6 +162,7 @@ export const APPS = [
     developer: 'Beekeeper Studio',
     category: ['database', 'development'],
     platform: ['mac', 'windows', 'linux'],
+    download: 'https://www.beekeeperstudio.io/get',
     website: 'https://www.beekeeperstudio.io',
     command: {
       mac: 'beekeeper-studio',
@@ -163,6 +178,7 @@ export const APPS = [
     category: ['development', 'code-editor'],
     platform: ['mac', 'windows', 'linux'],
     website: 'https://www.cursor.com',
+    download: 'https://cursor.com/downloads',
     command: {
       mac: 'cursor',
       windows: 'cursor',
@@ -177,6 +193,7 @@ export const APPS = [
     website: 'https://warp.dev',
     category: ['terminal', 'development'],
     platform: ['mac'],
+    download: 'https://warp.dev/download',
     command: {
       mac: 'warp',
     },
@@ -189,6 +206,7 @@ export const APPS = [
     website: 'https://www.gimp.org',
     category: ['photo-editor'],
     platform: ['mac', 'windows', 'linux'],
+    download: 'https://www.gimp.org/downloads',
     command: {
       mac: 'gimp',
       windows: 'gimp',
@@ -203,6 +221,7 @@ export const APPS = [
     category: ['development', 'docker'],
     platform: ['mac'],
     website: 'https://orbstack.dev',
+    download: 'https://orbstack.dev/download',
     command: {
       mac: 'orbstack',
     },
@@ -215,6 +234,7 @@ export const APPS = [
     website: 'https://nextdns.io',
     category: ['security', 'network'],
     platform: ['mac', 'windows', 'linux'],
+    download: 'https://nextdns.io',
     command: {
       mac: 'nextdns',
       windows: 'nextdns',
@@ -230,6 +250,7 @@ export const APPS = [
     website: 'https://upscayl.org',
     category: ['utility'],
     platform: ['mac', 'windows', 'linux'],
+    download: 'https://upscayl.org/download',
     command: {
       mac: 'upscayl',
       windows: 'upscayl',
@@ -244,6 +265,7 @@ export const APPS = [
     website: 'https://shottr.cc',
     category: ['productivity', 'screenshot'],
     platform: ['mac'],
+    download: 'https://shottr.cc/download',
     command: {
       mac: 'shottr',
     },
@@ -256,6 +278,7 @@ export const APPS = [
     website: 'https://bitwarden.com',
     category: ['security', 'password-manager'],
     platform: ['mac', 'windows', 'linux', 'ios', 'android'],
+    download: 'https://bitwarden.com/download',
     command: {
       mac: 'bitwarden',
       windows: 'bitwarden',
@@ -271,6 +294,7 @@ export const APPS = [
     website: 'https://ghostty.org',
     category: ['terminal', 'development'],
     platform: ['mac', 'linux'],
+    download: 'https://ghostty.org/download',
     command: {
       mac: 'ghostty',
       linux: 'ghostty',
@@ -285,6 +309,7 @@ export const APPS = [
     website: 'https://icemenubar.app',
     category: ['utility', 'mac-utility'],
     platform: ['mac'],
+    download: 'https://jordanbaird.gumroad.com/l/ice',
     command: {
       mac: 'ice',
     },
@@ -297,6 +322,7 @@ export const APPS = [
     website: 'https://wouter01.github.io/MediaMate',
     category: ['mac-utility'],
     platform: ['mac'],
+    download: 'https://wouter01.github.io/MediaMate',
     command: {
       mac: 'mediamate',
     },
@@ -307,9 +333,10 @@ export const APPS = [
     description:
       'Sentinel is a GUI for controlling Gatekeeper and more, written in SwiftUI.',
     developer: 'MacUpdate',
-    website: 'https://sentinel.macupdate.com/',
+    website: 'https://sentinel.macupdate.com',
     category: ['mac-utility'],
     platform: ['mac'],
+    download: 'https://sentinel.macupdate.com',
     command: {
       mac: 'sentinel',
     },
@@ -323,8 +350,9 @@ export const APPS = [
     website: 'https://mos.caldis.me',
     category: ['mac-utility'],
     platform: ['mac'],
+    download: 'https://mos.caldis.me',
     command: {
       mac: 'mos',
     },
   },
-] as const
+]
