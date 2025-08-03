@@ -344,13 +344,12 @@ export const APPS: AppType[] = [
   {
     slug: 'sentinel',
     name: 'Sentinel',
-    description:
-      'Sentinel is a GUI for controlling Gatekeeper and more, written in SwiftUI.',
-    developer: 'MacUpdate',
-    website: 'https://sentinel.macupdate.com',
+    description: 'Sentinel is a GUI for controlling Gatekeeper and more.',
+    developer: 'Alin Lupascu',
+    website: 'https://itsalin.com/appInfo/?id=sentinel',
     category: ['mac-utility'],
     platform: ['mac'],
-    download: 'https://sentinel.macupdate.com',
+    download: 'https://itsalin.com/appInfo/?id=sentinel',
     command: {
       mac: 'sentinel',
     },

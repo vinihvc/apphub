@@ -1,10 +1,10 @@
-import type { CategoriesType } from '@/content/categories'
 import {
   ChartNoAxesColumnIncreasing,
   Code,
   Computer,
   Container,
   Database,
+  Focus,
   Globe,
   Image,
   Lock,
@@ -16,6 +16,7 @@ import {
   Video,
   Wrench,
 } from 'lucide-react'
+import type { CategoriesType } from '@/content/categories'
 
 interface CategoryIconProps extends React.ComponentProps<LucideIcon> {
   /**
@@ -32,7 +33,8 @@ const CATEGORY_ICONS: Record<CategoriesType, LucideIcon> = {
   'code-editor': SquareChartGantt,
   database: Database,
   browser: Globe,
-  recording: Video,
+  recording: Focus,
+  'video-player': Video,
   'photo-editor': Image,
   'password-manager': Lock,
   terminal: Terminal,
