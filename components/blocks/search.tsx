@@ -1,11 +1,11 @@
 'use client'
 
-import { SEARCH_QUERY_KEY } from '@/config/globals'
-import { cn } from '@/lib/cn'
-import { mergeRefs } from '@/utils/merge-refs'
 import { Search } from 'lucide-react'
 import { useQueryState } from 'nuqs'
 import React from 'react'
+import { SEARCH_QUERY_KEY } from '@/config/globals'
+import { cn } from '@/lib/cn'
+import { mergeRefs } from '@/utils/merge-refs'
 import { Input } from '../primitives/input'
 import { Kbd } from '../primitives/kbd'
 
@@ -55,10 +55,10 @@ export const SearchBlock = (props: SearchBlockProps) => {
       <Search className="-translate-y-1/2 absolute top-1/2 left-3 size-4 text-muted-foreground" />
 
       <Input
-        ref={mergeRefs($ref, ref)}
         className={cn('h-9 bg-card ps-10 pe-10', className)}
-        value={query}
         onChange={(e) => setQuery(e.target.value)}
+        ref={mergeRefs($ref, ref)}
+        value={query}
         {...rest}
       />
 
