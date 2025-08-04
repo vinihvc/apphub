@@ -1,8 +1,7 @@
 'use client'
 
-import type { PlatformType } from '@/content/platforms'
-import { detectOS } from '@/lib/detect-os'
 import React from 'react'
+import type { PlatformType } from '@/content/platforms'
 
 interface PlatformContextType {
   /**
@@ -26,9 +25,12 @@ interface PlatformContextType {
 const PlatformContext = React.createContext({} as PlatformContextType)
 
 export interface PlatformProviderProps extends React.PropsWithChildren {
-  initialData?: {
+  /**
+   * The initial data to use for the platform
+   */
+  initialData: {
     /**
-     * The initial data to use for the platform
+     * The platform of the user
      */
     platform: PlatformType
   }
@@ -40,7 +42,7 @@ export interface PlatformProviderProps extends React.PropsWithChildren {
 export const PlatformProvider = (props: PlatformProviderProps) => {
   const { initialData, children } = props
 
-  const platform = initialData?.platform || detectOS()
+  const { platform } = initialData
 
   const isWindows = platform === 'windows'
   const isMac = platform === 'mac'

@@ -1,10 +1,10 @@
 'use client'
 
+import { Plus, Trash2 } from 'lucide-react'
 import { Button } from '@/components/primitives/button'
 import type { AppType } from '@/content/apps'
 import { useCartStore } from '@/lib/cart'
 import { cn } from '@/lib/cn'
-import { Plus, Trash2 } from 'lucide-react'
 
 interface CartButtonClientProps extends React.ComponentProps<typeof Button> {
   /**
@@ -39,11 +39,11 @@ const CartButtonClient = (props: CartButtonClientProps) => {
 
   return (
     <Button
-      className={cn('hidden sm:inline-flex', className)}
       aria-label={`${isInCart ? 'Remove from' : 'Add to'} Cart`}
-      variant="outline"
-      size="icon"
+      className={cn('hidden sm:inline-flex', className)}
       onClick={handleAddToCart}
+      size="icon"
+      variant="outline"
       {...rest}
     >
       {isInCart ? (

@@ -1,10 +1,10 @@
 'use client'
 
+import type React from 'react'
 import { EmptyState } from '@/components/blocks/empty-state'
 import { AppCard } from '@/components/ui/app-card'
 import type { AppType } from '@/content/apps'
 import { cn } from '@/lib/cn'
-import type React from 'react'
 import { useAppList } from './use-app-list'
 
 interface AppsListBlockProps extends React.ComponentProps<'section'> {
@@ -24,8 +24,8 @@ export const AppsListBlock = (props: AppsListBlockProps) => {
   if (apps.length === 0) {
     return (
       <EmptyState
-        title="No apps found"
         description="Try a different search or filter"
+        title="No apps found"
       />
     )
   }
@@ -41,7 +41,7 @@ export const AppsListBlock = (props: AppsListBlockProps) => {
       {...rest}
     >
       {slicedApps.map((app) => (
-        <AppCard key={app.slug} data={app} />
+        <AppCard data={app} key={app.slug} />
       ))}
     </section>
   )

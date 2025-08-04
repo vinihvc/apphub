@@ -1,5 +1,6 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
+  "extends": ["ultracite"],
   "vcs": {
     "enabled": false,
     "clientKind": "git",
@@ -7,11 +8,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": [
-      "**",
-      "!**/.next",
-      "!**/node_modules"
-    ]
+    "includes": ["**", "!**/.next", "!**/node_modules"]
   },
   "formatter": {
     "enabled": true,
@@ -36,18 +33,13 @@
         "noUnusedImports": "error"
       },
       "nursery": {
+        "noUnknownAtRule": "off",
         "useSortedClasses": {
           "fix": "safe",
           "level": "warn",
           "options": {
-            "attributes": [
-              "classList"
-            ],
-            "functions": [
-              "cn",
-              "cva",
-              "tw"
-            ]
+            "attributes": ["classList"],
+            "functions": ["cn", "cva", "tw"]
           }
         }
       },
@@ -65,8 +57,5 @@
       "lineWidth": 80,
       "trailingCommas": "all"
     }
-  },
-  "extends": [
-    "ultracite"
-  ]
+  }
 }

@@ -1,6 +1,6 @@
-import type { AppType } from '@/content/apps'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import type { AppType } from '@/content/apps'
 
 interface CartStore {
   items: AppType[]

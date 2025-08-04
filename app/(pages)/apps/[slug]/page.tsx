@@ -1,3 +1,5 @@
+import { Globe } from 'lucide-react'
+import { notFound } from 'next/navigation'
 import { SimilarAppsBlock } from '@/components/blocks/similar-apps'
 import { Badge } from '@/components/primitives/badge'
 import { Button } from '@/components/primitives/button'
@@ -12,8 +14,6 @@ import { CATEGORY_QUERY_KEY } from '@/config/globals'
 import { SITE_CONFIG } from '@/config/site'
 import { getAppBySlug, getApps } from '@/services/queries'
 import { capitalize, deslugify } from '@/utils/formatter'
-import { Globe } from 'lucide-react'
-import { notFound } from 'next/navigation'
 
 interface AppDetailPageProps {
   params: Promise<{
@@ -41,7 +41,7 @@ export const generateMetadata = async ({ params }: AppDetailPageProps) => {
   }
 }
 
-export const generateStaticParams = async () => {
+export const generateStaticParams = () => {
   return getApps().map((app) => ({
     slug: app.slug,
   }))
@@ -63,10 +63,10 @@ const AppDetailPage = async (props: AppDetailPageProps) => {
           <div className="flex items-start gap-5">
             <div className="relative top-1 size-16 overflow-hidden rounded-lg">
               <ShimmerImage
-                src={`/images/apps/${app.slug}.webp`}
                 alt={`${app.name} icon`}
-                fill
                 className="rounded-[4px] object-contain"
+                fill
+                src={`/images/apps/${app.slug}.webp`}
               />
             </div>
 
@@ -81,7 +81,7 @@ const AppDetailPage = async (props: AppDetailPageProps) => {
           <ScrollArea>
             <div className="flex gap-2 pb-2">
               {app.category.map((category) => (
-                <Badge key={category} asChild>
+                <Badge asChild key={category}>
                   <NavLink
                     href={{
                       pathname: '/apps',
@@ -99,18 +99,18 @@ const AppDetailPage = async (props: AppDetailPageProps) => {
         </div>
 
         <div className="hidden gap-2 justify-self-end sm:flex">
-          <Button variant="outline" size="icon" asChild>
-            <a href={app.website} target="_blank" rel="noopener noreferrer">
+          <Button asChild size="icon" variant="outline">
+            <a href={app.website} rel="noopener noreferrer" target="_blank">
               <Globe />
               <span className="sr-only">Visit Website</span>
             </a>
           </Button>
 
-          <ShareLink variant="outline" size="icon" />
+          <ShareLink size="icon" variant="outline" />
 
-          <CopyCommand data={app} variant="outline" size="icon" />
+          <CopyCommand data={app} size="icon" variant="outline" />
 
-          <CartButton variant="solid" size="icon" data={app} />
+          <CartButton data={app} size="icon" variant="solid" />
         </div>
       </div>
 

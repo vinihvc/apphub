@@ -1,13 +1,11 @@
-import { cn } from '@/lib/cn'
 import type * as React from 'react'
+import { cn } from '@/lib/cn'
 
 export const Input = (props: React.ComponentProps<'input'>) => {
   const { type = 'text', className, ...rest } = props
 
   return (
     <input
-      type={type}
-      data-slot="input"
       className={cn(
         'flex h-9 w-full min-w-0',
         'inline-flex',
@@ -26,6 +24,8 @@ export const Input = (props: React.ComponentProps<'input'>) => {
 
         className,
       )}
+      data-slot="input"
+      type={type}
       {...rest}
     />
   )

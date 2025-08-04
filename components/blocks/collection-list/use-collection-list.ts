@@ -1,7 +1,7 @@
-import { SEARCH_QUERY_KEY } from '@/config/globals'
-import { getCollections } from '@/services/queries'
 import { useQueryState } from 'nuqs'
 import React from 'react'
+import { SEARCH_QUERY_KEY } from '@/config/globals'
+import { getCollections } from '@/services/queries'
 
 export const useCollectionList = () => {
   const [searchQuery] = useQueryState(SEARCH_QUERY_KEY)

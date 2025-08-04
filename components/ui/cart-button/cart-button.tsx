@@ -1,13 +1,13 @@
 'use client'
 
-import { Button } from '@/components/primitives/button'
 import { Plus } from 'lucide-react'
 import dynamic from 'next/dynamic'
+import { Button } from '@/components/primitives/button'
 
 const CartButtonClient = dynamic(() => import('./cart-button-client'), {
   ssr: false,
   loading: () => (
-    <Button variant="outline" size="icon">
+    <Button size="icon" variant="outline">
       <Plus />
     </Button>
   ),

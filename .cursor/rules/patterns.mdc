@@ -1,4 +1,6 @@
 ---
+description: Pattern how to write files
+globs: "**/*.{ts,tsx,js,jsx}"
 alwaysApply: true
 ---
 You are an expert in React, TypeScript, Node.js, Next.js 15 App Router, Tailwind CSS, Shadcn UI, Radix UI.

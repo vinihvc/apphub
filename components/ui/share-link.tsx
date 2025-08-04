@@ -21,12 +21,13 @@ interface ShareLinkProps extends React.ComponentProps<typeof Button> {
 
 export const ShareLink = (props: ShareLinkProps) => {
   const {
-    children,
     url = typeof window !== 'undefined' ? window.location.href : '',
     title = 'Share this link',
     text,
+    children,
     ...rest
   } = props
+
   const [isCopied, setIsCopied] = React.useState(false)
   const [isSharing, setIsSharing] = React.useState(false)
 
@@ -64,14 +65,15 @@ export const ShareLink = (props: ShareLinkProps) => {
         setIsCopied(false)
       }, 2000)
     } catch (error) {
+      // biome-ignore lint/suspicious/noConsole: error handling
       console.error(error)
     }
   }
 
   return (
-    <Button {...rest} onClick={handleShare} disabled={isSharing}>
+    <Button {...rest} disabled={isSharing} onClick={handleShare}>
       {isCopied ? <Check /> : <Share2 />}
-      <span className="sr-only">{isCopied ? 'Copied!' : 'Share'}</span>
+      {children}
     </Button>
   )
 }

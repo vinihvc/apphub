@@ -1,3 +1,5 @@
+import { CircleOff, LayoutGrid, Trash2 } from 'lucide-react'
+import React from 'react'
 import { Badge } from '@/components/primitives/badge'
 import { Button } from '@/components/primitives/button'
 import {
@@ -9,8 +11,6 @@ import {
 import { CopyCommand } from '@/components/ui/copy-command'
 import { NavLink } from '@/components/ui/nav-link'
 import { useCartStore } from '@/lib/cart'
-import { CircleOff, LayoutGrid, Trash2 } from 'lucide-react'
-import React from 'react'
 import { CartItem } from './header.cart-item'
 
 const HeaderCart = () => {
@@ -26,9 +26,9 @@ const HeaderCart = () => {
   }
 
   return (
-    <Popover open={isOpen} onOpenChange={setIsOpen}>
+    <Popover onOpenChange={setIsOpen} open={isOpen}>
       <PopoverTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative max-md:hidden">
+        <Button className="relative max-md:hidden" size="icon" variant="ghost">
           <LayoutGrid />
 
           {cartCount > 0 && (
@@ -42,12 +42,12 @@ const HeaderCart = () => {
         </Button>
       </PopoverTrigger>
 
-      <PopoverContent className="w-80 p-0" align="end" sideOffset={18}>
+      <PopoverContent align="end" className="w-80 p-0" sideOffset={18}>
         <div className="border-b p-4">
           <div className="flex items-center justify-between">
             <h3 className="font-semibold">Apps ({cartCount})</h3>
             {cartCount > 0 && (
-              <Button variant="ghost" size="sm" onClick={handleClearCart}>
+              <Button onClick={handleClearCart} size="sm" variant="ghost">
                 <Trash2 className="size-3" />
                 Clear apps
               </Button>
@@ -64,7 +64,7 @@ const HeaderCart = () => {
 
                 <div>
                   <PopoverClose asChild>
-                    <Button variant="solid" size="sm" asChild>
+                    <Button asChild size="sm" variant="solid">
                       <NavLink href="/apps">Start installing apps</NavLink>
                     </Button>
                   </PopoverClose>
@@ -72,13 +72,13 @@ const HeaderCart = () => {
               </div>
             </div>
           ) : (
-            items.map((app) => <CartItem key={app.slug} app={app} />)
+            items.map((app) => <CartItem app={app} key={app.slug} />)
           )}
         </div>
 
         {items.length > 0 && (
           <div className="border-t p-4">
-            <CopyCommand data={items} className="w-full" size="sm">
+            <CopyCommand className="w-full" data={items} size="sm">
               Copy script
             </CopyCommand>
           </div>

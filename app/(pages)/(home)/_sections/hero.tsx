@@ -1,10 +1,10 @@
+import { ArrowRight } from 'lucide-react'
 import { GridPattern } from '@/components/background/grid-pattern'
 import { Badge } from '@/components/primitives/badge'
 import { Button } from '@/components/primitives/button'
 import { NavLink } from '@/components/ui/nav-link'
 import { SITE_CONFIG } from '@/config/site'
 import { cn } from '@/lib/cn'
-import { ArrowRight } from 'lucide-react'
 
 interface HeroSectionProps extends React.ComponentProps<'section'> {}
 
@@ -26,7 +26,7 @@ export const HeroSection = (props: HeroSectionProps) => {
       <div className="container relative mt-20 px-4 py-12">
         <div className="mx-auto max-w-4xl text-center">
           <div className="mb-4">
-            <Badge variant="outline" size="lg" asChild>
+            <Badge asChild size="lg" variant="outline">
               <NavLink href="/apps">
                 New apps available <ArrowRight />
               </NavLink>
@@ -47,11 +47,11 @@ export const HeroSection = (props: HeroSectionProps) => {
             </p>
 
             <div className="flex flex-col gap-3 min-[400px]:flex-row">
-              <Button size="lg" asChild>
+              <Button asChild size="lg">
                 <NavLink href="/apps">Browse Apps</NavLink>
               </Button>
 
-              <Button variant="outline" size="lg" asChild>
+              <Button asChild size="lg" variant="outline">
                 <NavLink href="/collections">View Collections</NavLink>
               </Button>
             </div>

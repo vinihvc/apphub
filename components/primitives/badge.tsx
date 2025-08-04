@@ -1,7 +1,7 @@
-import { cn } from '@/lib/cn'
-import { type VariantProps, cva } from 'class-variance-authority'
+import { cva, type VariantProps } from 'class-variance-authority'
 import { Slot } from 'radix-ui'
 import type * as React from 'react'
+import { cn } from '@/lib/cn'
 
 export const badgeVariants = cva(
   [
@@ -69,8 +69,8 @@ export const Badge = (props: BadgeProps) => {
 
   return (
     <Comp
-      data-slot="badge"
       className={cn(badgeVariants({ variant, size }), className)}
+      data-slot="badge"
       {...rest}
     />
   )

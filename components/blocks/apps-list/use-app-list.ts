@@ -1,10 +1,13 @@
-import { CATEGORY_QUERY_KEY, SEARCH_QUERY_KEY } from '@/config/globals'
-import { PLATFORM_QUERY_KEY } from '@/config/globals'
+import { useQueryState } from 'nuqs'
+import React from 'react'
+import {
+  CATEGORY_QUERY_KEY,
+  PLATFORM_QUERY_KEY,
+  SEARCH_QUERY_KEY,
+} from '@/config/globals'
 import type { AppType } from '@/content/apps'
 import { usePlatform } from '@/context/platform'
 import { getApps } from '@/services/queries'
-import { useQueryState } from 'nuqs'
-import React from 'react'
 
 export const useAppList = () => {
   const { platform: userPlatform } = usePlatform()
@@ -14,8 +17,7 @@ export const useAppList = () => {
   const [platform] = useQueryState(PLATFORM_QUERY_KEY)
 
   const filteredApps = React.useMemo(() => {
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    let filtered = getApps() as any
+    let filtered = getApps()
 
     if (query) {
       const searchLower = query.toLowerCase()

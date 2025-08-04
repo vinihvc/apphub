@@ -1,12 +1,12 @@
 'use client'
 
+import { ThemeProvider as NextThemesProvider } from 'next-themes'
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
+import type * as React from 'react'
 import {
   PlatformProvider,
   type PlatformProviderProps,
 } from '@/context/platform'
-import { ThemeProvider as NextThemesProvider } from 'next-themes'
-import { NuqsAdapter } from 'nuqs/adapters/next/app'
-import type * as React from 'react'
 
 interface ProvidersProps
   extends React.ComponentProps<typeof NextThemesProvider>,

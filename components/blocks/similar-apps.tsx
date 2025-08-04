@@ -1,8 +1,8 @@
+import React from 'react'
 import { AppCard } from '@/components/ui/app-card'
 import type { AppType } from '@/content/apps'
 import { cn } from '@/lib/cn'
 import { getApps } from '@/services/queries'
-import React from 'react'
 
 interface SimilarAppsProps extends React.ComponentProps<'section'> {
   /**
@@ -28,7 +28,9 @@ export const SimilarAppsBlock = (props: SimilarAppsProps) => {
     return filteredApps.slice(0, limit)
   }, [data.category, data.slug, limit])
 
-  if (similarApps.length === 0) return null
+  if (similarApps.length === 0) {
+    return null
+  }
 
   return (
     <section className={cn('grid gap-6', className)} {...rest}>
@@ -36,7 +38,7 @@ export const SimilarAppsBlock = (props: SimilarAppsProps) => {
 
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {similarApps.map((app) => (
-          <AppCard key={app.slug} data={app} />
+          <AppCard data={app} key={app.slug} />
         ))}
       </div>
     </section>

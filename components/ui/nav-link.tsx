@@ -1,9 +1,9 @@
 'use client'
 
-import { cn } from '@/lib/cn'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
+import { cn } from '@/lib/cn'
 
 interface NavLinkProps extends React.ComponentProps<typeof Link> {
   /**
@@ -27,7 +27,6 @@ export const NavLink = (props: NavLinkProps) => {
 
   return (
     <Link
-      href={href}
       aria-current={isActive ? 'page' : undefined}
       className={cn(
         { active: isActive },
@@ -38,8 +37,9 @@ export const NavLink = (props: NavLinkProps) => {
         'disabled:pointer-events-none disabled:opacity-50',
         className,
       )}
-      prefetch={isHovered ? true : null}
+      href={href}
       onMouseEnter={() => setIsHovered(true)}
+      prefetch={isHovered ? true : null}
       {...rest}
     />
   )

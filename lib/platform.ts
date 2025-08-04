@@ -1,16 +1,30 @@
 import type { PlatformType } from '@/content/platforms'
 
+export const IOS_REGEX = /iphone|ipad|ipod/i
+export const ANDROID_REGEX = /android/i
+export const WINDOWS_REGEX = /windows/i
+export const LINUX_REGEX = /linux/i
+
 export const getPlatform = (headers: Headers) => {
-  const userAgentString = headers.get('user-agent') || ''
+  const userAgent = headers.get('user-agent') ?? ''
 
   const getPlatformType = (): PlatformType => {
-    const ua = userAgentString.toLowerCase()
+    const ua = userAgent.toLowerCase()
 
-    if (/iphone|ipad|ipod/.test(ua)) return 'ios'
-    if (/android/.test(ua)) return 'android'
-    if (/windows/.test(ua)) return 'windows'
-    if (/macintosh|mac os/.test(ua)) return 'mac'
-    if (/linux/.test(ua)) return 'linux'
+    if (IOS_REGEX.test(ua)) {
+      return 'ios'
+    }
+
+    if (ANDROID_REGEX.test(ua)) {
+      return 'android'
+    }
+
+    if (WINDOWS_REGEX.test(ua)) {
+      return 'windows'
+    }
+    if (LINUX_REGEX.test(ua)) {
+      return 'linux'
+    }
 
     return 'windows'
   }

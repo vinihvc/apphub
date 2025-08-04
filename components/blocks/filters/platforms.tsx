@@ -1,5 +1,9 @@
 'use client'
 
+import { CommandInput } from 'cmdk'
+import { CheckIcon, Monitor } from 'lucide-react'
+import { useQueryState } from 'nuqs'
+import React from 'react'
 import { Button } from '@/components/primitives/button'
 import {
   Command,
@@ -17,10 +21,6 @@ import { usePlatform } from '@/context/platform'
 import { cn } from '@/lib/cn'
 import { getPlatforms } from '@/services/queries'
 import { capitalize } from '@/utils/formatter'
-import { CommandInput } from 'cmdk'
-import { CheckIcon, Monitor } from 'lucide-react'
-import { useQueryState } from 'nuqs'
-import React from 'react'
 
 interface PlatformsFilterBlockProps
   extends React.ComponentProps<typeof Button> {}
@@ -40,12 +40,18 @@ export const PlatformsFilterBlock = (props: PlatformsFilterBlockProps) => {
 
   const platforms = React.useMemo(() => {
     const filteredPlatforms = getPlatforms().filter(
-      (platform) => !PLATFORM_TO_REMOVE.includes(platform),
+      (p) => !PLATFORM_TO_REMOVE.includes(p),
     )
 
     const userPlatformFirst = filteredPlatforms.sort((a, b) => {
-      if (a === userPlatform) return -1
-      if (b === userPlatform) return 1
+      if (a === userPlatform) {
+        return -1
+      }
+
+      if (b === userPlatform) {
+        return 1
+      }
+
       return 0
     })
 
@@ -58,13 +64,13 @@ export const PlatformsFilterBlock = (props: PlatformsFilterBlockProps) => {
   }
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover onOpenChange={setOpen} open={open}>
       <PopoverTrigger asChild>
         <Button
           aria-expanded={open}
-          variant="outline"
-          className="justify-between"
+          className={cn('justify-between', className)}
           size="sm"
+          variant="outline"
           {...rest}
         >
           <Monitor />
@@ -72,17 +78,17 @@ export const PlatformsFilterBlock = (props: PlatformsFilterBlockProps) => {
         </Button>
       </PopoverTrigger>
 
-      <PopoverContent className="w-32 p-0" align="end">
+      <PopoverContent align="end" className="w-32 p-0">
         <Command>
-          <CommandInput placeholder="Search platforms..." className="sr-only" />
+          <CommandInput className="sr-only" placeholder="Search platforms..." />
 
           <CommandList>
             <CommandGroup heading="Platforms">
               {platforms.map((item) => (
                 <CommandItem
                   key={item}
-                  value={item}
                   onSelect={() => handleSelect(item)}
+                  value={item}
                 >
                   <CheckIcon
                     className={cn('opacity-0', {

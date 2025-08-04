@@ -1,7 +1,7 @@
-import { Button } from '@/components/primitives/button'
-import { Kbd } from '@/components/primitives/kbd'
 import dynamic from 'next/dynamic'
 import React from 'react'
+import { Button } from '@/components/primitives/button'
+import { Kbd } from '@/components/primitives/kbd'
 
 const GlobalSearchDialog = dynamic(
   () => import('@/components/dialog/global-search'),
@@ -17,7 +17,7 @@ export const HeaderSearch = () => {
     const down = (e: KeyboardEvent) => {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault()
-        setOpen((open) => !open)
+        setOpen((prev) => !prev)
       }
     }
 
@@ -42,7 +42,7 @@ export const HeaderSearch = () => {
         </Button>
       </div>
 
-      <GlobalSearchDialog open={open} onOpenChange={setOpen} />
+      <GlobalSearchDialog onOpenChange={setOpen} open={open} />
     </>
   )
 }

@@ -54,17 +54,17 @@ export const CollectionCard = (props: CollectionCardProps) => {
             <div className="flex flex-wrap items-center gap-8 max-md:justify-center">
               {data.apps.map((app) => (
                 <NavLink
-                  key={app.slug}
-                  href={{ pathname: `/apps/${app.slug}` }}
                   className="flex items-center gap-2"
+                  href={{ pathname: `/apps/${app.slug}` }}
+                  key={app.slug}
                 >
                   <ShimmerImage
-                    key={app.slug}
-                    src={`/images/apps/${app.slug}.webp`}
                     alt={app.name}
                     className="size-12 rounded-lg object-contain"
-                    width={48}
                     height={48}
+                    key={app.slug}
+                    src={`/images/apps/${app.slug}.webp`}
+                    width={48}
                   />
 
                   <span className="sr-only">{`View ${app.name}`}</span>

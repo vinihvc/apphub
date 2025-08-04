@@ -1,10 +1,10 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
+import React from 'react'
 import { NavLink } from '@/components/ui/nav-link'
 import { APP_COLLECTIONS } from '@/content/collections'
 import { getApps } from '@/services/queries'
-import { useRouter } from 'next/navigation'
-import React from 'react'
 import {
   CommandDialog,
   CommandEmpty,
@@ -41,21 +41,21 @@ const GlobalSearchDialog = (props: GlobalSearchDialogProps) => {
         <CommandGroup heading="Apps">
           {apps.map((app) => (
             <CommandItem
+              asChild
               key={app.slug}
               keywords={[app.name, app.developer, app.category.join(', ')]}
               onSelect={() => handleSelect(app.slug)}
-              asChild
             >
               <NavLink
                 className="flex w-full items-center gap-4"
                 href={{ pathname: `/apps/${app.slug}` }}
               >
                 <ShimmerImage
-                  src={`/images/apps/${app.slug}.webp`}
                   alt={app.name}
-                  width={24}
-                  height={24}
                   className="rounded-md"
+                  height={24}
+                  src={`/images/apps/${app.slug}.webp`}
+                  width={24}
                 />
 
                 <div className="grid gap-1">
@@ -72,10 +72,10 @@ const GlobalSearchDialog = (props: GlobalSearchDialogProps) => {
         <CommandGroup heading="Collections">
           {APP_COLLECTIONS.map((collection) => (
             <CommandItem
+              asChild
               key={collection.slug}
               keywords={[collection.title, collection.description]}
               onSelect={() => handleSelect(collection.slug)}
-              asChild
             >
               <NavLink href={{ pathname: `/collections/${collection.slug}` }}>
                 <div className="flex w-full items-center gap-5">

@@ -1,13 +1,13 @@
 import type { Metadata, Viewport } from 'next'
 import { Providers } from './provider'
 import '@/styles/globals.css'
+import { headers } from 'next/headers'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { Analytics } from '@/components/tracking/analytics'
 import { META_THEME_COLORS, SITE_CONFIG } from '@/config/site'
 import { fontSans } from '@/lib/fonts'
 import { getPlatform } from '@/lib/platform'
-import { headers } from 'next/headers'
 
 export const metadata: Metadata = {
   title: {
@@ -63,7 +63,7 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
   const { platform } = getPlatform(await headers())
 
   return (
-    <html lang="en" className={fontSans.variable} suppressHydrationWarning>
+    <html className={fontSans.variable} lang="en" suppressHydrationWarning>
       <body>
         <Providers initialData={{ platform }}>
           <Header />

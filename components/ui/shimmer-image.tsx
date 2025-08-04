@@ -26,19 +26,19 @@ export const ShimmerImage = (props: ShimmerImageProps) => {
   const [hasError, setHasError] = React.useState(false)
 
   if (hasError) {
-    return <Image src={FALLBACK_SRC} width={width} height={height} {...rest} />
+    return <Image height={height} src={FALLBACK_SRC} width={width} {...rest} />
   }
 
   const blurDataURL = shimmer(width || 50, height || 50)
 
   return (
     <Image
-      src={src}
-      placeholder="blur"
       blurDataURL={blurDataURL}
-      width={width}
       height={height}
       onError={() => setHasError(true)}
+      placeholder="blur"
+      src={src}
+      width={width}
       {...rest}
     />
   )

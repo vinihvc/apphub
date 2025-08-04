@@ -8,12 +8,10 @@ export const Analytics = () => {
   }
 
   return (
-    <>
-      <Script
-        src="https://cloud.umami.is/script.js"
-        data-website-id={UMAMI_WEBSITE_ID}
-        defer
-      />
-    </>
+    <Script
+      data-website-id={UMAMI_WEBSITE_ID}
+      src="https://cloud.umami.is/script.js"
+      strategy="lazyOnload"
+    />
   )
 }

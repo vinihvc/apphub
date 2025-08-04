@@ -18,7 +18,7 @@ interface ClipboardButtonProps extends React.ComponentProps<typeof Button> {
 }
 
 export const ClipboardButton = (props: ClipboardButtonProps) => {
-  const { value, onClick, asChild, children, ...rest } = props
+  const { value, onClick, children, ...rest } = props
 
   const [isCopied, setIsCopied] = React.useState(false)
 
@@ -30,8 +30,9 @@ export const ClipboardButton = (props: ClipboardButtonProps) => {
 
     try {
       await navigator.clipboard.writeText(value)
-    } catch (error) {
-      console.error(error)
+    } catch {
+      // biome-ignore lint/suspicious/noConsole: error handling
+      console.error('Failed to copy to clipboard')
     }
 
     setIsCopied(true)

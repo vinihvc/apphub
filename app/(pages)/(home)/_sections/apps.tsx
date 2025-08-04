@@ -1,8 +1,8 @@
+import { ArrowRight } from 'lucide-react'
 import { AppsListBlock } from '@/components/blocks/apps-list/apps-list'
 import { Button } from '@/components/primitives/button'
 import { NavLink } from '@/components/ui/nav-link'
 import { cn } from '@/lib/cn'
-import { ArrowRight } from 'lucide-react'
 
 interface AppsSectionProps extends React.ComponentProps<'section'> {}
 
@@ -26,7 +26,7 @@ export const AppsSection = (props: AppsSectionProps) => {
         <AppsListBlock />
 
         <div className="flex justify-center">
-          <Button className="group" variant="outline" size="lg" asChild>
+          <Button asChild className="group" size="lg" variant="outline">
             <NavLink href="/apps">
               See All Apps
               <ArrowRight className="transition-transform group-hover:translate-x-1" />

@@ -1,5 +1,5 @@
-import { cn } from '@/lib/cn'
 import { HoverCard as HoverCardPrimitive } from 'radix-ui'
+import { cn } from '@/lib/cn'
 
 export const HoverCard = (
   props: React.ComponentProps<typeof HoverCardPrimitive.Root>,
@@ -21,7 +21,6 @@ export const HoverCardContent = (
   return (
     <HoverCardPrimitive.Portal>
       <HoverCardPrimitive.Content
-        sideOffset={sideOffset}
         align={align}
         className={cn(
           'rounded-md',
@@ -34,6 +33,7 @@ export const HoverCardContent = (
           'data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:animate-in',
           className,
         )}
+        sideOffset={sideOffset}
         {...rest}
       />
     </HoverCardPrimitive.Portal>

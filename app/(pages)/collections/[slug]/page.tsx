@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation'
 import { ScrollArea, ScrollBar } from '@/components/primitives/scroll-area'
 import { Separator } from '@/components/primitives/separator'
 import { CopyCommand } from '@/components/ui/copy-command'
@@ -6,7 +7,6 @@ import { ShareLink } from '@/components/ui/share-link'
 import { ShimmerImage } from '@/components/ui/shimmer-image'
 import { SITE_CONFIG } from '@/config/site'
 import { getCollectionBySlug, getCollections } from '@/services/queries'
-import { notFound } from 'next/navigation'
 
 interface AppDetailPageProps {
   params: Promise<{ slug: string }>
@@ -32,7 +32,7 @@ export const generateMetadata = async ({ params }: AppDetailPageProps) => {
   }
 }
 
-export const generateStaticParams = async () => {
+export const generateStaticParams = () => {
   return getCollections().map((collection) => ({
     slug: collection.slug,
   }))
@@ -65,7 +65,7 @@ const AppDetailPage = async (props: AppDetailPageProps) => {
         </div>
 
         <div className="flex justify-end">
-          <ShareLink variant="outline" size="icon" />
+          <ShareLink size="icon" variant="outline" />
         </div>
       </div>
 
@@ -79,17 +79,17 @@ const AppDetailPage = async (props: AppDetailPageProps) => {
             <nav className="flex gap-8 pb-2">
               {collection.apps.map((app) => (
                 <NavLink
-                  key={app.slug}
                   aria-label={`View ${app.name}`}
                   href={{ pathname: `/apps/${app.slug}` }}
+                  key={app.slug}
                 >
                   <ShimmerImage
-                    src={`/images/apps/${app.slug}.webp`}
                     alt={app.name}
-                    width={48}
-                    height={48}
-                    className="size-12 rounded-md"
                     aria-hidden
+                    className="size-12 rounded-md"
+                    height={48}
+                    src={`/images/apps/${app.slug}.webp`}
+                    width={48}
                   />
                 </NavLink>
               ))}

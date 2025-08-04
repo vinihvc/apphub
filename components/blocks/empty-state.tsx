@@ -1,5 +1,5 @@
-import { cn } from '@/lib/cn'
 import { CircleOff } from 'lucide-react'
+import { cn } from '@/lib/cn'
 
 interface EmptyStateProps extends React.ComponentProps<'div'> {
   /**

@@ -64,6 +64,8 @@
 	}
 }
 
-@utility container {
-	@apply mx-auto w-full max-w-5xl px-4;
+@layer utilities {
+	.container {
+		@apply mx-auto w-full max-w-5xl px-4;
+	}
 }

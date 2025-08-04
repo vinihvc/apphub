@@ -1,8 +1,8 @@
+import React from 'react'
 import { APPS } from '@/content/apps'
 import { CATEGORIES } from '@/content/categories'
 import { APP_COLLECTIONS } from '@/content/collections'
 import { PLATFORMS } from '@/content/platforms'
-import React from 'react'
 
 export const getApps = React.cache(() => {
   return APPS

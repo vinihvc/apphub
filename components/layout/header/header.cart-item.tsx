@@ -1,9 +1,9 @@
+import { X } from 'lucide-react'
 import { Button } from '@/components/primitives/button'
 import { CopyCommand } from '@/components/ui/copy-command'
 import { ShimmerImage } from '@/components/ui/shimmer-image'
 import type { AppType } from '@/content/apps'
 import { useCartStore } from '@/lib/cart'
-import { X } from 'lucide-react'
 
 interface CartItemProps {
   /**
@@ -25,10 +25,10 @@ export const CartItem = (props: CartItemProps) => {
     <div className="flex items-center gap-3 border-b p-3 last:border-b-0">
       <div className="relative size-8 flex-shrink-0 overflow-hidden rounded-lg">
         <ShimmerImage
-          src={`/images/apps/${app.slug}.webp`}
           alt={`${app.name} icon`}
           className="rounded-md object-contain"
           fill
+          src={`/images/apps/${app.slug}.webp`}
         />
       </div>
 
@@ -40,9 +40,9 @@ export const CartItem = (props: CartItemProps) => {
       </div>
 
       <div className="flex items-center gap-2">
-        <CopyCommand data={app} variant="ghost" size="icon" />
+        <CopyCommand data={app} size="icon" variant="ghost" />
 
-        <Button variant="ghost" size="icon" onClick={handleRemove}>
+        <Button onClick={handleRemove} size="icon" variant="ghost">
           <X />
         </Button>
       </div>
