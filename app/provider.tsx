@@ -13,7 +13,7 @@ interface ProvidersProps
     PlatformProviderProps {}
 
 export const Providers = (props: ProvidersProps) => {
-  const { initialData, ...rest } = props
+  const { initialData, children } = props
 
   return (
     <PlatformProvider initialData={initialData}>
@@ -23,8 +23,9 @@ export const Providers = (props: ProvidersProps) => {
           defaultTheme="system"
           disableTransitionOnChange
           enableSystem
-          {...rest}
-        />
+        >
+          {children}
+        </NextThemesProvider>
       </NuqsAdapter>
     </PlatformProvider>
   )

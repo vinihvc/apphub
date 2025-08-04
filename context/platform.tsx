@@ -2,6 +2,7 @@
 
 import React from 'react'
 import type { PlatformType } from '@/content/platforms'
+import { getPlatformFromClient } from '@/lib/platform'
 
 interface PlatformContextType {
   /**
@@ -42,7 +43,7 @@ export interface PlatformProviderProps extends React.PropsWithChildren {
 export const PlatformProvider = (props: PlatformProviderProps) => {
   const { initialData, children } = props
 
-  const { platform } = initialData
+  const { platform } = initialData ?? getPlatformFromClient()
 
   const isWindows = platform === 'windows'
   const isMac = platform === 'mac'

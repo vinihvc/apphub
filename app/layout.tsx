@@ -7,7 +7,7 @@ import { Header } from '@/components/layout/header'
 import { Analytics } from '@/components/tracking/analytics'
 import { META_THEME_COLORS, SITE_CONFIG } from '@/config/site'
 import { fontSans } from '@/lib/fonts'
-import { getPlatform } from '@/lib/platform'
+import { getPlatformFromHeaders } from '@/lib/platform'
 
 export const metadata: Metadata = {
   title: {
@@ -60,7 +60,7 @@ export const viewport: Viewport = {
 }
 
 const RootLayout = async ({ children }: React.PropsWithChildren) => {
-  const { platform } = getPlatform(await headers())
+  const { platform } = getPlatformFromHeaders(await headers())
 
   return (
     <html className={fontSans.variable} lang="en" suppressHydrationWarning>

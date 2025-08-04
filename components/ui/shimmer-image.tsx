@@ -33,12 +33,17 @@ export const ShimmerImage = (props: ShimmerImageProps) => {
 
   return (
     <Image
-      blurDataURL={blurDataURL}
       height={height}
       onError={() => setHasError(true)}
-      placeholder="blur"
       src={src}
       width={width}
+      {...(height &&
+        width &&
+        Number(height) > 40 &&
+        Number(width) > 40 && {
+          placeholder: 'blur',
+          blurDataURL,
+        })}
       {...rest}
     />
   )

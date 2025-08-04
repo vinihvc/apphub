@@ -61,14 +61,13 @@ const AppDetailPage = async (props: AppDetailPageProps) => {
       <div className="grid items-start justify-between gap-8 sm:grid-cols-2">
         <div className="grid gap-8">
           <div className="flex items-start gap-5">
-            <div className="relative top-1 size-16 overflow-hidden rounded-lg">
-              <ShimmerImage
-                alt={`${app.name} icon`}
-                className="rounded-[4px] object-contain"
-                fill
-                src={`/images/apps/${app.slug}.webp`}
-              />
-            </div>
+            <ShimmerImage
+              alt={`${app.name} icon`}
+              className="size-16 rounded-lg object-contain"
+              height={64}
+              src={`/images/apps/${app.slug}.webp`}
+              width={64}
+            />
 
             <div className="flex items-start justify-between">
               <div>
