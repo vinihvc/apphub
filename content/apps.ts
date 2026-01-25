@@ -368,4 +368,18 @@ export const APPS: AppType[] = [
       mac: 'mos',
     },
   },
+  {
+    slug: 'linearmouse',
+    name: 'LinearMouse',
+    description:
+      'The mouse utility for Mac with per-device settings and scrolling customization.',
+    developer: 'LinearMouse',
+    website: 'https://linearmouse.app',
+    category: ['mac-utility'],
+    platform: ['mac'],
+    download: 'https://linearmouse.app',
+    command: {
+      mac: 'linearmouse',
+    },
+  },
 ]
