@@ -29,7 +29,7 @@ export const APPS: AppType[] = [
     download: 'https://1password.com/downloads',
     command: {
       mac: '1password',
-      windows: '1password',
+      windows: 'AgileBits.1Password',
       linux: '1password',
     },
   },
@@ -45,7 +45,7 @@ export const APPS: AppType[] = [
     download: 'https://slack.com/downloads',
     command: {
       mac: 'slack',
-      windows: 'slack',
+      windows: 'SlackTechnologies.Slack',
       linux: 'slack',
     },
   },
@@ -74,7 +74,7 @@ export const APPS: AppType[] = [
     download: 'https://hoppscotch.io',
     command: {
       mac: 'hoppscotch',
-      windows: 'hoppscotch',
+      windows: 'hoppscotch.Hoppscotch',
       linux: 'hoppscotch',
     },
   },
@@ -90,7 +90,7 @@ export const APPS: AppType[] = [
     download: 'https://www.raycast.com/download',
     command: {
       mac: 'raycast',
-      windows: 'raycast',
+      windows: 'Raycast.Raycast',
     },
   },
   {
@@ -120,7 +120,7 @@ export const APPS: AppType[] = [
     download: 'https://www.firefox.com/thanks',
     command: {
       mac: 'firefox',
-      windows: 'firefox',
+      windows: 'Mozilla.Firefox',
       linux: 'firefox',
     },
   },
@@ -135,8 +135,8 @@ export const APPS: AppType[] = [
     download: 'https://www.google.com/chrome/thank-you',
     command: {
       mac: 'google-chrome',
-      windows: 'google-chrome',
-      linux: 'google-chrome',
+      windows: 'Google.Chrome',
+      linux: 'google-chrome-stable',
     },
   },
   {
@@ -150,7 +150,7 @@ export const APPS: AppType[] = [
     download: 'https://discord.com/download',
     command: {
       mac: 'discord',
-      windows: 'discord',
+      windows: 'Discord.Discord',
       linux: 'discord',
     },
   },
@@ -166,7 +166,7 @@ export const APPS: AppType[] = [
     website: 'https://www.beekeeperstudio.io',
     command: {
       mac: 'beekeeper-studio',
-      windows: 'beekeeper-studio',
+      windows: 'beekeeper-studio.beekeeper-studio',
       linux: 'beekeeper-studio',
     },
   },
@@ -181,7 +181,7 @@ export const APPS: AppType[] = [
     download: 'https://cursor.com/downloads',
     command: {
       mac: 'cursor',
-      windows: 'cursor',
+      windows: 'Anysphere.Cursor',
       linux: 'cursor',
     },
   },
@@ -223,7 +223,7 @@ export const APPS: AppType[] = [
     download: 'https://www.gimp.org/downloads',
     command: {
       mac: 'gimp',
-      windows: 'gimp',
+      windows: 'GIMP.GIMP',
       linux: 'gimp',
     },
   },
@@ -251,7 +251,7 @@ export const APPS: AppType[] = [
     download: 'https://nextdns.io',
     command: {
       mac: 'nextdns',
-      windows: 'nextdns',
+      windows: 'NextDNS.NextDNS',
       linux: 'nextdns',
     },
   },
@@ -267,7 +267,7 @@ export const APPS: AppType[] = [
     download: 'https://upscayl.org/download',
     command: {
       mac: 'upscayl',
-      windows: 'upscayl',
+      windows: 'Upscayl.Upscayl',
       linux: 'upscayl',
     },
   },
@@ -295,7 +295,7 @@ export const APPS: AppType[] = [
     download: 'https://bitwarden.com/download',
     command: {
       mac: 'bitwarden',
-      windows: 'bitwarden',
+      windows: 'Bitwarden.Bitwarden',
       linux: 'bitwarden',
     },
   },
@@ -380,6 +380,22 @@ export const APPS: AppType[] = [
     download: 'https://linearmouse.app',
     command: {
       mac: 'linearmouse',
+    },
+  },
+  {
+    slug: 'transmission',
+    name: 'Transmission',
+    description:
+      'Fast, easy, free BitTorrent client for Mac, Windows, and Linux.',
+    developer: 'Transmission Project',
+    website: 'https://transmissionbt.com',
+    category: ['utility'],
+    platform: ['mac', 'windows', 'linux'],
+    download: 'https://transmissionbt.com/download',
+    command: {
+      mac: 'transmission',
+      windows: 'Transmission.Transmission',
+      linux: 'transmission',
     },
   },
 ]

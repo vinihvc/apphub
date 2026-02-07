@@ -16,11 +16,11 @@ export const useCommand = (data: AppType | AppType[]) => {
     : data.command[platform as keyof typeof data.command]
 
   if (isMac) {
-    return `brew install ${command}`
+    return `brew install --cask ${command}`
   }
 
   if (isWindows) {
-    return `winget install ${command}`
+    return `winget install -e --id ${command}`
   }
 
   if (isLinux) {
