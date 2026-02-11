@@ -383,6 +383,20 @@ export const APPS: AppType[] = [
     },
   },
   {
+    slug: 'netnewswire',
+    name: 'NetNewsWire',
+    description:
+      'Free, open-source RSS feed reader for Mac, iPhone, and iPad.',
+    developer: 'Ranchero Software',
+    website: 'https://netnewswire.com',
+    category: ['productivity'],
+    platform: ['mac', 'ios'],
+    download: 'https://netnewswire.com',
+    command: {
+      mac: 'netnewswire',
+    },
+  },
+  {
     slug: 'transmission',
     name: 'Transmission',
     description:
