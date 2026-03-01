@@ -412,4 +412,20 @@ export const APPS: AppType[] = [
       linux: 'transmission',
     },
   },
+  {
+    slug: 'node',
+    name: 'Node.js',
+    description:
+      'JavaScript runtime built on V8 for building server-side and CLI applications.',
+    developer: 'OpenJS Foundation',
+    website: 'https://nodejs.org',
+    category: ['development'],
+    platform: ['mac', 'windows', 'linux'],
+    download: 'https://nodejs.org',
+    command: {
+      mac: 'nodeenv',
+      windows: 'OpenJS.NodeJS.LTS',
+      linux: 'nodeenv',
+    },
+  },
 ]
