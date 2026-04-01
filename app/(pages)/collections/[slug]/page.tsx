@@ -86,9 +86,9 @@ const AppDetailPage = async (props: PageProps<"/collections/[slug]">) => {
                 >
                   <ShimmerImage
                     alt={app.name}
-                    aria-hidden
-                    className="size-12 rounded-md"
+                    className="size-12 rounded-lg object-contain"
                     height={48}
+                    key={app.slug}
                     src={`/images/apps/${app.slug}.webp`}
                     width={48}
                   />

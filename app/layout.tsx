@@ -1,14 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Providers } from "./provider";
 import "@/styles/globals.css";
+import { headers } from "next/headers";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { Analytics } from "@/components/tracking/analytics";
 import { META_THEME_COLORS, SITE_CONFIG } from "@/config/site";
 import { fontSans } from "@/lib/fonts";
-
-export const revalidate = false;
-export const dynamic = "force-static";
+import { getPlatformFromHeaders } from "@/lib/platform";
 
 export const metadata: Metadata = {
   title: {
@@ -60,7 +59,9 @@ export const viewport: Viewport = {
   themeColor: META_THEME_COLORS.dark,
 };
 
-const RootLayout = ({ children }: React.PropsWithChildren) => {
+const RootLayout = async ({ children }: React.PropsWithChildren) => {
+  const { platform } = getPlatformFromHeaders(await headers());
+
   return (
     <html
       className={fontSans.variable}
@@ -69,7 +70,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
       suppressHydrationWarning
     >
       <body>
-        <Providers initialData={{ platform: "windows" }}>
+        <Providers initialData={{ platform }}>
           <Header />
 
           {children}
