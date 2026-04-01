@@ -59,7 +59,7 @@ export const viewport: Viewport = {
   themeColor: META_THEME_COLORS.dark,
 };
 
-const RootLayout = async ({ children }: React.PropsWithChildren) => {
+const RootLayout = async ({ children }: LayoutProps<"/">) => {
   const { platform } = getPlatformFromHeaders(await headers());
 
   return (
