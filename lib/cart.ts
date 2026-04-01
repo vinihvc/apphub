@@ -1,14 +1,14 @@
-import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
-import type { AppType } from '@/content/apps'
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import type { AppType } from "@/content/apps";
 
 interface CartStore {
-  items: AppType[]
-  addToCart: (app: AppType) => void
-  removeFromCart: (appSlug: string) => void
-  clearCart: () => void
-  isInCart: (appSlug: string) => boolean
-  getCartCount: () => number
+  addToCart: (app: AppType) => void;
+  clearCart: () => void;
+  getCartCount: () => number;
+  isInCart: (appSlug: string) => boolean;
+  items: AppType[];
+  removeFromCart: (appSlug: string) => void;
 }
 
 export const useCartStore = create<CartStore>()(
@@ -17,59 +17,59 @@ export const useCartStore = create<CartStore>()(
       items: [],
 
       addToCart: (app: AppType) => {
-        const { items } = get()
-        const isAlreadyInCart = items.some((item) => item.slug === app.slug)
+        const { items } = get();
+        const isAlreadyInCart = items.some((item) => item.slug === app.slug);
 
         if (!isAlreadyInCart) {
-          set({ items: [...items, app] })
+          set({ items: [...items, app] });
         }
       },
 
       removeFromCart: (appSlug: string) => {
-        const { items } = get()
-        set({ items: items.filter((item) => item.slug !== appSlug) })
+        const { items } = get();
+        set({ items: items.filter((item) => item.slug !== appSlug) });
       },
 
       clearCart: () => {
-        set({ items: [] })
+        set({ items: [] });
       },
 
       isInCart: (appSlug: string) => {
-        const { items } = get()
-        return items.some((item) => item.slug === appSlug)
+        const { items } = get();
+        return items.some((item) => item.slug === appSlug);
       },
 
       getCartCount: () => {
-        const { items } = get()
-        return items.length
+        const { items } = get();
+        return items.length;
       },
     }),
     {
-      name: 'cart-storage',
+      name: "cart-storage",
       storage: {
         getItem: (name) => {
           try {
-            const item = localStorage.getItem(name)
-            return item ? JSON.parse(item) : null
+            const item = localStorage.getItem(name);
+            return item ? JSON.parse(item) : null;
           } catch {
-            return null
+            return null;
           }
         },
         setItem: (name, value) => {
           try {
-            localStorage.setItem(name, JSON.stringify(value))
+            localStorage.setItem(name, JSON.stringify(value));
           } catch {
             // Ignore localStorage errors
           }
         },
         removeItem: (name) => {
           try {
-            localStorage.removeItem(name)
+            localStorage.removeItem(name);
           } catch {
             // Ignore localStorage errors
           }
         },
       },
-    },
-  ),
-)
+    }
+  )
+);

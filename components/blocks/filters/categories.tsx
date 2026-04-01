@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import { CheckIcon, Filter, X } from 'lucide-react'
-import { useQueryState } from 'nuqs'
-import React from 'react'
-import { Button } from '@/components/primitives/button'
+import { CheckIcon, Filter, X } from "lucide-react";
+import { useQueryState } from "nuqs";
+import React from "react";
+import { Button } from "@/components/primitives/button";
 import {
   Command,
   CommandEmpty,
@@ -11,45 +11,45 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '@/components/primitives/command'
+} from "@/components/primitives/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/primitives/popover'
-import { Separator } from '@/components/primitives/separator'
-import { CategoryIcon } from '@/components/ui/category-icon'
-import { CATEGORY_QUERY_KEY } from '@/config/globals'
-import { cn } from '@/lib/cn'
-import { getCategories } from '@/services/queries'
-import { capitalize, deslugify } from '@/utils/formatter'
+} from "@/components/primitives/popover";
+import { Separator } from "@/components/primitives/separator";
+import { CategoryIcon } from "@/components/ui/category-icon";
+import { CATEGORY_QUERY_KEY } from "@/config/globals";
+import { cn } from "@/lib/cn";
+import { getCategories } from "@/services/queries";
+import { capitalize, deslugify } from "@/utils/formatter";
 
 interface CategoriesFilterBlockProps
   extends React.ComponentProps<typeof Button> {}
 
 export const CategoriesFilterBlock = (props: CategoriesFilterBlockProps) => {
   const [category, setCategory] = useQueryState(CATEGORY_QUERY_KEY, {
-    defaultValue: 'all',
-  })
+    defaultValue: "all",
+  });
 
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
 
   const categories = React.useMemo(() => {
-    return getCategories()
-  }, [])
+    return getCategories();
+  }, []);
 
   const handleSelect = (value: string) => {
-    setCategory(value)
-    setOpen(false)
-  }
+    setCategory(value);
+    setOpen(false);
+  };
 
   return (
     <Popover onOpenChange={setOpen} open={open}>
       <div className="flex items-center gap-2">
-        {category !== 'all' && (
+        {category !== "all" && (
           <div className="fade-in-0 slide-in-from-right-5 animate-in">
             <Button
-              onClick={() => setCategory('all')}
+              onClick={() => setCategory("all")}
               size="icon"
               variant="outline"
             >
@@ -88,8 +88,8 @@ export const CategoriesFilterBlock = (props: CategoriesFilterBlockProps) => {
                   </div>
                   <CheckIcon
                     className={cn(
-                      'mr-2 size-4',
-                      category === item ? 'opacity-100' : 'opacity-0',
+                      "mr-2 size-4",
+                      category === item ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>
@@ -99,5 +99,5 @@ export const CategoriesFilterBlock = (props: CategoriesFilterBlockProps) => {
         </Command>
       </PopoverContent>
     </Popover>
-  )
-}
+  );
+};

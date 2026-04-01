@@ -1,35 +1,35 @@
-import { NavLink } from '@/components/ui/nav-link'
-import type { AppCollectionType } from '@/content/collections'
-import { cn } from '@/lib/cn'
-import { CopyCommand } from './copy-command'
-import { ShimmerImage } from './shimmer-image'
+import { NavLink } from "@/components/ui/nav-link";
+import type { AppCollectionType } from "@/content/collections";
+import { cn } from "@/lib/cn";
+import { CopyCommand } from "./copy-command";
+import { ShimmerImage } from "./shimmer-image";
 
-interface CollectionCardProps extends React.ComponentProps<'article'> {
+interface CollectionCardProps extends React.ComponentProps<"article"> {
   /**
    * The collection to display
    */
-  data: AppCollectionType
+  data: AppCollectionType;
   /**
    * Whether to reverse the order of the collection
    */
-  reverse?: boolean
+  reverse?: boolean;
 }
 
 export const CollectionCard = (props: CollectionCardProps) => {
-  const { data, reverse = false, className, ...rest } = props
+  const { data, reverse = false, className, ...rest } = props;
 
   return (
     <article
       className={cn(
-        'grid gap-8 md:grid-cols-2',
-        { 'md:flex-row-reverse': reverse },
-        className,
+        "grid gap-8 md:grid-cols-2",
+        { "md:flex-row-reverse": reverse },
+        className
       )}
       {...rest}
     >
       <div
-        className={cn('flex flex-col justify-center gap-4', {
-          'md:order-2': reverse,
+        className={cn("flex flex-col justify-center gap-4", {
+          "md:order-2": reverse,
         })}
       >
         <NavLink
@@ -48,7 +48,7 @@ export const CollectionCard = (props: CollectionCardProps) => {
         </div>
       </div>
 
-      <div className={cn({ 'md:order-1': reverse })}>
+      <div className={cn({ "md:order-1": reverse })}>
         <div className="h-full rounded-lg border bg-accent p-4">
           <div className="grid gap-4">
             <div className="flex flex-wrap items-center gap-8 max-md:justify-center">
@@ -75,5 +75,5 @@ export const CollectionCard = (props: CollectionCardProps) => {
         </div>
       </div>
     </article>
-  )
-}
+  );
+};

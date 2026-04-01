@@ -1,7 +1,10 @@
-import { AppsListBlock } from '@/components/blocks/apps-list/apps-list'
-import { CategoriesFilterBlock } from '@/components/blocks/filters/categories'
-import { PlatformsFilterBlock } from '@/components/blocks/filters/platforms'
-import { SearchBlock } from '@/components/blocks/search'
+import { AppsListBlock } from "@/components/blocks/apps-list/apps-list";
+import { CategoriesFilterBlock } from "@/components/blocks/filters/categories";
+import { PlatformsFilterBlock } from "@/components/blocks/filters/platforms";
+import { SearchBlock } from "@/components/blocks/search";
+
+export const revalidate = false;
+export const dynamic = "force-static";
 
 const AppsRootPage = () => {
   return (
@@ -27,7 +30,7 @@ const AppsRootPage = () => {
 
       <AppsListBlock limit={99} />
     </main>
-  )
-}
+  );
+};
 
-export default AppsRootPage
+export default AppsRootPage;

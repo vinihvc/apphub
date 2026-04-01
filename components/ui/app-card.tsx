@@ -1,31 +1,31 @@
-import { Ellipsis } from 'lucide-react'
-import { Badge } from '@/components/primitives/badge'
-import { Card, CardContent, CardFooter } from '@/components/primitives/card'
+import { Ellipsis } from "lucide-react";
+import { Badge } from "@/components/primitives/badge";
+import { Card, CardContent, CardFooter } from "@/components/primitives/card";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from '@/components/primitives/hover-card'
-import { CartButton } from '@/components/ui/cart-button'
-import { NavLink } from '@/components/ui/nav-link'
-import { CATEGORY_QUERY_KEY } from '@/config/globals'
-import type { AppType } from '@/content/apps'
-import { cn } from '@/lib/cn'
-import { capitalize, deslugify } from '@/utils/formatter'
-import { ShimmerImage } from './shimmer-image'
+} from "@/components/primitives/hover-card";
+import { CartButton } from "@/components/ui/cart-button";
+import { NavLink } from "@/components/ui/nav-link";
+import { CATEGORY_QUERY_KEY } from "@/config/globals";
+import type { AppType } from "@/content/apps";
+import { cn } from "@/lib/cn";
+import { capitalize, deslugify } from "@/utils/formatter";
+import { ShimmerImage } from "./shimmer-image";
 
 interface AppCardProps extends React.ComponentProps<typeof Card> {
   /**
    * The data to display in the card
    */
-  data: AppType
+  data: AppType;
 }
 
 export const AppCard = (props: AppCardProps) => {
-  const { data, className, ...rest } = props
+  const { data, className, ...rest } = props;
 
   return (
-    <Card className={cn('group relative isolate', className)} {...rest}>
+    <Card className={cn("group relative isolate", className)} {...rest}>
       <NavLink
         aria-label={`View ${data.name}`}
         className="absolute inset-0"
@@ -58,7 +58,7 @@ export const AppCard = (props: AppCardProps) => {
             <Badge asChild key={category} variant="outline">
               <NavLink
                 href={{
-                  pathname: '/apps',
+                  pathname: "/apps",
                   query: { [CATEGORY_QUERY_KEY]: category },
                 }}
               >
@@ -82,7 +82,7 @@ export const AppCard = (props: AppCardProps) => {
                     <Badge asChild key={category} variant="outline">
                       <NavLink
                         href={{
-                          pathname: '/apps',
+                          pathname: "/apps",
                           query: { [CATEGORY_QUERY_KEY]: category },
                         }}
                       >
@@ -97,5 +97,5 @@ export const AppCard = (props: AppCardProps) => {
         </div>
       </CardFooter>
     </Card>
-  )
-}
+  );
+};

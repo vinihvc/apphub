@@ -1,19 +1,19 @@
-'use client'
+"use client";
 
-import { ThemeProvider as NextThemesProvider } from 'next-themes'
-import { NuqsAdapter } from 'nuqs/adapters/next/app'
-import type * as React from 'react'
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import type * as React from "react";
 import {
   PlatformProvider,
   type PlatformProviderProps,
-} from '@/context/platform'
+} from "@/context/platform";
 
 interface ProvidersProps
   extends React.ComponentProps<typeof NextThemesProvider>,
     PlatformProviderProps {}
 
 export const Providers = (props: ProvidersProps) => {
-  const { initialData, children } = props
+  const { initialData, children } = props;
 
   return (
     <PlatformProvider initialData={initialData}>
@@ -28,5 +28,5 @@ export const Providers = (props: ProvidersProps) => {
         </NextThemesProvider>
       </NuqsAdapter>
     </PlatformProvider>
-  )
-}
+  );
+};

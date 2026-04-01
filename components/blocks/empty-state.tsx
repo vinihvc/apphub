@@ -1,23 +1,23 @@
-import { CircleOff } from 'lucide-react'
-import { cn } from '@/lib/cn'
+import { CircleOff } from "lucide-react";
+import { cn } from "@/lib/cn";
 
-interface EmptyStateProps extends React.ComponentProps<'div'> {
-  /**
-   * The title of the empty state
-   */
-  title: string
+interface EmptyStateProps extends React.ComponentProps<"div"> {
   /**
    * The description of the empty state
    */
-  description: string
+  description: string;
+  /**
+   * The title of the empty state
+   */
+  title: string;
 }
 
 export const EmptyState = (props: EmptyStateProps) => {
-  const { className, ...rest } = props
+  const { className, ...rest } = props;
 
   return (
     <div
-      className={cn('grid place-items-center gap-4 py-10', className)}
+      className={cn("grid place-items-center gap-4 py-10", className)}
       {...rest}
     >
       <CircleOff className="text-primary" />
@@ -30,5 +30,5 @@ export const EmptyState = (props: EmptyStateProps) => {
         </p>
       </div>
     </div>
-  )
-}
+  );
+};

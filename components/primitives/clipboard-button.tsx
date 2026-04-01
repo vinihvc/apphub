@@ -1,50 +1,49 @@
-'use client'
+"use client";
 
-import { Check, Copy } from 'lucide-react'
-import React from 'react'
-import { Button } from './button'
+import { Check, Copy } from "lucide-react";
+import React from "react";
+import { Button } from "./button";
 
 interface ClipboardButtonProps extends React.ComponentProps<typeof Button> {
-  /**
-   * The value to copy
-   */
-  value: string
   /**
    * The duration to show the copied state
    *
    * @default 4000
    */
-  duration?: number
+  duration?: number;
+  /**
+   * The value to copy
+   */
+  value: string;
 }
 
 export const ClipboardButton = (props: ClipboardButtonProps) => {
-  const { value, onClick, children, ...rest } = props
+  const { value, onClick, children, ...rest } = props;
 
-  const [isCopied, setIsCopied] = React.useState(false)
+  const [isCopied, setIsCopied] = React.useState(false);
 
   const handleCopy = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    e.stopPropagation()
+    e.preventDefault();
+    e.stopPropagation();
 
-    onClick?.(e)
+    onClick?.(e);
 
     try {
-      await navigator.clipboard.writeText(value)
+      await navigator.clipboard.writeText(value);
     } catch {
-      // biome-ignore lint/suspicious/noConsole: error handling
-      console.error('Failed to copy to clipboard')
+      console.error("Failed to copy to clipboard");
     }
 
-    setIsCopied(true)
-  }
+    setIsCopied(true);
+  };
 
   React.useEffect(() => {
     if (isCopied) {
       setTimeout(() => {
-        setIsCopied(false)
-      }, 2000)
+        setIsCopied(false);
+      }, 2000);
     }
-  }, [isCopied])
+  }, [isCopied]);
 
   return (
     <Button onClick={handleCopy} {...rest}>
@@ -52,5 +51,5 @@ export const ClipboardButton = (props: ClipboardButtonProps) => {
 
       {children}
     </Button>
-  )
-}
+  );
+};

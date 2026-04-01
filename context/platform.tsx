@@ -1,29 +1,29 @@
-'use client'
+"use client";
 
-import React from 'react'
-import type { PlatformType } from '@/content/platforms'
-import { getPlatformFromClient } from '@/lib/platform'
+import React from "react";
+import type { PlatformType } from "@/content/platforms";
+import { getPlatformFromClient } from "@/lib/platform";
 
 interface PlatformContextType {
   /**
-   * The platform of the user
+   * Whether the user is on a Linux device
    */
-  platform: PlatformType
-  /**
-   * Whether the user is on a Windows platform
-   */
-  isWindows: boolean
+  isLinux: boolean;
   /**
    * Whether the user is on a Mac device
    */
-  isMac: boolean
+  isMac: boolean;
   /**
-   * Whether the user is on a Linux device
+   * Whether the user is on a Windows platform
    */
-  isLinux: boolean
+  isWindows: boolean;
+  /**
+   * The platform of the user
+   */
+  platform: PlatformType;
 }
 
-const PlatformContext = React.createContext({} as PlatformContextType)
+const PlatformContext = React.createContext({} as PlatformContextType);
 
 export interface PlatformProviderProps extends React.PropsWithChildren {
   /**
@@ -33,21 +33,28 @@ export interface PlatformProviderProps extends React.PropsWithChildren {
     /**
      * The platform of the user
      */
-    platform: PlatformType
-  }
+    platform: PlatformType;
+  };
 }
 
 /**
  * Only desktop platforms are necessary for the app
  */
 export const PlatformProvider = (props: PlatformProviderProps) => {
-  const { initialData, children } = props
+  const { initialData, children } = props;
 
-  const { platform } = initialData ?? getPlatformFromClient()
+  const [platform, setPlatform] = React.useState<PlatformType>(
+    initialData.platform
+  );
 
-  const isWindows = platform === 'windows'
-  const isMac = platform === 'mac'
-  const isLinux = platform === 'linux'
+  React.useEffect(() => {
+    const { platform: clientPlatform } = getPlatformFromClient();
+    setPlatform(clientPlatform);
+  }, []);
+
+  const isWindows = platform === "windows";
+  const isMac = platform === "mac";
+  const isLinux = platform === "linux";
 
   return (
     <PlatformContext.Provider
@@ -60,15 +67,15 @@ export const PlatformProvider = (props: PlatformProviderProps) => {
     >
       {children}
     </PlatformContext.Provider>
-  )
-}
+  );
+};
 
 export const usePlatform = () => {
-  const context = React.useContext(PlatformContext)
+  const context = React.useContext(PlatformContext);
 
   if (!context) {
-    throw new Error('usePlatform must be used within an PlatformProvider')
+    throw new Error("usePlatform must be used within an PlatformProvider");
   }
 
-  return context
-}
+  return context;
+};

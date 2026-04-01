@@ -1,24 +1,25 @@
-import { notFound } from 'next/navigation'
-import { ScrollArea, ScrollBar } from '@/components/primitives/scroll-area'
-import { Separator } from '@/components/primitives/separator'
-import { CopyCommand } from '@/components/ui/copy-command'
-import { NavLink } from '@/components/ui/nav-link'
-import { ShareLink } from '@/components/ui/share-link'
-import { ShimmerImage } from '@/components/ui/shimmer-image'
-import { SITE_CONFIG } from '@/config/site'
-import { getCollectionBySlug, getCollections } from '@/services/queries'
+import { notFound } from "next/navigation";
+import { ScrollArea, ScrollBar } from "@/components/primitives/scroll-area";
+import { Separator } from "@/components/primitives/separator";
+import { CopyCommand } from "@/components/ui/copy-command";
+import { NavLink } from "@/components/ui/nav-link";
+import { ShareLink } from "@/components/ui/share-link";
+import { ShimmerImage } from "@/components/ui/shimmer-image";
+import { SITE_CONFIG } from "@/config/site";
+import { getCollectionBySlug, getCollections } from "@/services/queries";
 
-interface AppDetailPageProps {
-  params: Promise<{ slug: string }>
-}
+export const revalidate = false;
+export const dynamic = "force-static";
 
-export const generateMetadata = async ({ params }: AppDetailPageProps) => {
-  const { slug } = await params
+export const generateMetadata = async ({
+  params,
+}: PageProps<"/collections/[slug]">) => {
+  const { slug } = await params;
 
-  const collection = getCollectionBySlug(slug)
+  const collection = getCollectionBySlug(slug);
 
   if (!collection) {
-    notFound()
+    notFound();
   }
 
   return {
@@ -29,22 +30,22 @@ export const generateMetadata = async ({ params }: AppDetailPageProps) => {
       title: `${collection.title} - ${SITE_CONFIG.name}`,
       description: collection.description,
     },
-  }
-}
+  };
+};
 
 export const generateStaticParams = () => {
   return getCollections().map((collection) => ({
     slug: collection.slug,
-  }))
-}
+  }));
+};
 
-const AppDetailPage = async (props: AppDetailPageProps) => {
-  const { slug } = await props.params
+const AppDetailPage = async (props: PageProps<"/collections/[slug]">) => {
+  const { slug } = await props.params;
 
-  const collection = getCollectionBySlug(slug)
+  const collection = getCollectionBySlug(slug);
 
   if (!collection) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -104,7 +105,7 @@ const AppDetailPage = async (props: AppDetailPageProps) => {
         </div>
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default AppDetailPage
+export default AppDetailPage;

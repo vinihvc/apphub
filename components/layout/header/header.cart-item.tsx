@@ -1,25 +1,25 @@
-import { X } from 'lucide-react'
-import { Button } from '@/components/primitives/button'
-import { CopyCommand } from '@/components/ui/copy-command'
-import { ShimmerImage } from '@/components/ui/shimmer-image'
-import type { AppType } from '@/content/apps'
-import { useCartStore } from '@/lib/cart'
+import { X } from "lucide-react";
+import { Button } from "@/components/primitives/button";
+import { CopyCommand } from "@/components/ui/copy-command";
+import { ShimmerImage } from "@/components/ui/shimmer-image";
+import type { AppType } from "@/content/apps";
+import { useCartStore } from "@/lib/cart";
 
 interface CartItemProps {
   /**
    * The app to display in the cart item
    */
-  app: AppType
+  app: AppType;
 }
 
 export const CartItem = (props: CartItemProps) => {
-  const { app } = props
+  const { app } = props;
 
-  const { removeFromCart } = useCartStore()
+  const { removeFromCart } = useCartStore();
 
   const handleRemove = () => {
-    removeFromCart(app.slug)
-  }
+    removeFromCart(app.slug);
+  };
 
   return (
     <div className="flex items-center gap-3 border-b p-3 last:border-b-0">
@@ -47,5 +47,5 @@ export const CartItem = (props: CartItemProps) => {
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};

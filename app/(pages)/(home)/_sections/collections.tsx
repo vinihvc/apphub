@@ -1,16 +1,16 @@
-import { cn } from '@/lib/cn'
-import { CollectionListBlock } from '../../../../components/blocks/collection-list/collection-list'
+import { cn } from "@/lib/cn";
+import { CollectionListBlock } from "../../../../components/blocks/collection-list/collection-list";
 
-interface CollectionsSectionProps extends React.ComponentProps<'section'> {}
+interface CollectionsSectionProps extends React.ComponentProps<"section"> {}
 
 export const CollectionsSection = (props: CollectionsSectionProps) => {
-  const { className, ...rest } = props
+  const { className, ...rest } = props;
 
   return (
     <section
       className={cn(
-        'border-t bg-primary-foreground py-12 md:py-16 lg:py-20',
-        className,
+        "border-t bg-primary-foreground py-12 md:py-16 lg:py-20",
+        className
       )}
       {...rest}
     >
@@ -28,5 +28,5 @@ export const CollectionsSection = (props: CollectionsSectionProps) => {
         <CollectionListBlock />
       </div>
     </section>
-  )
-}
+  );
+};

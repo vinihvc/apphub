@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
-import { useRouter } from 'next/navigation'
-import React from 'react'
-import { NavLink } from '@/components/ui/nav-link'
-import { APP_COLLECTIONS } from '@/content/collections'
-import { getApps } from '@/services/queries'
+import { useRouter } from "next/navigation";
+import React from "react";
+import { NavLink } from "@/components/ui/nav-link";
+import { APP_COLLECTIONS } from "@/content/collections";
+import { getApps } from "@/services/queries";
 import {
   CommandDialog,
   CommandEmpty,
@@ -12,25 +12,25 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '../primitives/command'
-import { ShimmerImage } from '../ui/shimmer-image'
+} from "../primitives/command";
+import { ShimmerImage } from "../ui/shimmer-image";
 
 interface GlobalSearchDialogProps
   extends React.ComponentProps<typeof CommandDialog> {}
 
 const GlobalSearchDialog = (props: GlobalSearchDialogProps) => {
-  const { onOpenChange } = props
+  const { onOpenChange } = props;
 
-  const router = useRouter()
+  const router = useRouter();
 
   const handleSelect = (slug: string) => {
-    router.push(`/apps/${slug}`)
-    onOpenChange?.(false)
-  }
+    router.push(`/apps/${slug}`);
+    onOpenChange?.(false);
+  };
 
   const apps = React.useMemo(() => {
-    return getApps()
-  }, [])
+    return getApps();
+  }, []);
 
   return (
     <CommandDialog {...props}>
@@ -43,7 +43,7 @@ const GlobalSearchDialog = (props: GlobalSearchDialogProps) => {
             <CommandItem
               asChild
               key={app.slug}
-              keywords={[app.name, app.developer, app.category.join(', ')]}
+              keywords={[app.name, app.developer, app.category.join(", ")]}
               onSelect={() => handleSelect(app.slug)}
             >
               <NavLink
@@ -91,7 +91,7 @@ const GlobalSearchDialog = (props: GlobalSearchDialogProps) => {
         </CommandGroup>
       </CommandList>
     </CommandDialog>
-  )
-}
+  );
+};
 
-export default GlobalSearchDialog
+export default GlobalSearchDialog;

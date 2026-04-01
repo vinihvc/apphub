@@ -1,5 +1,8 @@
-import { CollectionListBlock } from '@/components/blocks/collection-list/collection-list'
-import { SearchBlock } from '@/components/blocks/search'
+import { CollectionListBlock } from "@/components/blocks/collection-list/collection-list";
+import { SearchBlock } from "@/components/blocks/search";
+
+export const revalidate = false;
+export const dynamic = "force-static";
 
 const CollectionsRootPage = () => {
   return (
@@ -21,7 +24,7 @@ const CollectionsRootPage = () => {
 
       <CollectionListBlock />
     </main>
-  )
-}
+  );
+};
 
-export default CollectionsRootPage
+export default CollectionsRootPage;

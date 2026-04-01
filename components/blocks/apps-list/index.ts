@@ -1,1 +1,1 @@
-export * from './apps-list'
+export * from "./apps-list";

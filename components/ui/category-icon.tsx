@@ -15,14 +15,14 @@ import {
   Terminal,
   Video,
   Wrench,
-} from 'lucide-react'
-import type { CategoriesType } from '@/content/categories'
+} from "lucide-react";
+import type { CategoriesType } from "@/content/categories";
 
 interface CategoryIconProps extends React.ComponentProps<LucideIcon> {
   /**
    * The category to display
    */
-  data: CategoriesType
+  data: CategoriesType;
 }
 
 const CATEGORY_ICONS: Record<CategoriesType, LucideIcon> = {
@@ -30,25 +30,25 @@ const CATEGORY_ICONS: Record<CategoriesType, LucideIcon> = {
   security: Shield,
   communication: MessageCircle,
   development: Code,
-  'code-editor': SquareChartGantt,
+  "code-editor": SquareChartGantt,
   database: Database,
   browser: Globe,
   recording: Focus,
-  'video-player': Video,
-  'photo-editor': Image,
-  'password-manager': Lock,
+  "video-player": Video,
+  "photo-editor": Image,
+  "password-manager": Lock,
   terminal: Terminal,
   docker: Container,
-  'mac-utility': Computer,
+  "mac-utility": Computer,
   network: Globe,
   utility: Wrench,
   screenshot: Image,
-}
+};
 
 export const CategoryIcon = (props: CategoryIconProps) => {
-  const { data, ...rest } = props
+  const { data, ...rest } = props;
 
-  const Icon = CATEGORY_ICONS[data]
+  const Icon = CATEGORY_ICONS[data];
 
-  return <Icon {...rest} />
-}
+  return <Icon {...rest} />;
+};

@@ -1,33 +1,32 @@
-import { Globe } from 'lucide-react'
-import { notFound } from 'next/navigation'
-import { SimilarAppsBlock } from '@/components/blocks/similar-apps'
-import { Badge } from '@/components/primitives/badge'
-import { Button } from '@/components/primitives/button'
-import { ScrollArea, ScrollBar } from '@/components/primitives/scroll-area'
-import { Separator } from '@/components/primitives/separator'
-import { CartButton } from '@/components/ui/cart-button'
-import { CopyCommand } from '@/components/ui/copy-command'
-import { NavLink } from '@/components/ui/nav-link'
-import { ShareLink } from '@/components/ui/share-link'
-import { ShimmerImage } from '@/components/ui/shimmer-image'
-import { CATEGORY_QUERY_KEY } from '@/config/globals'
-import { SITE_CONFIG } from '@/config/site'
-import { getAppBySlug, getApps } from '@/services/queries'
-import { capitalize, deslugify } from '@/utils/formatter'
+import { Globe } from "lucide-react";
+import { notFound } from "next/navigation";
+import { SimilarAppsBlock } from "@/components/blocks/similar-apps";
+import { Badge } from "@/components/primitives/badge";
+import { Button } from "@/components/primitives/button";
+import { ScrollArea, ScrollBar } from "@/components/primitives/scroll-area";
+import { Separator } from "@/components/primitives/separator";
+import { CartButton } from "@/components/ui/cart-button";
+import { CopyCommand } from "@/components/ui/copy-command";
+import { NavLink } from "@/components/ui/nav-link";
+import { ShareLink } from "@/components/ui/share-link";
+import { ShimmerImage } from "@/components/ui/shimmer-image";
+import { CATEGORY_QUERY_KEY } from "@/config/globals";
+import { SITE_CONFIG } from "@/config/site";
+import { getAppBySlug, getApps } from "@/services/queries";
+import { capitalize, deslugify } from "@/utils/formatter";
 
-interface AppDetailPageProps {
-  params: Promise<{
-    slug: string
-  }>
-}
+export const revalidate = false;
+export const dynamic = "force-static";
 
-export const generateMetadata = async ({ params }: AppDetailPageProps) => {
-  const { slug } = await params
+export const generateMetadata = async ({
+  params,
+}: PageProps<"/apps/[slug]">) => {
+  const { slug } = await params;
 
-  const app = getAppBySlug(slug)
+  const app = getAppBySlug(slug);
 
   if (!app) {
-    notFound()
+    notFound();
   }
 
   return {
@@ -38,22 +37,22 @@ export const generateMetadata = async ({ params }: AppDetailPageProps) => {
       title: `${app.name} - ${SITE_CONFIG.name}`,
       description: app.description,
     },
-  }
-}
+  };
+};
 
 export const generateStaticParams = () => {
   return getApps().map((app) => ({
     slug: app.slug,
-  }))
-}
+  }));
+};
 
-const AppDetailPage = async (props: AppDetailPageProps) => {
-  const { slug } = await props.params
+const AppDetailPage = async (props: PageProps<"/apps/[slug]">) => {
+  const { slug } = await props.params;
 
-  const app = getAppBySlug(slug)
+  const app = getAppBySlug(slug);
 
   if (!app) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -83,7 +82,7 @@ const AppDetailPage = async (props: AppDetailPageProps) => {
                 <Badge asChild key={category}>
                   <NavLink
                     href={{
-                      pathname: '/apps',
+                      pathname: "/apps",
                       query: { [CATEGORY_QUERY_KEY]: category },
                     }}
                   >
@@ -119,7 +118,7 @@ const AppDetailPage = async (props: AppDetailPageProps) => {
 
       <SimilarAppsBlock data={app} />
     </main>
-  )
-}
+  );
+};
 
-export default AppDetailPage
+export default AppDetailPage;

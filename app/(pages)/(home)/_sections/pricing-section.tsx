@@ -1,6 +1,6 @@
-import { Check } from 'lucide-react'
+import { Check } from "lucide-react";
 
-import { Button } from '@/components/primitives/button'
+import { Button } from "@/components/primitives/button";
 import {
   Card,
   CardContent,
@@ -8,7 +8,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/primitives/card'
+} from "@/components/primitives/card";
 
 export function PricingSection() {
   return (
@@ -62,7 +62,7 @@ export function PricingSection() {
             </CardFooter>
           </Card>
           <Card className="relative flex flex-col border-emerald-500">
-            <div className="-top-4 absolute right-0 left-0 mx-auto w-fit rounded-full bg-emerald-500 px-3 py-1 font-medium text-white text-xs">
+            <div className="absolute -top-4 right-0 left-0 mx-auto w-fit rounded-full bg-emerald-500 px-3 py-1 font-medium text-white text-xs">
               Most Popular
             </div>
             <CardHeader>
@@ -146,5 +146,5 @@ export function PricingSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

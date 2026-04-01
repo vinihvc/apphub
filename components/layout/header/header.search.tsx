@@ -1,32 +1,32 @@
-import dynamic from 'next/dynamic'
-import React from 'react'
-import { Button } from '@/components/primitives/button'
-import { Kbd } from '@/components/primitives/kbd'
+import dynamic from "next/dynamic";
+import React from "react";
+import { Button } from "@/components/primitives/button";
+import { Kbd } from "@/components/primitives/kbd";
 
 const GlobalSearchDialog = dynamic(
-  () => import('@/components/dialog/global-search'),
+  () => import("@/components/dialog/global-search"),
   {
     ssr: false,
-  },
-)
+  }
+);
 
 export const HeaderSearch = () => {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault()
-        setOpen((prev) => !prev)
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setOpen((prev) => !prev);
       }
-    }
+    };
 
-    document.addEventListener('keydown', down)
+    document.addEventListener("keydown", down);
 
     return () => {
-      document.removeEventListener('keydown', down)
-    }
-  }, [])
+      document.removeEventListener("keydown", down);
+    };
+  }, []);
 
   return (
     <>
@@ -38,11 +38,11 @@ export const HeaderSearch = () => {
           <span className="hidden lg:inline-flex">Search for apps...</span>
 
           <span className="inline-flex lg:hidden">Search...</span>
-          <Kbd className="-translate-y-1/2 absolute top-1/2 right-2">⌘K</Kbd>
+          <Kbd className="absolute top-1/2 right-2 -translate-y-1/2">⌘K</Kbd>
         </Button>
       </div>
 
       <GlobalSearchDialog onOpenChange={setOpen} open={open} />
     </>
-  )
-}
+  );
+};

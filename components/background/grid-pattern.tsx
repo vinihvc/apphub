@@ -1,29 +1,29 @@
-import { cn } from '@/lib/cn'
+import { cn } from "@/lib/cn";
 
-interface GridPatternProps extends React.ComponentProps<'svg'> {
-  /**
-   * The size of the grid pattern.
-   *
-   * @default 100
-   */
-  size?: number
+interface GridPatternProps extends React.ComponentProps<"svg"> {
   /**
    * The inner size of the grid pattern.
    *
    * @default 100
    */
-  innerSize?: number
+  innerSize?: number;
+  /**
+   * The size of the grid pattern.
+   *
+   * @default 100
+   */
+  size?: number;
 }
 
 export const GridPattern = (props: GridPatternProps) => {
-  const { className, size = 100, innerSize = 100, ...rest } = props
+  const { className, size = 100, innerSize = 100, ...rest } = props;
 
   return (
     <svg
       aria-hidden="true"
       className={cn(
-        'pointer-events-none absolute inset-0 h-dvh w-screen opacity-10 dark:opacity-5',
-        className,
+        "pointer-events-none absolute inset-0 h-dvh w-screen opacity-10 dark:opacity-5",
+        className
       )}
       fill="none"
       {...rest}
@@ -58,5 +58,5 @@ export const GridPattern = (props: GridPatternProps) => {
       </defs>
       <rect fill="url(#checkered)" height="100vh" width="100vw" />
     </svg>
-  )
-}
+  );
+};

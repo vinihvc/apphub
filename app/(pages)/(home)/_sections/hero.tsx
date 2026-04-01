@@ -1,21 +1,21 @@
-import { ArrowRight } from 'lucide-react'
-import { GridPattern } from '@/components/background/grid-pattern'
-import { Badge } from '@/components/primitives/badge'
-import { Button } from '@/components/primitives/button'
-import { NavLink } from '@/components/ui/nav-link'
-import { SITE_CONFIG } from '@/config/site'
-import { cn } from '@/lib/cn'
+import { ArrowRight } from "lucide-react";
+import { GridPattern } from "@/components/background/grid-pattern";
+import { Badge } from "@/components/primitives/badge";
+import { Button } from "@/components/primitives/button";
+import { NavLink } from "@/components/ui/nav-link";
+import { SITE_CONFIG } from "@/config/site";
+import { cn } from "@/lib/cn";
 
-interface HeroSectionProps extends React.ComponentProps<'section'> {}
+interface HeroSectionProps extends React.ComponentProps<"section"> {}
 
 export const HeroSection = (props: HeroSectionProps) => {
-  const { className, ...rest } = props
+  const { className, ...rest } = props;
 
   return (
     <section
       className={cn(
-        'relative min-h-96 overflow-clip bg-gradient-to-b from-emerald-100 to-background dark:from-emerald-950 ',
-        className,
+        "relative min-h-96 overflow-clip bg-gradient-to-b from-emerald-100 to-background dark:from-emerald-950",
+        className
       )}
       {...rest}
     >
@@ -59,5 +59,5 @@ export const HeroSection = (props: HeroSectionProps) => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};

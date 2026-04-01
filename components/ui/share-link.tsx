@@ -1,79 +1,78 @@
-'use client'
+"use client";
 
-import { Check, Share2 } from 'lucide-react'
-import React from 'react'
-import { Button } from '../primitives/button'
+import { Check, Share2 } from "lucide-react";
+import React from "react";
+import { Button } from "../primitives/button";
 
 interface ShareLinkProps extends React.ComponentProps<typeof Button> {
   /**
+   * The text to share
+   */
+  text?: string;
+  /**
    * The title of the link
    */
-  title?: string
+  title?: string;
   /**
    * The URL to share
    */
-  url?: string
-  /**
-   * The text to share
-   */
-  text?: string
+  url?: string;
 }
 
 export const ShareLink = (props: ShareLinkProps) => {
   const {
-    url = typeof window !== 'undefined' ? window.location.href : '',
-    title = 'Share this link',
+    url = typeof window === "undefined" ? "" : window.location.href,
+    title = "Share this link",
     text,
     children,
     ...rest
-  } = props
+  } = props;
 
-  const [isCopied, setIsCopied] = React.useState(false)
-  const [isSharing, setIsSharing] = React.useState(false)
+  const [isCopied, setIsCopied] = React.useState(false);
+  const [isSharing, setIsSharing] = React.useState(false);
 
   const hasNativeShare =
-    typeof navigator !== 'undefined' && 'share' in navigator
+    typeof navigator !== "undefined" && "share" in navigator;
 
   const handleShare = async () => {
     if (hasNativeShare && !isSharing) {
-      setIsSharing(true)
+      setIsSharing(true);
 
       try {
         await navigator.share({
           title,
           text,
           url,
-        })
+        });
       } catch (error) {
-        if (error instanceof Error && error.name !== 'AbortError') {
-          await handleCopy()
+        if (error instanceof Error && error.name !== "AbortError") {
+          await handleCopy();
         }
       } finally {
-        setIsSharing(false)
+        setIsSharing(false);
       }
     } else {
-      await handleCopy()
+      await handleCopy();
     }
-  }
+  };
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(url)
-      setIsCopied(true)
+      await navigator.clipboard.writeText(url);
+      setIsCopied(true);
 
       setTimeout(() => {
-        setIsCopied(false)
-      }, 2000)
+        setIsCopied(false);
+      }, 2000);
     } catch (error) {
-      // biome-ignore lint/suspicious/noConsole: error handling
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   return (
     <Button {...rest} disabled={isSharing} onClick={handleShare}>
       {isCopied ? <Check /> : <Share2 />}
       {children}
     </Button>
-  )
-}
+  );
+};

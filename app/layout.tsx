@@ -1,13 +1,14 @@
-import type { Metadata, Viewport } from 'next'
-import { Providers } from './provider'
-import '@/styles/globals.css'
-import { headers } from 'next/headers'
-import { Footer } from '@/components/layout/footer'
-import { Header } from '@/components/layout/header'
-import { Analytics } from '@/components/tracking/analytics'
-import { META_THEME_COLORS, SITE_CONFIG } from '@/config/site'
-import { fontSans } from '@/lib/fonts'
-import { getPlatformFromHeaders } from '@/lib/platform'
+import type { Metadata, Viewport } from "next";
+import { Providers } from "./provider";
+import "@/styles/globals.css";
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
+import { Analytics } from "@/components/tracking/analytics";
+import { META_THEME_COLORS, SITE_CONFIG } from "@/config/site";
+import { fontSans } from "@/lib/fonts";
+
+export const revalidate = false;
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: {
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(SITE_CONFIG.url),
   description: SITE_CONFIG.description,
-  keywords: ['Download', 'Apps', 'Software', 'New'],
+  keywords: ["Download", "Apps", "Software", "New"],
   authors: [
     {
       name: SITE_CONFIG.author,
@@ -25,8 +26,8 @@ export const metadata: Metadata = {
   ],
   creator: SITE_CONFIG.author,
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
+    type: "website",
+    locale: "en_US",
     url: SITE_CONFIG.url,
     title: SITE_CONFIG.name,
     description: SITE_CONFIG.description,
@@ -41,31 +42,34 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: SITE_CONFIG.name,
     description: SITE_CONFIG.description,
     images: [SITE_CONFIG.ogImage],
-    creator: '@vinihvc',
+    creator: "@vinihvc",
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png',
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
   },
   manifest: `${SITE_CONFIG.url}/site.webmanifest`,
-}
+};
 
 export const viewport: Viewport = {
   themeColor: META_THEME_COLORS.dark,
-}
+};
 
-const RootLayout = async ({ children }: React.PropsWithChildren) => {
-  const { platform } = getPlatformFromHeaders(await headers())
-
+const RootLayout = ({ children }: React.PropsWithChildren) => {
   return (
-    <html className={fontSans.variable} lang="en" suppressHydrationWarning>
+    <html
+      className={fontSans.variable}
+      data-scroll-behavior="smooth"
+      lang="en"
+      suppressHydrationWarning
+    >
       <body>
-        <Providers initialData={{ platform }}>
+        <Providers initialData={{ platform: "windows" }}>
           <Header />
 
           {children}
@@ -76,7 +80,7 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
         </Providers>
       </body>
     </html>
-  )
-}
+  );
+};
 
-export default RootLayout
+export default RootLayout;

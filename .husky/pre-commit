@@ -1,2 +1,5 @@
-npx ultracite format
-npx ultracite format
+pnpm test
+
+# ultracite
+#!/bin/sh
+pnpm dlx lint-staged

@@ -1,6 +1,9 @@
-import { AppsSection } from './_sections/apps'
-import { CollectionsSection } from './_sections/collections'
-import { HeroSection } from './_sections/hero'
+import { AppsSection } from "./_sections/apps";
+import { CollectionsSection } from "./_sections/collections";
+import { HeroSection } from "./_sections/hero";
+
+export const revalidate = false;
+export const dynamic = "force-static";
 
 const HomePage = () => {
   return (
@@ -11,7 +14,7 @@ const HomePage = () => {
 
       <CollectionsSection />
     </main>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

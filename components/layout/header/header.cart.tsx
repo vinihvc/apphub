@@ -1,29 +1,29 @@
-import { CircleOff, LayoutGrid, Trash2 } from 'lucide-react'
-import React from 'react'
-import { Badge } from '@/components/primitives/badge'
-import { Button } from '@/components/primitives/button'
+import { CircleOff, LayoutGrid, Trash2 } from "lucide-react";
+import React from "react";
+import { Badge } from "@/components/primitives/badge";
+import { Button } from "@/components/primitives/button";
 import {
   Popover,
   PopoverClose,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/primitives/popover'
-import { CopyCommand } from '@/components/ui/copy-command'
-import { NavLink } from '@/components/ui/nav-link'
-import { useCartStore } from '@/lib/cart'
-import { CartItem } from './header.cart-item'
+} from "@/components/primitives/popover";
+import { CopyCommand } from "@/components/ui/copy-command";
+import { NavLink } from "@/components/ui/nav-link";
+import { useCartStore } from "@/lib/cart";
+import { CartItem } from "./header.cart-item";
 
 const HeaderCart = () => {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false);
 
-  const { items, getCartCount, clearCart } = useCartStore()
+  const { items, getCartCount, clearCart } = useCartStore();
 
-  const cartCount = getCartCount()
+  const cartCount = getCartCount();
 
   const handleClearCart = () => {
-    clearCart()
-    setIsOpen(false)
-  }
+    clearCart();
+    setIsOpen(false);
+  };
 
   return (
     <Popover onOpenChange={setIsOpen} open={isOpen}>
@@ -32,7 +32,7 @@ const HeaderCart = () => {
           <LayoutGrid />
 
           {cartCount > 0 && (
-            <div className="-top-1 -right-1 fade-in-0 zoom-in-95 absolute animate-in">
+            <div className="fade-in-0 zoom-in-95 absolute -top-1 -right-1 animate-in">
               <Badge className="flex size-4 rounded-full p-0 text-xs">
                 <span className="sr-only">Apps to install</span>
                 {cartCount}
@@ -85,7 +85,7 @@ const HeaderCart = () => {
         )}
       </PopoverContent>
     </Popover>
-  )
-}
+  );
+};
 
-export default HeaderCart
+export default HeaderCart;

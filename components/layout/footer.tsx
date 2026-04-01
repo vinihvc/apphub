@@ -1,6 +1,6 @@
-import { CloudDownload } from 'lucide-react'
-import { NavLink } from '@/components/ui/nav-link'
-import { SITE_CONFIG } from '@/config/site'
+import { CloudDownload } from "lucide-react";
+import { NavLink } from "@/components/ui/nav-link";
+import { SITE_CONFIG } from "@/config/site";
 
 export const Footer = () => {
   return (
@@ -25,5 +25,5 @@ export const Footer = () => {
         </p>
       </div>
     </footer>
-  )
-}
+  );
+};
