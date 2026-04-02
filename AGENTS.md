@@ -12,6 +12,49 @@ Biome (the underlying engine) provides robust linting and formatting. Most issue
 
 ---
 
+## Adding an app (content)
+
+**Goal:** The app appears in the catalog with correct types, a matching icon at `/images/apps/{slug}.webp`, and install hints that match what the UI generates (see `hooks/use-command.ts`).
+
+### Checklist
+
+1. **Categories** — If you need a new tag, update [`content/categories.ts`](content/categories.ts): add the literal to the `CategoriesType` union **and** to the `CATEGORIES` array. Keep them in sync; the array drives listing/filter behavior.
+2. **App entry** — Append a new object to the `APPS` array in [`content/apps.ts`](content/apps.ts). Follow the field contract below and mirror the property order of neighboring entries when practical.
+3. **Icon** — Add `public/images/apps/{slug}.webp` (create `public/images/apps` if missing). The public URL is `/images/apps/{slug}.webp`.
+4. **Quality** — Run `pnpm dlx ultracite fix` and `pnpm dlx ultracite check`.
+
+### Field contract (`AppType`)
+
+| Field | Rules |
+| --- | --- |
+| `slug` | Lowercase kebab-case, unique, URL-safe. Must match the icon basename: `{slug}.webp`. |
+| `name` | Display name as published by the developer. |
+| `description` | Short, accurate summary (no trailing fluff). |
+| `developer` | Legal or brand name of the vendor. |
+| `category` | One or more `CategoriesType` values; only use literals that exist in `categories.ts` (or add them in step 1). |
+| `platform` | Subset of `mac`, `windows`, `linux`, `ios`, `android` from [`content/platforms.ts`](content/platforms.ts). |
+| `website` | Canonical product URL (`https://`). |
+| `download` | Official downloads or app store landing page (`https://`). |
+| `command` | Optional per-OS **identifiers**, not full shell commands. Only include keys for platforms where a CLI install makes sense and matches `platform`. |
+
+### How `command` is interpreted
+
+The copy-to-clipboard install line is built in `hooks/use-command.ts`:
+
+- **mac:** `brew install --cask <command.mac>` — use the Homebrew **cask** token (verify on [formulae.brew.sh](https://formulae.brew.sh/cask/) or `brew search --cask <name>`).
+- **windows:** `winget install -e --id <command.windows>` — use the Winget package id (verify with `winget search <name>`).
+- **linux:** `apt install <command.linux>` — use a package name valid for Debian/Ubuntu-style `apt`, or **omit** `command.linux` if there is no good match (the UI string would be wrong).
+
+`ios` and `android` are not used by `use-command`; they only affect platform badges.
+
+### Image spec
+
+- **Path:** `public/images/apps/{slug}.webp`
+- **Format / size:** WebP, **192×192** pixels (square app icon).
+- **Behavior:** Missing or broken files still build; `ShimmerImage` falls back to `/images/placeholder.svg` on load error.
+
+---
+
 ## Core Principles
 
 Write code that is **accessible, performant, type-safe, and maintainable**. Focus on clarity and explicit intent over brevity.
@@ -95,8 +138,6 @@ Write code that is **accessible, performant, type-safe, and maintainable**. Focu
 **React 19+:**
 - Use ref as a prop instead of `React.forwardRef`
 
-**Solid/Svelte/Vue/Qwik:**
-- Use `class` and `for` attributes (not `className` or `htmlFor`)
 
 ---
 

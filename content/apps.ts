@@ -199,6 +199,22 @@ export const APPS: AppType[] = [
       linux: "cursor",
     },
   },
+  {
+    slug: "zed",
+    name: "Zed",
+    description:
+      "A fast, multiplayer code editor built in Rust—with real-time collaboration and a GPU-accelerated UI.",
+    developer: "Zed Industries",
+    category: ["development", "code-editor"],
+    platform: ["mac", "windows", "linux"],
+    website: "https://zed.dev",
+    download: "https://zed.dev/download",
+    command: {
+      mac: "zed",
+      windows: "ZedIndustries.Zed",
+      linux: "zed",
+    },
+  },
 
   {
     slug: "iina",

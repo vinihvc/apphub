@@ -14,6 +14,7 @@ import { CATEGORY_QUERY_KEY } from "@/config/globals";
 import { SITE_CONFIG } from "@/config/site";
 import { getAppBySlug, getApps } from "@/services/queries";
 import { capitalize, deslugify } from "@/utils/formatter";
+import { withUtmSource } from "@/utils/url";
 
 export const revalidate = false;
 export const dynamic = "force-static";
@@ -98,7 +99,11 @@ const AppDetailPage = async (props: PageProps<"/apps/[slug]">) => {
 
         <div className="hidden gap-2 justify-self-end sm:flex">
           <Button asChild size="icon" variant="outline">
-            <a href={app.website} rel="noopener noreferrer" target="_blank">
+            <a
+              href={withUtmSource(app.website)}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               <Globe />
               <span className="sr-only">Visit Website</span>
             </a>

@@ -1,7 +1,10 @@
 "use client";
 
 import { Check, Share2 } from "lucide-react";
+import { usePathname } from "next/navigation";
 import React from "react";
+import { SITE_CONFIG } from "@/config/site";
+import { withUtmSource } from "@/utils/url";
 import { Button } from "../primitives/button";
 
 interface ShareLinkProps extends React.ComponentProps<typeof Button> {
@@ -14,19 +17,25 @@ interface ShareLinkProps extends React.ComponentProps<typeof Button> {
    */
   title?: string;
   /**
-   * The URL to share
+   * Overrides the canonical share URL (`SITE_CONFIG.url` + current path + `utm_source`)
    */
   url?: string;
 }
 
 export const ShareLink = (props: ShareLinkProps) => {
+  const pathname = usePathname();
   const {
-    url = typeof window === "undefined" ? "" : window.location.href,
+    url: urlProp,
     title = "Share this link",
     text,
     children,
     ...rest
   } = props;
+
+  const url = React.useMemo(
+    () => urlProp ?? withUtmSource(new URL(pathname, SITE_CONFIG.url).href),
+    [pathname, urlProp]
+  );
 
   const [isCopied, setIsCopied] = React.useState(false);
   const [isSharing, setIsSharing] = React.useState(false);

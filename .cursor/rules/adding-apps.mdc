@@ -1,0 +1,7 @@
+---
+description: Catalog apps, categories, and app icon assets
+globs: content/apps.ts,content/categories.ts,public/images/apps/**
+alwaysApply: false
+---
+
+When adding or editing apps, categories, or files under `public/images/apps/`, follow **AGENTS.md → Adding an app (content)** for the checklist, `AppType` field contract, `command` semantics, and image path (`public/images/apps/{slug}.webp`, 192×192 WebP).

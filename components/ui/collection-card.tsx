@@ -51,7 +51,7 @@ export const CollectionCard = (props: CollectionCardProps) => {
       <div className={cn({ "md:order-1": reverse })}>
         <div className="h-full rounded-lg border bg-accent p-4">
           <div className="grid gap-4">
-            <div className="flex flex-wrap items-center gap-8 max-md:justify-center">
+            <div className="flex flex-wrap items-center gap-6 max-md:justify-center">
               {data.apps.map((app) => (
                 <NavLink
                   className="flex items-center gap-2"
@@ -60,7 +60,7 @@ export const CollectionCard = (props: CollectionCardProps) => {
                 >
                   <ShimmerImage
                     alt={app.name}
-                    className="size-12 rounded-lg object-contain"
+                    className="size-10 rounded-lg object-contain"
                     height={48}
                     key={app.slug}
                     src={`/images/apps/${app.slug}.webp`}
