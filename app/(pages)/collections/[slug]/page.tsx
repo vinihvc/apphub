@@ -1,12 +1,10 @@
 import { notFound } from "next/navigation";
-import { ScrollArea, ScrollBar } from "@/components/primitives/scroll-area";
 import { Separator } from "@/components/primitives/separator";
+import { AppCard } from "@/components/ui/app-card";
 import { CopyCommand } from "@/components/ui/copy-command";
-import { NavLink } from "@/components/ui/nav-link";
-import { ShareLink } from "@/components/ui/share-link";
-import { ShimmerImage } from "@/components/ui/shimmer-image";
 import { SITE_CONFIG } from "@/config/site";
 import { getCollectionBySlug, getCollections } from "@/services/queries";
+import { HeroSection } from "./_sections/hero";
 
 export const revalidate = false;
 export const dynamic = "force-static";
@@ -49,59 +47,26 @@ const AppDetailPage = async (props: PageProps<"/collections/[slug]">) => {
   }
 
   return (
-    <main className="container gap-4 py-32">
-      <div className="grid items-start justify-between gap-8 sm:grid-cols-2">
-        <div className="grid gap-8">
-          <div className="flex items-start gap-5">
-            <div className="relative top-2 inline-flex size-16 shrink-0 items-center justify-center rounded-lg bg-emerald-700 p-2 text-emerald-50">
-              <collection.icon className="size-6" />
-            </div>
-
-            <div>
-              <h1 className="font-bold text-3xl">{collection.title}</h1>
-
-              <p className="text-muted-foreground">{collection.description}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex justify-end">
-          <ShareLink size="icon" variant="outline" />
-        </div>
-      </div>
+    <main className="container gap-4 py-12">
+      <HeroSection collection={collection} />
 
       <Separator className="my-6" />
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4">
         <div className="grid gap-4">
-          <h3 className="font-semibold text-lg">Apps in this collection</h3>
+          <div className="flex items-center justify-between gap-2">
+            <h3 className="font-semibold text-lg">Apps in this collection</h3>
 
-          <ScrollArea>
-            <nav className="flex gap-8 pb-2">
-              {collection.apps.map((app) => (
-                <NavLink
-                  aria-label={`View ${app.name}`}
-                  href={{ pathname: `/apps/${app.slug}` }}
-                  key={app.slug}
-                >
-                  <ShimmerImage
-                    alt={app.name}
-                    className="size-12 rounded-lg object-contain"
-                    height={48}
-                    key={app.slug}
-                    src={`/images/apps/${app.slug}.webp`}
-                    width={48}
-                  />
-                </NavLink>
-              ))}
-            </nav>
+            <div className="flex justify-end">
+              <CopyCommand data={collection.apps}>Copy script</CopyCommand>
+            </div>
+          </div>
 
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
-        </div>
-
-        <div className="flex justify-end">
-          <CopyCommand data={collection.apps}>Copy script</CopyCommand>
+          <div className="grid w-full gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {collection.apps.map((app) => (
+              <AppCard data={app} key={app.slug} />
+            ))}
+          </div>
         </div>
       </div>
     </main>

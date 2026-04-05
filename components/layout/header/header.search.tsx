@@ -1,7 +1,8 @@
+import { SearchIcon } from "lucide-react";
 import dynamic from "next/dynamic";
 import React from "react";
 import { Button } from "@/components/primitives/button";
-import { Kbd } from "@/components/primitives/kbd";
+import { Kbd, KbdGroup } from "@/components/primitives/kbd";
 
 const GlobalSearchDialog = dynamic(
   () => import("@/components/dialog/global-search"),
@@ -32,17 +33,24 @@ export const HeaderSearch = () => {
     <>
       <div className="hidden w-full flex-1 md:flex md:w-auto md:flex-none">
         <Button
-          className="relative h-8 w-full justify-start bg-muted/50 font-normal text-muted-foreground hover:bg-accent hover:text-accent-foreground sm:pr-12 md:w-40 lg:w-56 xl:w-64"
+          aria-label="Search"
+          className="justify-start shadow-none"
+          clickEffect={false}
           onClick={() => setOpen(true)}
+          variant="outline"
         >
-          <span className="hidden lg:inline-flex">Search for apps...</span>
-
-          <span className="inline-flex lg:hidden">Search...</span>
-          <Kbd className="absolute top-1/2 right-2 -translate-y-1/2">⌘K</Kbd>
+          <SearchIcon />
+          <KbdGroup>
+            <Kbd variant="outline">⌘</Kbd>
+            <Kbd variant="outline">K</Kbd>
+          </KbdGroup>
         </Button>
       </div>
 
-      <GlobalSearchDialog onOpenChange={setOpen} open={open} />
+      <GlobalSearchDialog
+        onOpenChange={({ open: next }) => setOpen(next)}
+        open={open}
+      />
     </>
   );
 };

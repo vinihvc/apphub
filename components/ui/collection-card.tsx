@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { NavLink } from "@/components/ui/nav-link";
 import type { AppCollectionType } from "@/content/collections";
 import { cn } from "@/lib/cn";
@@ -53,7 +54,7 @@ export const CollectionCard = (props: CollectionCardProps) => {
           <div className="grid gap-4">
             <div className="flex flex-wrap items-center gap-6 max-md:justify-center">
               {data.apps.map((app) => (
-                <NavLink
+                <Link
                   className="flex items-center gap-2"
                   href={{ pathname: `/apps/${app.slug}` }}
                   key={app.slug}
@@ -68,7 +69,7 @@ export const CollectionCard = (props: CollectionCardProps) => {
                   />
 
                   <span className="sr-only">{`View ${app.name}`}</span>
-                </NavLink>
+                </Link>
               ))}
             </div>
           </div>

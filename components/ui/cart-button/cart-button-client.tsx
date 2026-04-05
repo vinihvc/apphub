@@ -1,6 +1,6 @@
 "use client";
 
-import { Plus, Trash2 } from "lucide-react";
+import { PlusIcon } from "lucide-react";
 import { Button } from "@/components/primitives/button";
 import type { AppType } from "@/content/apps";
 import { useCartStore } from "@/lib/cart";
@@ -40,17 +40,20 @@ const CartButtonClient = (props: CartButtonClientProps) => {
   return (
     <Button
       aria-label={`${isInCart ? "Remove from" : "Add to"} Cart`}
-      className={cn("hidden sm:inline-flex", className)}
+      className={cn(
+        "hidden sm:inline-flex",
+        {
+          "border-destructive/32 bg-destructive/5 text-destructive shadow-destructive/24 hover:bg-destructive/10 hover:text-destructive [&_svg]:rotate-45":
+            isInCart,
+        },
+        className
+      )}
       onClick={handleAddToCart}
-      size="icon"
+      size="icon-xs"
       variant="outline"
       {...rest}
     >
-      {isInCart ? (
-        <Trash2 className="fade-in-0 zoom-in-95 animate-in" />
-      ) : (
-        <Plus className="fade-in-0 zoom-in-95 animate-in" />
-      )}
+      <PlusIcon className="transition-all" />
     </Button>
   );
 };

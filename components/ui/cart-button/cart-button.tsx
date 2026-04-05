@@ -1,14 +1,14 @@
 "use client";
 
-import { Plus } from "lucide-react";
+import { PlusIcon } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/primitives/button";
 
 const CartButtonClient = dynamic(() => import("./cart-button-client"), {
   ssr: false,
   loading: () => (
-    <Button size="icon" variant="outline">
-      <Plus />
+    <Button size="icon-xs" variant="outline">
+      <PlusIcon />
     </Button>
   ),
 });

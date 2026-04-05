@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { AppCard } from "@/components/ui/app-card";
 import type { AppType } from "@/content/apps";
 import { cn } from "@/lib/cn";
@@ -18,15 +18,13 @@ interface SimilarAppsProps extends React.ComponentProps<"section"> {
 export const SimilarAppsBlock = (props: SimilarAppsProps) => {
   const { data, className, limit = 4, ...rest } = props;
 
-  const similarApps = React.useMemo(() => {
-    const filteredApps = getApps().filter(
+  const similarApps = getApps()
+    .filter(
       (a) =>
         a.category.some((c) => data.category.includes(c)) &&
         a.slug !== data.slug
-    );
-
-    return filteredApps.slice(0, limit);
-  }, [data.category, data.slug, limit]);
+    )
+    .slice(0, limit);
 
   if (similarApps.length === 0) {
     return null;

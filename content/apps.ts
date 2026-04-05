@@ -3,9 +3,11 @@ import type { CategoriesType } from "./categories";
 export interface AppType {
   category: CategoriesType[];
   command: {
+    android?: string;
+    ios?: string;
+    linux?: string;
     mac?: string;
     windows?: string;
-    linux?: string;
   };
   description: string;
   developer: string;
@@ -28,9 +30,12 @@ export const APPS: AppType[] = [
     website: "https://1password.com",
     download: "https://1password.com/downloads",
     command: {
+      android:
+        "https://play.google.com/store/apps/details?id=com.onepassword.android",
+      ios: "https://apps.apple.com/app/1password-password-manager/id568903335",
+      linux: "1password",
       mac: "1password",
       windows: "AgileBits.1Password",
-      linux: "1password",
     },
   },
   {
@@ -44,9 +49,11 @@ export const APPS: AppType[] = [
     website: "https://slack.com",
     download: "https://slack.com/downloads",
     command: {
+      android: "https://play.google.com/store/apps/details?id=com.Slack",
+      ios: "https://apps.apple.com/app/slack/id618783545",
+      linux: "slack",
       mac: "slack",
       windows: "SlackTechnologies.Slack",
-      linux: "slack",
     },
   },
   {
@@ -119,9 +126,12 @@ export const APPS: AppType[] = [
     website: "https://www.firefox.com",
     download: "https://www.firefox.com/thanks",
     command: {
+      android:
+        "https://play.google.com/store/apps/details?id=org.mozilla.firefox",
+      ios: "https://apps.apple.com/app/firefox-web-browser/id989804926",
+      linux: "firefox",
       mac: "firefox",
       windows: "Mozilla.Firefox",
-      linux: "firefox",
     },
   },
   {
@@ -134,9 +144,12 @@ export const APPS: AppType[] = [
     website: "https://www.google.com/chrome",
     download: "https://www.google.com/chrome/thank-you",
     command: {
+      android:
+        "https://play.google.com/store/apps/details?id=com.android.chrome",
+      ios: "https://apps.apple.com/app/google-chrome/id535886823",
+      linux: "google-chrome-stable",
       mac: "google-chrome",
       windows: "Google.Chrome",
-      linux: "google-chrome-stable",
     },
   },
   {
@@ -149,9 +162,11 @@ export const APPS: AppType[] = [
     website: "https://discord.com",
     download: "https://discord.com/download",
     command: {
+      android: "https://play.google.com/store/apps/details?id=com.discord",
+      ios: "https://apps.apple.com/app/discord-chat-for-games/id985746746",
+      linux: "discord",
       mac: "discord",
       windows: "Discord.Discord",
-      linux: "discord",
     },
   },
   {
@@ -324,9 +339,12 @@ export const APPS: AppType[] = [
     platform: ["mac", "windows", "linux", "ios", "android"],
     download: "https://bitwarden.com/download",
     command: {
+      android:
+        "https://play.google.com/store/apps/details?id=com.x8bit.bitwarden",
+      ios: "https://apps.apple.com/app/bitwarden-password-manager/id1137397744",
+      linux: "bitwarden",
       mac: "bitwarden",
       windows: "Bitwarden.Bitwarden",
-      linux: "bitwarden",
     },
   },
   {
@@ -422,7 +440,42 @@ export const APPS: AppType[] = [
     platform: ["mac", "ios"],
     download: "https://netnewswire.com",
     command: {
+      ios: "https://apps.apple.com/app/netnewswire/id1487939747",
       mac: "netnewswire",
+    },
+  },
+  {
+    slug: "obsidian",
+    name: "Obsidian",
+    description:
+      "Local-first Markdown notes and knowledge base with plugins, backlinks, and graph view.",
+    developer: "Obsidian",
+    website: "https://obsidian.md",
+    category: ["productivity"],
+    platform: ["mac", "windows", "linux", "ios", "android"],
+    download: "https://obsidian.md/download",
+    command: {
+      android: "https://play.google.com/store/apps/details?id=md.obsidian",
+      ios: "https://apps.apple.com/app/obsidian-connected-notes/id1557175442",
+      mac: "obsidian",
+      windows: "Obsidian.Obsidian",
+    },
+  },
+  {
+    slug: "logseq",
+    name: "Logseq",
+    description:
+      "Privacy-first, open-source outliner for notes, tasks, and knowledge in Markdown and Org-mode files.",
+    developer: "Logseq",
+    website: "https://logseq.com",
+    category: ["productivity"],
+    platform: ["mac", "windows", "linux", "ios", "android"],
+    download: "https://logseq.com/downloads",
+    command: {
+      android: "https://f-droid.org/packages/com.logseq.app/",
+      ios: "https://apps.apple.com/app/logseq/id1610101498",
+      mac: "logseq",
+      windows: "Logseq.Logseq",
     },
   },
   {

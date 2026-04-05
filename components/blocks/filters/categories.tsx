@@ -1,103 +1,66 @@
 "use client";
 
-import { CheckIcon, Filter, X } from "lucide-react";
+import { createListCollection } from "@ark-ui/react/combobox";
+import { FilterIcon } from "lucide-react";
 import { useQueryState } from "nuqs";
-import React from "react";
-import { Button } from "@/components/primitives/button";
+import type React from "react";
 import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/primitives/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/primitives/popover";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/primitives/select";
 import { Separator } from "@/components/primitives/separator";
-import { CategoryIcon } from "@/components/ui/category-icon";
+import { Icon } from "@/components/ui/icons";
 import { CATEGORY_QUERY_KEY } from "@/config/globals";
-import { cn } from "@/lib/cn";
 import { getCategories } from "@/services/queries";
 import { capitalize, deslugify } from "@/utils/formatter";
 
 interface CategoriesFilterBlockProps
-  extends React.ComponentProps<typeof Button> {}
+  extends React.ComponentProps<typeof SelectTrigger> {}
 
 export const CategoriesFilterBlock = (props: CategoriesFilterBlockProps) => {
   const [category, setCategory] = useQueryState(CATEGORY_QUERY_KEY, {
     defaultValue: "all",
   });
 
-  const [open, setOpen] = React.useState(false);
-
-  const categories = React.useMemo(() => {
-    return getCategories();
-  }, []);
-
-  const handleSelect = (value: string) => {
-    setCategory(value);
-    setOpen(false);
-  };
+  const collection = createListCollection({
+    items: [
+      { value: "all", label: "All Categories" },
+      ...getCategories().map((slug) => ({
+        value: slug,
+        label: capitalize(deslugify(slug)),
+      })),
+    ] as const,
+  });
 
   return (
-    <Popover onOpenChange={setOpen} open={open}>
-      <div className="flex items-center gap-2">
-        {category !== "all" && (
-          <div className="fade-in-0 slide-in-from-right-5 animate-in">
-            <Button
-              onClick={() => setCategory("all")}
-              size="icon"
-              variant="outline"
-            >
-              <X />
-            </Button>
-          </div>
-        )}
+    <Select
+      collection={collection}
+      onValueChange={({ value }) => setCategory(value[0])}
+      value={[category]}
+    >
+      <SelectTrigger showIndicator={false} size="lg" {...props}>
+        <FilterIcon className="text-muted-foreground" />
 
-        <PopoverTrigger asChild>
-          <Button aria-expanded={open} size="sm" variant="outline" {...props}>
-            <Filter />
+        <Separator className="h-4" orientation="vertical" />
 
-            <Separator className="!h-4" orientation="vertical" />
+        <SelectValue placeholder="Category" />
+      </SelectTrigger>
 
-            {capitalize(deslugify(category))}
-          </Button>
-        </PopoverTrigger>
-      </div>
-
-      <PopoverContent align="start" className="w-64 p-0">
-        <Command>
-          <CommandInput placeholder="Search categories..." />
-          <CommandList>
-            <CommandEmpty>No categories found.</CommandEmpty>
-            <CommandGroup heading="Categories">
-              {categories.map((item) => (
-                <CommandItem
-                  className="justify-between"
-                  key={item}
-                  onSelect={() => handleSelect(item)}
-                  value={item}
-                >
-                  <div className="flex items-center gap-2">
-                    <CategoryIcon className="size-4" data={item} />
-                    {capitalize(deslugify(item))}
-                  </div>
-                  <CheckIcon
-                    className={cn(
-                      "mr-2 size-4",
-                      category === item ? "opacity-100" : "opacity-0"
-                    )}
-                  />
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          </CommandList>
-        </Command>
-      </PopoverContent>
-    </Popover>
+      <SelectContent className="min-w-56">
+        {collection.items.map((item) => (
+          <SelectItem
+            aria-label={item.value}
+            item={item.value}
+            key={item.value}
+          >
+            <Icon data={item.value} />
+            {item.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   );
 };

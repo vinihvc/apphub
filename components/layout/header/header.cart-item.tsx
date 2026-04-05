@@ -1,4 +1,4 @@
-import { X } from "lucide-react";
+import { XIcon } from "lucide-react";
 import { Button } from "@/components/primitives/button";
 import { CopyCommand } from "@/components/ui/copy-command";
 import { ShimmerImage } from "@/components/ui/shimmer-image";
@@ -23,7 +23,7 @@ export const CartItem = (props: CartItemProps) => {
 
   return (
     <div className="flex items-center gap-3 border-b p-3 last:border-b-0">
-      <div className="relative size-8 flex-shrink-0 overflow-hidden rounded-lg">
+      <div className="relative size-8 shrink-0 overflow-hidden rounded-lg">
         <ShimmerImage
           alt={`${app.name} icon`}
           className="rounded-md object-contain"
@@ -40,10 +40,10 @@ export const CartItem = (props: CartItemProps) => {
       </div>
 
       <div className="flex items-center gap-2">
-        <CopyCommand data={app} size="icon" variant="ghost" />
+        <CopyCommand data={app} size="icon-sm" variant="ghost" />
 
-        <Button onClick={handleRemove} size="icon" variant="ghost">
-          <X />
+        <Button onClick={handleRemove} size="icon-sm" variant="ghost">
+          <XIcon />
         </Button>
       </div>
     </div>

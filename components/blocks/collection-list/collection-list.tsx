@@ -13,7 +13,7 @@ export const CollectionListBlock = (props: CollectionListBlockProps) => {
   const { collections } = useCollectionList();
 
   return (
-    <section className={cn("container grid gap-20", className)} {...rest}>
+    <section className={cn("grid gap-20", className)} {...rest}>
       {collections.map((collection, index) => (
         <CollectionCard
           data={collection}

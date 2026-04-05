@@ -8,11 +8,11 @@ export const dynamic = "force-static";
 const HomePage = () => {
   return (
     <main>
-      <HeroSection />
+      <HeroSection className="mt-16" />
 
-      <AppsSection />
+      <AppsSection className="py-12" />
 
-      <CollectionsSection />
+      <CollectionsSection className="py-14" />
     </main>
   );
 };

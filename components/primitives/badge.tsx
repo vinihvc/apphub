@@ -1,76 +1,126 @@
-import { cva, type VariantProps } from "class-variance-authority";
-import { Slot } from "radix-ui";
-import type * as React from "react";
+"use client";
+
+import { ark } from "@ark-ui/react/factory";
+import { tv, type VariantProps } from "tailwind-variants";
 import { cn } from "@/lib/cn";
 
-export const badgeVariants = cva(
-  [
-    "w-fit",
-    "inline-flex shrink-0 items-center justify-center gap-1",
-    "",
-    "whitespace-nowrap font-medium text-xs",
-    "rounded-md border",
-    "select-none overflow-hidden",
-    "transition-[color,box-shadow]",
-    "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
-    "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
-    "[&>svg]:pointer-events-none [&>svg]:size-3",
+export const badgeVariants = tv({
+  base: [
+    "inline-flex items-center justify-center gap-1",
+    "select-none whitespace-nowrap font-medium",
+    "rounded-md border border-transparent",
+    "overflow-hidden",
+    "transition-colors",
+    "outline-none focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-ring/32",
+    "[&_svg]:pointer-events-none [&_svg]:size-3 [&_svg]:shrink-0",
+    "[button&,a&]:cursor-pointer [button&,a&]:pointer-coarse:after:absolute [button&,a&]:pointer-coarse:after:size-full [button&,a&]:pointer-coarse:after:min-h-11 [button&,a&]:pointer-coarse:after:min-w-11",
   ],
-  {
-    variants: {
-      variant: {
-        solid: [
-          "border-transparent",
-          "bg-primary",
-          "text-primary-foreground",
-          "[a&]:hover:bg-primary/90",
-        ],
-        destructive: [
-          "border-transparent",
-          "bg-destructive",
-          "text-white",
-          "focus-visible:ring-destructive/20",
-          "dark:bg-destructive/60",
-          "dark:focus-visible:ring-destructive/40",
-          "[a&]:hover:bg-destructive/90",
-        ],
-        outline: [
-          "text-foreground",
-          "[a&]:hover:bg-accent",
-          "[a&]:hover:text-accent-foreground",
-        ],
-      },
-      size: {
-        sm: "h-5 px-2",
-        md: "h-6 px-3",
-        lg: "h-8 px-4",
-      },
+  variants: {
+    variant: {
+      default: [
+        "bg-foreground",
+        "text-background",
+        "focus-visible:border-foreground focus-visible:ring-foreground/20",
+        "dark:focus-visible:ring-foreground/40",
+        "[a&]:hover:bg-foreground/90",
+      ],
+      secondary: [
+        "bg-secondary",
+        "text-secondary-foreground",
+        "border-secondary/20",
+        "focus-visible:border-foreground focus-visible:ring-foreground/50",
+        "[a&]:hover:bg-secondary/90",
+      ],
+      outline: [
+        "border-border",
+        "[a&]:hover:bg-accent",
+        "[a&]:hover:text-accent-foreground",
+      ],
+      success: [
+        "bg-success/10",
+        "text-success",
+        "border-success/20",
+        "focus-visible:border-success focus-visible:ring-success/20",
+        "[a&]:hover:bg-success/20",
+      ],
+      info: [
+        "bg-info/10",
+        "text-info",
+        "border-info/20",
+        "focus-visible:border-info focus-visible:ring-info/50",
+        "[a&]:hover:bg-info/20",
+      ],
+      warning: [
+        "bg-warning/10",
+        "text-warning",
+        "border-warning/20",
+        "focus-visible:border-warning focus-visible:ring-warning/20",
+        "dark:focus-visible:ring-warning/40",
+        "[a&]:hover:bg-warning/20",
+      ],
+      destructive: [
+        "bg-destructive/10 dark:bg-destructive/5",
+        "text-destructive-foreground",
+        "border-destructive-foreground/20",
+        "focus-visible:border-destructive focus-visible:ring-destructive/24",
+        "dark:focus-visible:ring-destructive/40",
+        "[a&]:hover:bg-destructive/20",
+      ],
     },
-    defaultVariants: {
-      variant: "solid",
-      size: "md",
+    size: {
+      sm: [
+        "h-5 min-w-5 sm:h-4 sm:min-w-4",
+        "px-1",
+        "text-xs sm:text-[.625rem]",
+      ],
+      md: [
+        "h-5.5 min-w-5.5 sm:h-4.5 sm:min-w-4.5",
+        "px-1.5",
+        "text-sm sm:text-xs",
+      ],
+      lg: [
+        "h-6.5 min-w-6.5 sm:h-5.5 sm:min-w-5.5",
+        "px-2 sm:px-1.5",
+        "text-base sm:text-sm",
+      ],
     },
-  }
-);
+    pill: {
+      true: [
+        "rounded-full",
+        "has-[>svg]:data-[size=sm]:pe-1.5",
+        "has-[>svg]:data-[size=md]:pe-2",
+        "has-[>svg]:data-[size=lg]:pe-2 sm:has-[>svg]:data-[size=lg]:pe-2.5",
+      ],
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "md",
+    pill: false,
+  },
+});
+
+export type BadgeVariant = VariantProps<typeof badgeVariants>["variant"];
 
 interface BadgeProps
-  extends React.ComponentProps<"span">,
-    VariantProps<typeof badgeVariants> {
-  /**
-   * If true, the badge will be rendered as a child element.
-   */
-  asChild?: boolean;
-}
+  extends React.ComponentProps<typeof ark.span>,
+    VariantProps<typeof badgeVariants> {}
 
 export const Badge = (props: BadgeProps) => {
-  const { className, variant, size, asChild = false, ...rest } = props;
-
-  const Comp = asChild ? Slot.Root : "span";
+  const {
+    variant = "default",
+    size = "md",
+    pill = false,
+    className,
+    ...rest
+  } = props;
 
   return (
-    <Comp
-      className={cn(badgeVariants({ variant, size }), className)}
+    <ark.span
+      className={cn(badgeVariants({ variant, size, pill }), className)}
+      data-size={size}
       data-slot="badge"
+      data-variant={variant}
       {...rest}
     />
   );

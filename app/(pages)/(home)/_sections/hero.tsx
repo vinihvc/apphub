@@ -1,6 +1,10 @@
-import { ArrowRight } from "lucide-react";
-import { GridPattern } from "@/components/background/grid-pattern";
-import { Badge } from "@/components/primitives/badge";
+import { StarsIcon } from "lucide-react";
+import Link from "next/link";
+import {
+  Announcement,
+  AnnouncementBadge,
+  AnnouncementTitle,
+} from "@/components/primitives/announcement";
 import { Button } from "@/components/primitives/button";
 import { NavLink } from "@/components/ui/nav-link";
 import { SITE_CONFIG } from "@/config/site";
@@ -13,49 +17,41 @@ export const HeroSection = (props: HeroSectionProps) => {
 
   return (
     <section
-      className={cn(
-        "relative min-h-96 overflow-clip bg-gradient-to-b from-emerald-100 to-background dark:from-emerald-950",
-        className
-      )}
+      className={cn("container flex flex-col items-center gap-6", className)}
       {...rest}
     >
-      <div className="mask-b-from-40% pointer-events-none absolute inset-0">
-        <GridPattern />
-      </div>
+      <Announcement asChild className="bg-background">
+        <Link href="/apps">
+          <AnnouncementBadge variant="success">
+            <StarsIcon /> New apps
+          </AnnouncementBadge>
+          <AnnouncementTitle>
+            Visit the app page to install them
+          </AnnouncementTitle>
+        </Link>
+      </Announcement>
 
-      <div className="container relative mt-20 px-4 py-12">
-        <div className="mx-auto max-w-4xl text-center">
-          <div className="mb-4">
-            <Badge asChild size="lg" variant="outline">
-              <NavLink href="/apps">
-                New apps available <ArrowRight />
-              </NavLink>
-            </Badge>
-          </div>
+      <div className="flex flex-col items-center gap-6">
+        <h1 className="font-semibold text-3xl tracking-tighter sm:text-4xl lg:text-5xl">
+          Welcome to
+          <span className="font-bold text-primary">
+            {` ${SITE_CONFIG.name}`}
+          </span>
+        </h1>
 
-          <div className="flex flex-col items-center gap-6">
-            <h1 className="font-semibold text-3xl tracking-tighter sm:text-4xl lg:text-5xl">
-              Welcome to
-              <span className="bg-gradient-to-r from-teal-500 to-emerald-500 bg-clip-text font-bold text-transparent">
-                {` ${SITE_CONFIG.name}`}
-              </span>
-            </h1>
+        <p className="mx-auto max-w-md text-pretty text-center text-lg text-muted-foreground">
+          Curated list of apps for your new machine. Select all apps you want
+          and we'll install them for you.
+        </p>
 
-            <p className="max-w-2xl text-balance text-lg text-muted-foreground">
-              Curated list of apps for your new machine. Select all apps you
-              want and we'll install them for you
-            </p>
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <Button asChild size="lg">
+            <NavLink href="/apps">Browse Apps</NavLink>
+          </Button>
 
-            <div className="flex flex-col gap-3 min-[400px]:flex-row">
-              <Button asChild size="lg">
-                <NavLink href="/apps">Browse Apps</NavLink>
-              </Button>
-
-              <Button asChild size="lg" variant="outline">
-                <NavLink href="/collections">View Collections</NavLink>
-              </Button>
-            </div>
-          </div>
+          <Button asChild size="lg" variant="outline">
+            <NavLink href="/collections">View Collections</NavLink>
+          </Button>
         </div>
       </div>
     </section>
