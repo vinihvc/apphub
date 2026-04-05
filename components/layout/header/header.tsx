@@ -1,6 +1,6 @@
 "use client";
 
-import { CloudDownload, LayoutGrid } from "lucide-react";
+import { CloudDownloadIcon, LayoutGrid } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/primitives/button";
 import { NavLink } from "@/components/ui/nav-link";
@@ -28,7 +28,7 @@ export const Header = () => {
     >
       <div className="container flex h-14 w-full items-center">
         <NavLink className="mr-6 flex items-center gap-2" href="/">
-          <CloudDownload className="relative size-6 text-primary" />
+          <CloudDownloadIcon className="relative size-6 text-primary" />
 
           <span className="hidden font-semibold text-base sm:inline-block">
             {SITE_CONFIG.name}

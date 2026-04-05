@@ -6,7 +6,7 @@ import { Separator } from "@/components/primitives/separator";
 import { CartButton } from "@/components/ui/cart-button";
 import { CopyCommand } from "@/components/ui/copy-command";
 import { ShareLink } from "@/components/ui/share-link";
-import { SITE_CONFIG } from "@/config/site";
+import { createMetadata, createOgImageUrl } from "@/lib/metadata";
 import { getAppBySlug, getApps } from "@/services/queries";
 import { withUtmSource } from "@/utils/url";
 import { HeroSection } from "./_sections/hero";
@@ -25,15 +25,18 @@ export const generateMetadata = async ({
     notFound();
   }
 
-  return {
-    title: `${app.name} - ${SITE_CONFIG.name}`,
+  const title = app.name;
+
+  return createMetadata({
+    title,
     description: app.description,
-    keywords: app.category,
-    openGraph: {
-      title: `${app.name} - ${SITE_CONFIG.name}`,
+    url: `/apps/${slug}`,
+    imageUrl: createOgImageUrl({
+      title,
       description: app.description,
-    },
-  };
+    }),
+    keywords: app.category,
+  });
 };
 
 export const generateStaticParams = () => {

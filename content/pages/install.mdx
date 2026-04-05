@@ -1,0 +1,46 @@
+---
+title: How to install package managers
+description: Learn how to install apps from AppHub.
+---
+
+import { SITE_CONFIG } from "@/config/site";
+
+# How to install apps
+
+Copy-to-clipboard commands on {SITE_CONFIG.name} use [**macOS**](#macos), [**Windows**](#windows), or [**Linux**](#linux). Set up the tool for your platform using the official steps below. Official references: [Homebrew](https://brew.sh), [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/), and [Debian wiki (apt)](https://wiki.debian.org/Apt).
+
+## macOS
+
+Homebrew is the missing package manager for macOS. App install lines here use **casks** (`brew install --cask …`).
+
+Run the official install script from the [Homebrew homepage](https://brew.sh). It explains any extra steps for your Mac model.
+
+```text
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+On Apple Silicon, the installer may print “Next steps” to add Homebrew to your `PATH`. Follow those lines if `brew` is not found in a new terminal.
+
+## Windows
+
+Windows Package Manager (winget) is how install commands are built for Windows on this site.
+
+On **Windows 11**, winget is usually available already. Open PowerShell or Command Prompt and run:
+
+```text
+winget --version
+```
+
+On **Windows 10**, install the latest [App Installer](https://apps.microsoft.com/detail/9nblggh4nns1) from the Microsoft Store, or follow Microsoft’s [winget documentation](https://learn.microsoft.com/en-us/windows/package-manager/winget/) for other options. If the command is not recognized, see [winget troubleshooting](https://learn.microsoft.com/en-us/windows/package-manager/troubleshooting).
+
+## Linux
+
+Debian and Ubuntu ship with apt. You typically do not install apt separately like Homebrew.
+
+AppHub assumes **Debian/Ubuntu**-style package names. Refresh your package index before installing software:
+
+```text
+sudo apt update
+```
+
+Optionally upgrade installed packages with `sudo apt upgrade`. If you use Fedora, Arch, or another distribution, use that distro’s package manager instead, or use [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) with Ubuntu to run the same `apt install …` commands as on this site.

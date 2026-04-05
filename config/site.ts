@@ -8,6 +8,7 @@ export const SITE_CONFIG = {
   links: {
     vini: "https://vini.one",
   },
+  creator: "@vinihvc",
 };
 
 export const META_THEME_COLORS = {

@@ -6,13 +6,11 @@ import { Badge } from "@/components/primitives/badge";
 import { Button } from "@/components/primitives/button";
 import {
   Popover,
-  PopoverClose,
   PopoverContent,
   PopoverFooter,
   PopoverTrigger,
 } from "@/components/primitives/popover";
 import { CopyCommand } from "@/components/ui/copy-command";
-import { NavLink } from "@/components/ui/nav-link";
 import { useCartStore } from "@/lib/cart";
 import { CartItem } from "./header.cart-item";
 
@@ -30,6 +28,7 @@ const HeaderCart = () => {
 
   return (
     <Popover
+      modal={false}
       onOpenChange={({ open }) => setIsOpen(open)}
       open={isOpen}
       positioning={{
@@ -70,15 +69,9 @@ const HeaderCart = () => {
 
         <div className="max-h-64 overflow-y-auto">
           {items.length === 0 ? (
-            <div className="flex flex-col items-center gap-2 p-6 text-center text-muted-foreground">
+            <div className="flex select-none flex-col items-center gap-2 p-6 text-center text-muted-foreground">
               <CircleOff className="mx-auto size-6 opacity-50" />
               <p className="font-medium text-sm">The list is empty</p>
-
-              <PopoverClose asChild>
-                <Button asChild size="sm">
-                  <NavLink href="/apps">Start installing apps</NavLink>
-                </Button>
-              </PopoverClose>
             </div>
           ) : (
             items.map((app) => <CartItem app={app} key={app.slug} />)

@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { Separator } from "@/components/primitives/separator";
 import { AppCard } from "@/components/ui/app-card";
 import { CopyCommand } from "@/components/ui/copy-command";
-import { SITE_CONFIG } from "@/config/site";
+import { createMetadata, createOgImageUrl } from "@/lib/metadata";
 import { getCollectionBySlug, getCollections } from "@/services/queries";
 import { HeroSection } from "./_sections/hero";
 
@@ -20,15 +20,18 @@ export const generateMetadata = async ({
     notFound();
   }
 
-  return {
-    title: `${collection.title} - ${SITE_CONFIG.name}`,
+  const title = collection.title;
+
+  return createMetadata({
+    title,
     description: collection.description,
-    keywords: collection.tags,
-    openGraph: {
-      title: `${collection.title} - ${SITE_CONFIG.name}`,
+    url: `/collections/${slug}`,
+    imageUrl: createOgImageUrl({
+      title,
       description: collection.description,
-    },
-  };
+    }),
+    keywords: collection.tags,
+  });
 };
 
 export const generateStaticParams = () => {
@@ -55,10 +58,10 @@ const AppDetailPage = async (props: PageProps<"/collections/[slug]">) => {
       <div className="grid gap-4">
         <div className="grid gap-4">
           <div className="flex items-center justify-between gap-2">
-            <h3 className="font-semibold text-lg">Apps in this collection</h3>
+            <h3 className="font-semibold text-lg">Included apps</h3>
 
             <div className="flex justify-end">
-              <CopyCommand data={collection.apps}>Copy script</CopyCommand>
+              <CopyCommand data={collection.apps}>Copy commands</CopyCommand>
             </div>
           </div>
 
