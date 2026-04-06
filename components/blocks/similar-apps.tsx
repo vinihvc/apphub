@@ -16,7 +16,7 @@ interface SimilarAppsProps extends React.ComponentProps<"section"> {
 }
 
 export const SimilarAppsBlock = (props: SimilarAppsProps) => {
-  const { data, className, limit = 4, ...rest } = props;
+  const { data, limit = 4, className, ...rest } = props;
 
   const similarApps = getApps()
     .filter(
@@ -31,10 +31,10 @@ export const SimilarAppsBlock = (props: SimilarAppsProps) => {
   }
 
   return (
-    <section className={cn("grid gap-6", className)} {...rest}>
+    <section className={cn("grid gap-4", className)} {...rest}>
       <h2 className="font-bold text-2xl">Similar Apps</h2>
 
-      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {similarApps.map((app) => (
           <AppCard data={app} key={app.slug} />
         ))}

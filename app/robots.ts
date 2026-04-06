@@ -3,7 +3,7 @@ import { SITE_CONFIG } from "@/config/site";
 
 const TRAILING_SLASH = /\/$/;
 
-export default function robots(): MetadataRoute.Robots {
+const robots = (): MetadataRoute.Robots => {
   const base = SITE_CONFIG.url.replace(TRAILING_SLASH, "");
 
   return {
@@ -13,4 +13,6 @@ export default function robots(): MetadataRoute.Robots {
     },
     sitemap: `${base}/sitemap.xml`,
   };
-}
+};
+
+export default robots;

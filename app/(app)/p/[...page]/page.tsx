@@ -47,15 +47,17 @@ const CustomPage = async (props: PageProps<"/p/[...page]">) => {
   const MDX = page.data.body;
 
   return (
-    <main>
+    <main className="min-w-0">
       <section className="bg-card">
-        <div className="container py-12">
-          <h1 className="font-semibold text-xl">{page.data.title}</h1>
+        <div className="container py-8 sm:py-12">
+          <h1 className="text-balance font-semibold text-lg sm:text-xl md:text-2xl">
+            {page.data.title}
+          </h1>
         </div>
       </section>
 
-      <div className="container grid gap-8 py-8">
-        <Prose>
+      <div className="container min-w-0 py-6 sm:py-8">
+        <Prose className="min-w-0">
           <MDX
             components={mdxComponents({
               a: createRelativeLink(pagesSource, page),

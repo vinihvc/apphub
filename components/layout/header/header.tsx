@@ -6,6 +6,7 @@ import { Button } from "@/components/primitives/button";
 import { NavLink } from "@/components/ui/nav-link";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { SITE_CONFIG } from "@/config/site";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import { cn } from "@/lib/cn";
 import { HEADER_LINKS } from "./header.data";
 import { HeaderSearch } from "./header.search";
@@ -20,6 +21,8 @@ const HeaderCart = dynamic(() => import("./header.cart"), {
 });
 
 export const Header = () => {
+  const isMobile = useMediaQuery("max-sm");
+
   return (
     <header
       className={cn(
@@ -37,16 +40,27 @@ export const Header = () => {
 
         <nav className="flex flex-1 items-center">
           <div className="flex items-center gap-2">
-            {HEADER_LINKS.map((link) => (
-              <Button asChild key={link.href} variant="ghost">
-                <NavLink
-                  className="px-2 text-muted-foreground [&.active]:text-foreground"
-                  href={link.href}
+            {HEADER_LINKS.map((link) => {
+              if (isMobile && !link.showOnMobile) {
+                return null;
+              }
+
+              return (
+                <Button
+                  asChild
+                  data-view={link.showOnMobile ? "all" : "desktop"}
+                  key={link.href}
+                  variant="ghost"
                 >
-                  {link.label}
-                </NavLink>
-              </Button>
-            ))}
+                  <NavLink
+                    className="px-2 text-muted-foreground [&.active]:text-foreground"
+                    href={link.href}
+                  >
+                    {link.label}
+                  </NavLink>
+                </Button>
+              );
+            })}
           </div>
 
           <div className="ml-auto flex items-center gap-2">

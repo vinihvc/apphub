@@ -23,10 +23,13 @@ export const HeroSection = (props: HeroSectionProps) => {
       <Announcement asChild className="bg-background">
         <Link href="/apps">
           <AnnouncementBadge variant="success">
-            <StarsIcon /> New apps
+            <StarsIcon /> New
           </AnnouncementBadge>
           <AnnouncementTitle>
-            Browse Apps to add them to your install list
+            <span className="max-sm:hidden">
+              Browse Apps to add them to your install list
+            </span>
+            <span className="sm:hidden">Mobile friendly</span>
           </AnnouncementTitle>
         </Link>
       </Announcement>
@@ -49,7 +52,7 @@ export const HeroSection = (props: HeroSectionProps) => {
             <NavLink href="/apps">Browse Apps</NavLink>
           </Button>
 
-          <Button asChild size="lg" variant="outline">
+          <Button asChild className="max-sm:hidden" size="lg" variant="outline">
             <NavLink href="/collections">View Collections</NavLink>
           </Button>
         </div>

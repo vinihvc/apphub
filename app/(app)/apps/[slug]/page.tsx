@@ -2,10 +2,12 @@ import { Globe } from "lucide-react";
 import { notFound } from "next/navigation";
 import { SimilarAppsBlock } from "@/components/blocks/similar-apps";
 import { Button } from "@/components/primitives/button";
+import { ButtonGroup } from "@/components/primitives/button-group";
 import { Separator } from "@/components/primitives/separator";
 import { CartButton } from "@/components/ui/cart-button";
 import { CopyCommand } from "@/components/ui/copy-command";
 import { ShareLink } from "@/components/ui/share-link";
+import { VisitStore } from "@/components/ui/visit-store";
 import { createMetadata, createOgImageUrl } from "@/lib/metadata";
 import { getAppBySlug, getApps } from "@/services/queries";
 import { withUtmSource } from "@/utils/utm";
@@ -56,11 +58,11 @@ const AppDetailPage = async (props: PageProps<"/apps/[slug]">) => {
 
   return (
     <main>
-      <div className="container py-12">
+      <div className="container flex flex-col gap-4 py-12">
         <div className="grid items-start justify-between gap-8 sm:grid-cols-2">
           <HeroSection app={app} />
 
-          <div className="hidden gap-2 justify-self-end sm:flex">
+          <div className="flex gap-2 justify-self-end max-sm:hidden">
             <Button asChild size="icon-md" variant="outline">
               <a
                 href={withUtmSource(app.website)}
@@ -81,6 +83,25 @@ const AppDetailPage = async (props: PageProps<"/apps/[slug]">) => {
         </div>
 
         <p className="text-muted-foreground">{app.description}</p>
+
+        <ButtonGroup className="w-full sm:hidden">
+          <Button asChild className="w-1/3" size="md" variant="outline">
+            <a
+              href={withUtmSource(app.website)}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <Globe />
+              Website
+            </a>
+          </Button>
+
+          <ShareLink className="w-1/3" size="md" variant="outline">
+            Share
+          </ShareLink>
+
+          <VisitStore app={app} className="w-1/3" size="md" variant="outline" />
+        </ButtonGroup>
 
         <Separator className="my-6" />
 

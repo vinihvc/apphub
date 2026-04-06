@@ -19,7 +19,7 @@ export const HeroSection = () => {
           placeholder="e.g. Cursor, Raycast, Firefox"
         />
 
-        <div className="flex items-center justify-end gap-2">
+        <div className="flex items-center justify-end gap-2 max-sm:hidden">
           <CategoriesFilterBlock />
           <PlatformsFilterBlock />
         </div>

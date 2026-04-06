@@ -6,6 +6,14 @@ import { getPlatformFromClient } from "@/lib/platform";
 
 interface PlatformContextType {
   /**
+   * Whether the user is on an Android device
+   */
+  isAndroid: boolean;
+  /**
+   * Whether the user is on an iOS device
+   */
+  isIos: boolean;
+  /**
    * Whether the user is on a Linux device
    */
   isLinux: boolean;
@@ -37,9 +45,6 @@ export interface PlatformProviderProps extends React.PropsWithChildren {
   };
 }
 
-/**
- * Only desktop platforms are necessary for the app
- */
 export const PlatformProvider = (props: PlatformProviderProps) => {
   const { initialData, children } = props;
 
@@ -55,6 +60,8 @@ export const PlatformProvider = (props: PlatformProviderProps) => {
   const isWindows = platform === "windows";
   const isMac = platform === "mac";
   const isLinux = platform === "linux";
+  const isIos = platform === "ios";
+  const isAndroid = platform === "android";
 
   return (
     <PlatformContext.Provider
@@ -63,6 +70,8 @@ export const PlatformProvider = (props: PlatformProviderProps) => {
         isWindows,
         isMac,
         isLinux,
+        isIos,
+        isAndroid,
       }}
     >
       {children}

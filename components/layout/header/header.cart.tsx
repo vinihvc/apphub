@@ -38,7 +38,7 @@ const HeaderCart = () => {
     >
       <PopoverTrigger asChild>
         <Button
-          className="relative max-md:hidden"
+          className="relative pointer-fine:inline-flex hidden"
           size="icon-md"
           variant="ghost"
         >

@@ -1,8 +1,8 @@
 import { ImageResponse } from "next/og";
 
-async function loadAssets(): Promise<
+const loadAssets = async (): Promise<
   { name: string; data: Buffer; weight: 400 | 600; style: "normal" }[]
-> {
+> => {
   const [{ base64Font: normal }, { base64Font: semibold }] = await Promise.all([
     import("./sen-regular-otf.json").then((mod) => mod.default || mod),
     import("./sen-semibold-otf.json").then((mod) => mod.default || mod),
@@ -22,9 +22,9 @@ async function loadAssets(): Promise<
       style: "normal" as const,
     },
   ];
-}
+};
 
-export async function GET(request: Request) {
+export const GET = async (request: Request) => {
   const { searchParams } = new URL(request.url);
 
   const title = searchParams.get("title");
@@ -93,4 +93,4 @@ export async function GET(request: Request) {
       fonts,
     }
   );
-}
+};

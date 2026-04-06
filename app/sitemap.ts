@@ -7,7 +7,7 @@ const staticPaths = ["/", "/apps", "/collections", "/install"] as const;
 
 const TRAILING_SLASH = /\/$/;
 
-export default function sitemap(): MetadataRoute.Sitemap {
+const sitemap = (): MetadataRoute.Sitemap => {
   const lastModified = new Date();
   const base = SITE_CONFIG.url.replace(TRAILING_SLASH, "");
 
@@ -35,4 +35,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   );
 
   return [...staticEntries, ...appEntries, ...collectionEntries];
-}
+};
+
+export default sitemap;
