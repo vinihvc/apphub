@@ -1,27 +1,34 @@
 "use client";
 
-import { Separator as SeparatorPrimitive } from "radix-ui";
-import type * as React from "react";
+import { ark } from "@ark-ui/react/factory";
 import { cn } from "@/lib/cn";
 
-export const Separator = ({
-  className,
-  orientation = "horizontal",
-  decorative = true,
-  ...props
-}: React.ComponentProps<typeof SeparatorPrimitive.Root>) => {
+interface SeparatorProps extends React.ComponentProps<typeof ark.div> {
+  /**
+   * The orientation of the separator.
+   *
+   * @default "horizontal"
+   */
+  orientation?: "horizontal" | "vertical";
+}
+
+export const Separator = (props: SeparatorProps) => {
+  const { orientation = "horizontal", className, ...rest } = props;
+
   return (
-    <SeparatorPrimitive.Root
+    <ark.div
+      aria-orientation={orientation}
       className={cn(
-        "shrink-0 bg-border",
+        "shrink-0",
+        "bg-input",
         "data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full",
-        "data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
+        "data-[orientation=vertical]:w-px data-[orientation=vertical]:not-[[class^='h-']]:not-[[class*='_h-']]:self-stretch",
         className
       )}
-      data-slot="separator-root"
-      decorative={decorative}
-      orientation={orientation}
-      {...props}
+      data-orientation={orientation}
+      data-slot="separator"
+      role="separator"
+      {...rest}
     />
   );
 };

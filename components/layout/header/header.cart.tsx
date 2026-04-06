@@ -1,16 +1,17 @@
-import { CircleOff, LayoutGrid, Trash2 } from "lucide-react";
+"use client";
+
+import { CircleOff, LayoutGrid } from "lucide-react";
 import React from "react";
 import { Badge } from "@/components/primitives/badge";
 import { Button } from "@/components/primitives/button";
 import {
   Popover,
-  PopoverClose,
   PopoverContent,
+  PopoverFooter,
   PopoverTrigger,
 } from "@/components/primitives/popover";
 import { CopyCommand } from "@/components/ui/copy-command";
-import { NavLink } from "@/components/ui/nav-link";
-import { useCartStore } from "@/lib/cart";
+import { useCartStore } from "@/store/cart";
 import { CartItem } from "./header.cart-item";
 
 const HeaderCart = () => {
@@ -26,14 +27,26 @@ const HeaderCart = () => {
   };
 
   return (
-    <Popover onOpenChange={setIsOpen} open={isOpen}>
+    <Popover
+      modal={false}
+      onOpenChange={({ open }) => setIsOpen(open)}
+      open={isOpen}
+      positioning={{
+        placement: "bottom-end",
+        gutter: 18,
+      }}
+    >
       <PopoverTrigger asChild>
-        <Button className="relative max-md:hidden" size="icon" variant="ghost">
+        <Button
+          className="relative max-md:hidden"
+          size="icon-md"
+          variant="ghost"
+        >
           <LayoutGrid />
 
           {cartCount > 0 && (
             <div className="fade-in-0 zoom-in-95 absolute -top-1 -right-1 animate-in">
-              <Badge className="flex size-4 rounded-full p-0 text-xs">
+              <Badge className="flex p-0 text-[0.625rem]" pill size="sm">
                 <span className="sr-only">Apps to install</span>
                 {cartCount}
               </Badge>
@@ -42,13 +55,12 @@ const HeaderCart = () => {
         </Button>
       </PopoverTrigger>
 
-      <PopoverContent align="end" className="w-80 p-0" sideOffset={18}>
-        <div className="border-b p-4">
+      <PopoverContent className="w-full p-0 sm:min-w-80">
+        <div className="border-b p-3">
           <div className="flex items-center justify-between">
             <h3 className="font-semibold">Apps ({cartCount})</h3>
             {cartCount > 0 && (
-              <Button onClick={handleClearCart} size="sm" variant="ghost">
-                <Trash2 className="size-3" />
+              <Button onClick={handleClearCart} variant="ghost">
                 Clear apps
               </Button>
             )}
@@ -57,19 +69,9 @@ const HeaderCart = () => {
 
         <div className="max-h-64 overflow-y-auto">
           {items.length === 0 ? (
-            <div className="p-6 text-center text-muted-foreground">
-              <CircleOff className="mx-auto mb-2 size-8 opacity-50" />
-              <div className="grid gap-2">
-                <p className="font-medium text-sm">The list is empty</p>
-
-                <div>
-                  <PopoverClose asChild>
-                    <Button asChild size="sm" variant="solid">
-                      <NavLink href="/apps">Start installing apps</NavLink>
-                    </Button>
-                  </PopoverClose>
-                </div>
-              </div>
+            <div className="flex select-none flex-col items-center gap-2 p-6 text-center text-muted-foreground">
+              <CircleOff className="mx-auto size-6 opacity-50" />
+              <p className="font-medium text-sm">The list is empty</p>
             </div>
           ) : (
             items.map((app) => <CartItem app={app} key={app.slug} />)
@@ -77,11 +79,11 @@ const HeaderCart = () => {
         </div>
 
         {items.length > 0 && (
-          <div className="border-t p-4">
-            <CopyCommand className="w-full" data={items} size="sm">
+          <PopoverFooter>
+            <CopyCommand className="w-full" data={items} size="lg">
               Copy script
             </CopyCommand>
-          </div>
+          </PopoverFooter>
         )}
       </PopoverContent>
     </Popover>

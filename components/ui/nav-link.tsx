@@ -32,8 +32,9 @@ export const NavLink = (props: NavLinkProps) => {
         { active: isActive },
         "outline-none",
         "transition-colors",
+        "border border-transparent",
         "rounded-md",
-        "focus-visible:border-ring focus-visible:ring-[2px] focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+        "outline-none focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-ring/32",
         "disabled:pointer-events-none disabled:opacity-50",
         className
       )}

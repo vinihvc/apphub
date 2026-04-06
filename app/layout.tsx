@@ -7,15 +7,24 @@ import { Header } from "@/components/layout/header";
 import { Analytics } from "@/components/tracking/analytics";
 import { META_THEME_COLORS, SITE_CONFIG } from "@/config/site";
 import { fontSans } from "@/lib/fonts";
+import { createMetadata } from "@/lib/metadata";
 import { getPlatformFromHeaders } from "@/lib/platform";
+import { absoluteUrl } from "@/lib/url";
+
+const rootMetadataBase = createMetadata({
+  title: SITE_CONFIG.name,
+  description: SITE_CONFIG.description,
+  url: "/",
+  imageUrl: "/api/og",
+});
 
 export const metadata: Metadata = {
+  ...rootMetadataBase,
   title: {
     default: SITE_CONFIG.name,
     template: `%s - ${SITE_CONFIG.name}`,
   },
   metadataBase: new URL(SITE_CONFIG.url),
-  description: SITE_CONFIG.description,
   keywords: ["Download", "Apps", "Software", "New"],
   authors: [
     {
@@ -25,27 +34,21 @@ export const metadata: Metadata = {
   ],
   creator: SITE_CONFIG.author,
   openGraph: {
-    type: "website",
+    ...rootMetadataBase.openGraph,
     locale: "en_US",
-    url: SITE_CONFIG.url,
-    title: SITE_CONFIG.name,
-    description: SITE_CONFIG.description,
     siteName: SITE_CONFIG.name,
     images: [
       {
-        url: SITE_CONFIG.ogImage,
-        width: 1200,
-        height: 630,
         alt: SITE_CONFIG.name,
+        height: 630,
+        url: absoluteUrl("/api/og"),
+        width: 1200,
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: SITE_CONFIG.name,
-    description: SITE_CONFIG.description,
-    images: [SITE_CONFIG.ogImage],
-    creator: "@vinihvc",
+    ...rootMetadataBase.twitter,
+    images: [absoluteUrl("/api/og")],
   },
   icons: {
     icon: "/favicon.ico",

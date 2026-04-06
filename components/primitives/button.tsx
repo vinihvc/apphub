@@ -1,90 +1,174 @@
-import { cva, type VariantProps } from "class-variance-authority";
-import { Slot } from "radix-ui";
-import type * as React from "react";
+"use client";
+
+import { ark } from "@ark-ui/react/factory";
+import type React from "react";
+import { tv, type VariantProps } from "tailwind-variants";
+import { Spinner } from "@/components/primitives/spinner";
 import { cn } from "@/lib/cn";
 
-const buttonVariants = cva(
-  [
+export const buttonVariants = tv({
+  base: [
+    "relative",
     "inline-flex shrink-0 items-center justify-center gap-2",
-    "rounded-md border",
     "whitespace-nowrap font-medium text-sm",
-    "outline-none",
+    "rounded-lg",
     "transition-all",
-    "focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-    "disabled:pointer-events-none disabled:opacity-50",
-    "aria-invalid:border-destructive aria-invalid:ring-destructive/20",
-    "dark:aria-invalid:ring-destructive/40",
+    "outline-none focus-visible:ring-[3px] focus-visible:ring-ring/32",
+    "disabled:pointer-events-none disabled:opacity-64",
+    "data-disabled:pointer-events-none data-disabled:opacity-64",
+    "aria-disabled:pointer-events-none aria-disabled:opacity-64",
+    "data-[state=loading]:pointer-events-none",
+    "aria-invalid:border-destructive aria-invalid:ring-destructive/24",
     "[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   ],
-  {
-    variants: {
-      variant: {
-        solid: [
-          "bg-primary",
-          "text-primary-foreground",
-          "shadow-xs",
-          "hover:bg-primary/90",
-        ],
-        destructive: [
-          "bg-destructive",
-          "text-white",
-          "shadow-xs",
-          "hover:bg-destructive/90",
-          "focus-visible:ring-destructive/20",
-          "dark:bg-destructive/60 dark:focus-visible:ring-destructive/40",
-        ],
-        outline: [
-          "border",
-          "bg-background",
-          "shadow-xs",
-          "hover:bg-accent hover:text-accent-foreground",
-          "dark:border-input dark:bg-input/30 dark:hover:bg-accent/50",
-        ],
-        ghost: [
-          "border-transparent",
-          "hover:bg-accent hover:text-accent-foreground",
-          "dark:hover:bg-accent/50",
-        ],
-        link: [
-          "border-transparent",
-          "text-primary",
-          "underline-offset-4",
-          "hover:underline",
-        ],
-      },
-      size: {
-        sm: "h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5",
-        md: "h-9 px-4 py-2 has-[>svg]:px-3",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-        icon: "size-8",
-      },
+  variants: {
+    variant: {
+      default: [
+        "bg-primary",
+        "border border-transparent shadow-primary/24 shadow-sm",
+        "text-primary-foreground",
+        "hover:bg-primary/90",
+        "focus-visible:border-background",
+      ],
+      outline: [
+        "bg-transparent",
+        "text-foreground",
+        "border border-input shadow-sm/5",
+        "hover:bg-accent hover:text-accent-foreground",
+        "dark:bg-input/32 dark:hover:bg-input/64",
+        "focus-visible:border-primary",
+      ],
+      destructive: [
+        "bg-destructive",
+        "text-white",
+        "border border-transparent shadow-destructive/24 shadow-sm",
+        "hover:bg-destructive/90",
+        "focus-visible:border-background focus-visible:ring-destructive-foreground/32",
+      ],
+      secondary: [
+        "bg-secondary",
+        "text-secondary-foreground",
+        "border border-transparent",
+        "focus-visible:border-primary",
+        "hover:bg-secondary/80",
+      ],
+      ghost: [
+        "hover:bg-accent hover:text-accent-foreground",
+        "border border-transparent",
+        "focus-visible:border-primary",
+      ],
+      link: [
+        "text-primary",
+        "underline-offset-4",
+        "border border-transparent",
+        "hover:underline",
+        "focus-visible:border-primary",
+      ],
     },
-    defaultVariants: {
-      variant: "solid",
-      size: "md",
+    size: {
+      xs: [
+        "h-6",
+        "gap-1.5",
+        "px-2",
+        "rounded-md",
+        "[&_svg:not([class*='size-'])]:size-2.5",
+      ],
+      sm: [
+        "h-7",
+        "px-2.5",
+        "gap-1.5",
+        "[&_svg:not([class*='size-'])]:size-3.5",
+      ],
+      md: ["h-8", "px-3", "py-2"],
+      lg: ["h-9", "px-3.5"],
+      xl: ["h-10", "text-base", "px-4"],
+      "icon-xs": "size-6 rounded-md",
+      "icon-sm": "size-7",
+      "icon-md": "size-8",
+      "icon-lg": "size-9",
+      "icon-xl": "size-10 [&_svg:not([class*='size-'])]:size-5",
     },
-  }
-);
+    clickEffect: {
+      true: "active:scale-[0.98]",
+    },
+    pill: {
+      true: [
+        "rounded-full",
+        "has-[>svg]:data-[size=xs]:pe-3",
+        "has-[>svg]:data-[size=sm]:pe-3.5",
+        "has-[>svg]:data-[size=md]:pe-4",
+        "has-[>svg]:data-[size=lg]:pe-4.5",
+        "has-[>svg]:data-[size=xl]:pe-5",
+      ],
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "md",
+    clickEffect: true,
+    pill: false,
+  },
+});
 
-interface ButtonProps
-  extends React.ComponentProps<"button">,
+export interface ButtonProps
+  extends React.ComponentProps<typeof ark.button>,
     VariantProps<typeof buttonVariants> {
   /**
-   * If true, the button will be rendered as a child element.
+   * Apply a click effect to the button
+   *
+   * @default true
    */
-  asChild?: boolean;
+  clickEffect?: boolean;
+  /**
+   * Show a loading indicator
+   *
+   * @default false
+   */
+  isLoading?: boolean;
 }
 
 export const Button = (props: ButtonProps) => {
-  const { className, variant, size, asChild, ...rest } = props;
-
-  const Comp = asChild ? Slot.Root : "button";
+  const {
+    variant = "default",
+    size = "md",
+    clickEffect = true,
+    pill = false,
+    isLoading = false,
+    className,
+    children,
+    ...rest
+  } = props;
 
   return (
-    <Comp
-      className={cn(buttonVariants({ variant, size, className }))}
+    <ark.button
+      className={cn(
+        buttonVariants({ variant, size, clickEffect, pill }),
+        className
+      )}
+      data-size={size}
       data-slot="button"
+      data-state={isLoading ? "loading" : "idle"}
+      data-variant={variant}
+      type="button"
       {...rest}
-    />
+      aria-busy={isLoading}
+      aria-disabled={isLoading}
+    >
+      {isLoading ? (
+        <>
+          <span aria-hidden className="invisible">
+            {children}
+          </span>
+
+          <span className="sr-only">{children}</span>
+
+          <span className="absolute inset-0 flex items-center justify-center">
+            <Spinner aria-hidden />
+          </span>
+        </>
+      ) : (
+        children
+      )}
+    </ark.button>
   );
 };

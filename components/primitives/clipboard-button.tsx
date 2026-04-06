@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Copy } from "lucide-react";
+import { CheckIcon, CopyIcon } from "lucide-react";
 import React from "react";
 import { Button } from "./button";
 
@@ -46,8 +46,8 @@ export const ClipboardButton = (props: ClipboardButtonProps) => {
   }, [isCopied]);
 
   return (
-    <Button onClick={handleCopy} {...rest}>
-      {isCopied ? <Check /> : <Copy />}
+    <Button onClick={handleCopy} variant="outline" {...rest}>
+      {isCopied ? <CheckIcon /> : <CopyIcon />}
 
       {children}
     </Button>

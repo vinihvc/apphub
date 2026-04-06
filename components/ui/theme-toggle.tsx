@@ -10,7 +10,7 @@ export const ThemeToggle = () => {
   return (
     <Button
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      size="icon"
+      size="icon-md"
       suppressHydrationWarning
       variant="ghost"
     >

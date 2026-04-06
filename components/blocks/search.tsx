@@ -1,23 +1,22 @@
 "use client";
 
-import { Search } from "lucide-react";
+import { SearchIcon } from "lucide-react";
 import { useQueryState } from "nuqs";
 import React from "react";
 import { SEARCH_QUERY_KEY } from "@/config/globals";
 import { cn } from "@/lib/cn";
-import { mergeRefs } from "@/utils/merge-refs";
-import { Input } from "../primitives/input";
+import type { Input } from "../primitives/input";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "../primitives/input-group";
 import { Kbd } from "../primitives/kbd";
 
-interface SearchBlockProps extends React.ComponentProps<typeof Input> {
-  /**
-   * The class name for the root element
-   */
-  rootClassName?: string;
-}
+interface SearchBlockProps extends React.ComponentProps<typeof Input> {}
 
 export const SearchBlock = (props: SearchBlockProps) => {
-  const { rootClassName, className, ref, ...rest } = props;
+  const { className, ...rest } = props;
 
   const $ref = React.useRef<HTMLInputElement>(null);
 
@@ -42,30 +41,30 @@ export const SearchBlock = (props: SearchBlockProps) => {
     };
 
     document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, [setQuery]);
 
   return (
-    <div
-      className={cn(
-        "group/search-input relative mx-auto w-full max-w-md",
-        rootClassName
-      )}
-    >
-      <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
+    <InputGroup className={cn(className)} size="lg">
+      <InputGroupAddon align="inline-start">
+        <SearchIcon />
+      </InputGroupAddon>
 
-      <Input
-        className={cn("h-9 bg-card ps-10 pe-10", className)}
+      <InputGroupInput
         onChange={(e) => setQuery(e.target.value)}
-        ref={mergeRefs($ref, ref)}
+        ref={$ref}
         value={query}
         {...rest}
       />
-
-      <Kbd className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 font-bold font-sans transition-all group-focus-within/search-input:opacity-0">
-        <span className="sr-only">Press</span>
-        <span>/</span>
-      </Kbd>
-    </div>
+      <InputGroupAddon align="inline-end">
+        <Kbd variant="outline">
+          <span className="sr-only">Press</span>
+          <span>/</span>
+        </Kbd>
+      </InputGroupAddon>
+    </InputGroup>
   );
 };

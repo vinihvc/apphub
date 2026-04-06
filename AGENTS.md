@@ -35,17 +35,16 @@ Biome (the underlying engine) provides robust linting and formatting. Most issue
 | `platform` | Subset of `mac`, `windows`, `linux`, `ios`, `android` from [`content/platforms.ts`](content/platforms.ts). |
 | `website` | Canonical product URL (`https://`). |
 | `download` | Official downloads or app store landing page (`https://`). |
-| `command` | Optional per-OS **identifiers**, not full shell commands. Only include keys for platforms where a CLI install makes sense and matches `platform`. |
+| `command` | Per-OS install hints. **mac** / **windows** / **linux:** package identifiers (see below). **ios** / **android:** full `https://` App Store or Play Store (or official mobile install) URLs when the app lists that platform. Only include keys that match `platform`. |
 
 ### How `command` is interpreted
 
-The copy-to-clipboard install line is built in `hooks/use-command.ts`:
+The copy-to-clipboard string is built in `hooks/use-command.ts`. With **multiple apps** (cart): **mac** uses one `brew install --cask` with all cask tokens space-separated; **linux** uses one `apt install` with all package names space-separated; **windows** chains `winget install -e --id …` with ` && `; **ios** / **android** still use one store/download URL per app, joined with newlines.
 
 - **mac:** `brew install --cask <command.mac>` — use the Homebrew **cask** token (verify on [formulae.brew.sh](https://formulae.brew.sh/cask/) or `brew search --cask <name>`).
 - **windows:** `winget install -e --id <command.windows>` — use the Winget package id (verify with `winget search <name>`).
 - **linux:** `apt install <command.linux>` — use a package name valid for Debian/Ubuntu-style `apt`, or **omit** `command.linux` if there is no good match (the UI string would be wrong).
-
-`ios` and `android` are not used by `use-command`; they only affect platform badges.
+- **ios** / **android:** the value is copied **verbatim** (full URL). If omitted, `use-command` falls back to `download` when it is an `https://` URL; otherwise the platform is treated as unsupported for that app.
 
 ### Image spec
 

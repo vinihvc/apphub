@@ -1,4 +1,5 @@
 export type CategoriesType =
+  | "all"
   | "security"
   | "productivity"
   | "communication"

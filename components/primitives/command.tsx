@@ -1,175 +1,274 @@
 "use client";
 
-import { Command as CommandPrimitive } from "cmdk";
+import { Portal } from "@ark-ui/react";
+import { Combobox as ArkCombobox } from "@ark-ui/react/combobox";
+import { Dialog as ArkDialog } from "@ark-ui/react/dialog";
 import { SearchIcon } from "lucide-react";
-import type * as React from "react";
+import type React from "react";
+import type { ComponentProps } from "react";
+import {
+  Combobox,
+  ComboboxControl,
+  ComboboxEmpty,
+  ComboboxGroup,
+  ComboboxGroupLabel,
+  type ComboboxItem,
+  ComboboxList,
+  comboboxItemVariants,
+} from "@/components/primitives/combobox";
 import {
   Dialog,
-  DialogContent,
-  DialogDescription,
+  type DialogContent,
   DialogHeader,
-  DialogTitle,
+  DialogOverlay,
+  DialogPositioner,
+  DialogTrigger,
+  dialogContentVariants,
 } from "@/components/primitives/dialog";
+import type { InputProps } from "@/components/primitives/input";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/primitives/input-group";
+import { MenuShortcut } from "@/components/primitives/menu";
+import { Separator } from "@/components/primitives/separator";
 import { cn } from "@/lib/cn";
 
-export const Command = ({
-  className,
-  ...props
-}: React.ComponentProps<typeof CommandPrimitive>) => {
-  return (
-    <CommandPrimitive
-      className={cn(
-        "flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground",
-        className
-      )}
-      data-slot="command"
-      {...props}
-    />
-  );
+export const CommandDialog = Dialog;
+
+export const CommandDialogTrigger = (
+  props: React.ComponentProps<typeof DialogTrigger>
+) => {
+  return <DialogTrigger data-slot="command-dialog-trigger" {...props} />;
 };
 
-interface CommandDialogProps
-  extends React.ComponentProps<typeof Dialog>,
-    Pick<React.ComponentProps<typeof Command>, "filter"> {
+interface CommandDialogContentProps
+  extends React.ComponentProps<typeof DialogContent> {
+  /**
+   * The description of the dialog
+   *
+   * @default "Search for a command to run..."
+   */
   description?: string;
+  /**
+   * The title of the dialog
+   *
+   * @default "Command Palette"
+   */
   title?: string;
 }
 
-export const CommandDialog = (props: CommandDialogProps) => {
+export const CommandDialogContent = (props: CommandDialogContentProps) => {
   const {
+    size = "lg",
     title = "Command Palette",
     description = "Search for a command to run...",
-    filter,
+    className,
     children,
     ...rest
   } = props;
 
   return (
-    <Dialog {...rest}>
-      <DialogHeader className="sr-only">
-        <DialogTitle>{title}</DialogTitle>
-        <DialogDescription>{description}</DialogDescription>
-      </DialogHeader>
+    <Portal>
+      <DialogOverlay />
 
-      <DialogContent className="overflow-hidden p-0">
-        <Command
-          className="**:data-[slot=command-input-wrapper]:h-12 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5"
-          filter={filter}
+      <DialogPositioner>
+        <ArkDialog.Content
+          className={cn(
+            "max-sm:row-start-1",
+            dialogContentVariants({ size }),
+            "border-0 p-0",
+            className
+          )}
+          data-slot="command-dialog-content"
+          {...rest}
         >
+          <DialogHeader
+            className="sr-only"
+            description={description}
+            title={title}
+          />
+
           {children}
-        </Command>
-      </DialogContent>
-    </Dialog>
+        </ArkDialog.Content>
+      </DialogPositioner>
+    </Portal>
   );
 };
 
-export const CommandInput = ({
-  className,
-  ...props
-}: React.ComponentProps<typeof CommandPrimitive.Input>) => {
+export const Command: ArkCombobox.RootComponent = (props) => {
+  const { lazyMount = true, unmountOnExit = true, className, ...rest } = props;
+
   return (
-    <div
-      className="flex h-9 items-center gap-2 border-b px-3"
-      data-slot="command-input-wrapper"
-    >
-      <SearchIcon className="size-4 shrink-0 opacity-50" />
-      <CommandPrimitive.Input
-        className={cn(
-          "flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
-          className
-        )}
-        data-slot="command-input"
-        {...props}
+    <Combobox
+      className={cn(
+        "isolate",
+        "flex min-h-0 flex-1 flex-col",
+        "p-2",
+        "bg-popover",
+        "text-popover-foreground",
+        "rounded-2xl border",
+        className
+      )}
+      closeOnSelect={false}
+      disableLayer
+      inputBehavior="autohighlight"
+      lazyMount={lazyMount}
+      loopFocus={false}
+      open
+      selectionBehavior="clear"
+      unmountOnExit={unmountOnExit}
+      {...rest}
+    />
+  );
+};
+
+interface CommandInputProps
+  extends Omit<React.ComponentProps<typeof ArkCombobox.Input>, "size"> {
+  /**
+   * The size of the input
+   *
+   * @default "md"
+   */
+  size?: InputProps["size"];
+}
+
+export const CommandContent = (
+  props: React.ComponentProps<typeof ArkCombobox.Content>
+) => {
+  const { className, ...rest } = props;
+
+  return (
+    <ArkCombobox.Content
+      className={cn(
+        "flex flex-1 flex-col",
+        "max-h-(--available-height) min-h-0",
+        "outline-none",
+        "overflow-auto",
+        "scroll-pr-1 overscroll-contain",
+        "[-webkit-scrollbar-track:--spacing(2)] [-webkit-scrollbar:--spacing(2)] [scrollbar-width:thin]",
+        "[:not(.has-[+[data-slot=command-footer]])]:rounded-b-2xl [:not(.has-[+[data-slot=command-footer]])]:border-b",
+        className
+      )}
+      data-slot="command-content"
+      {...rest}
+    />
+  );
+};
+
+export const CommandInput = (props: CommandInputProps) => {
+  const { size = "md", className, ...rest } = props;
+
+  return (
+    <ComboboxControl className="mb-2">
+      <InputGroup
+        className={cn("rounded-xl bg-input/32", className)}
+        size={size}
+        {...rest}
+      >
+        <InputGroupAddon>
+          <SearchIcon aria-hidden className="opacity-64" />
+        </InputGroupAddon>
+        <ArkCombobox.Input asChild data-slot="command-input">
+          <InputGroupInput autoFocus />
+        </ArkCombobox.Input>
+      </InputGroup>
+    </ComboboxControl>
+  );
+};
+
+interface CommandListProps extends React.ComponentProps<typeof ComboboxList> {}
+
+export const CommandList = (props: CommandListProps) => {
+  const { className, ...rest } = props;
+
+  return (
+    <div className="max-h-72 min-h-0 flex-1">
+      <ComboboxList
+        className={cn("flex-1 pr-3", className)}
+        data-slot="command-list"
+        {...rest}
       />
     </div>
   );
 };
 
-export const CommandList = ({
-  className,
-  ...props
-}: React.ComponentProps<typeof CommandPrimitive.List>) => {
-  return (
-    <CommandPrimitive.List
-      className={cn(
-        "max-h-[300px] scroll-py-1 overflow-y-auto overflow-x-hidden",
-        className
-      )}
-      data-slot="command-list"
-      {...props}
-    />
-  );
-};
+export const CommandEmpty = (
+  props: React.ComponentProps<typeof ComboboxEmpty>
+) => {
+  const { className, children, ...rest } = props;
 
-export const CommandEmpty = ({
-  ...props
-}: React.ComponentProps<typeof CommandPrimitive.Empty>) => {
   return (
-    <CommandPrimitive.Empty
-      className="py-6 text-center text-sm"
+    <ComboboxEmpty
+      className={cn("py-6 text-center text-sm", className)}
       data-slot="command-empty"
-      {...props}
-    />
+      {...rest}
+    >
+      {children || "No results found."}
+    </ComboboxEmpty>
   );
 };
 
-export const CommandGroup = ({
-  className,
-  ...props
-}: React.ComponentProps<typeof CommandPrimitive.Group>) => {
-  return (
-    <CommandPrimitive.Group
-      className={cn(
-        "overflow-hidden p-1 text-foreground [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group-heading]]:text-xs",
-        className
-      )}
-      data-slot="command-group"
-      {...props}
-    />
-  );
+export const CommandGroup = (
+  props: React.ComponentProps<typeof ComboboxGroup>
+) => {
+  return <ComboboxGroup data-slot="command-group" {...props} />;
 };
 
-export const CommandSeparator = ({
-  className,
-  ...props
-}: React.ComponentProps<typeof CommandPrimitive.Separator>) => {
-  return (
-    <CommandPrimitive.Separator
-      className={cn("-mx-1 h-px bg-border", className)}
-      data-slot="command-separator"
-      {...props}
-    />
-  );
+export const CommandGroupLabel = (
+  props: React.ComponentProps<typeof ComboboxGroupLabel>
+) => {
+  return <ComboboxGroupLabel data-slot="command-group-label" {...props} />;
 };
 
-export const CommandItem = ({
-  className,
-  ...props
-}: React.ComponentProps<typeof CommandPrimitive.Item>) => {
+export const CommandItem = (props: ComponentProps<typeof ComboboxItem>) => {
+  const { className, ...rest } = props;
+
   return (
-    <CommandPrimitive.Item
-      className={cn(
-        "relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden data-[disabled=true]:pointer-events-none data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground data-[disabled=true]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0",
-        className
-      )}
+    <ArkCombobox.Item
+      className={cn(comboboxItemVariants({ showIndicator: false }), className)}
       data-slot="command-item"
-      {...props}
+      persistFocus
+      {...rest}
     />
   );
 };
 
-export const CommandShortcut = ({
-  className,
-  ...props
-}: React.ComponentProps<"span">) => {
+export const CommandSeparator = (props: React.ComponentProps<"div">) => {
+  const { className, ...rest } = props;
+
   return (
-    <span
+    <Separator
+      className={cn("my-2", className)}
+      data-slot="command-separator"
+      {...rest}
+    />
+  );
+};
+
+export const CommandShortcut = (
+  props: React.ComponentProps<typeof MenuShortcut>
+) => {
+  return <MenuShortcut data-slot="command-shortcut" {...props} />;
+};
+
+export const CommandFooter = (props: React.ComponentProps<"div">) => {
+  const { className, ...rest } = props;
+
+  return (
+    <div
       className={cn(
-        "ml-auto text-muted-foreground text-xs tracking-widest",
+        "z-10",
+        "flex items-center justify-between gap-2",
+        "-m-2 mt-2 px-4 py-3",
+        "bg-muted/48",
+        "text-muted-foreground text-xs",
+        "rounded-b-[calc(var(--radius-2xl,1rem)-1px)] border-t",
         className
       )}
-      data-slot="command-shortcut"
-      {...props}
+      data-slot="command-footer"
+      {...rest}
     />
   );
 };
