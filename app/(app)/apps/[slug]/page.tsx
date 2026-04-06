@@ -8,7 +8,7 @@ import { CopyCommand } from "@/components/ui/copy-command";
 import { ShareLink } from "@/components/ui/share-link";
 import { createMetadata, createOgImageUrl } from "@/lib/metadata";
 import { getAppBySlug, getApps } from "@/services/queries";
-import { withUtmSource } from "@/utils/url";
+import { withUtmSource } from "@/utils/utm";
 import { HeroSection } from "./_sections/hero";
 
 export const revalidate = false;

@@ -4,7 +4,7 @@ import { Check, Share2 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { SITE_CONFIG } from "@/config/site";
-import { withUtmSource } from "@/utils/url";
+import { withUtmSource } from "@/utils/utm";
 import { Button } from "../primitives/button";
 
 interface ShareLinkProps extends React.ComponentProps<typeof Button> {
