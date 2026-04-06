@@ -88,7 +88,7 @@ export const APPS: AppType[] = [
     slug: "raycast",
     name: "Raycast",
     description:
-      "Boost your productivity with hotkeys, keywords, and text expansion. Search your Mac efficiently.",
+      "Boost your productivity with hotkeys, keywords, and text expansion.",
     developer: "Raycast",
     category: ["productivity"],
     platform: ["mac", "windows"],
@@ -118,7 +118,7 @@ export const APPS: AppType[] = [
   {
     slug: "firefox",
     name: "Firefox",
-    description: "Fast, secure, and private web browser for Mac.",
+    description: "Fast, secure, and private web browser.",
     developer: "Mozilla",
     category: ["browser"],
     platform: ["mac", "windows", "linux", "ios", "android"],
@@ -136,7 +136,7 @@ export const APPS: AppType[] = [
   {
     slug: "chrome",
     name: "Chrome",
-    description: "Fast, secure, and private web browser for Mac.",
+    description: "Fast, secure, and private web browser.",
     developer: "Google",
     category: ["browser"],
     platform: ["mac", "windows", "linux", "ios", "android"],
@@ -154,7 +154,7 @@ export const APPS: AppType[] = [
   {
     slug: "discord",
     name: "Discord",
-    description: "Chat, voice, and video communication for Mac.",
+    description: "Chat, voice, and video for teams and communities.",
     developer: "Discord",
     category: ["communication", "productivity"],
     platform: ["mac", "ios", "android", "windows", "linux"],
@@ -331,7 +331,8 @@ export const APPS: AppType[] = [
   {
     slug: "bitwarden",
     name: "Bitwarden",
-    description: "Password manager for Mac.",
+    description:
+      "Open-source password manager with secure sharing and autofill across devices.",
     developer: "Bitwarden",
     website: "https://bitwarden.com",
     category: ["security", "password-manager"],
@@ -431,7 +432,7 @@ export const APPS: AppType[] = [
   {
     slug: "netnewswire",
     name: "NetNewsWire",
-    description: "Free, open-source RSS feed reader for Mac, iPhone, and iPad.",
+    description: "Free, open-source RSS feed reader.",
     developer: "Ranchero Software",
     website: "https://netnewswire.com",
     category: ["productivity"],
@@ -479,8 +480,7 @@ export const APPS: AppType[] = [
   {
     slug: "transmission",
     name: "Transmission",
-    description:
-      "Fast, easy, free BitTorrent client for Mac, Windows, and Linux.",
+    description: "Fast, easy, free BitTorrent client.",
     developer: "Transmission Project",
     website: "https://transmissionbt.com",
     category: ["utility"],
