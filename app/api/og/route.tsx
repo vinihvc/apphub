@@ -28,7 +28,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 
   const title = searchParams.get("title");
-  const description = searchParams.get("description");
+  // const description = searchParams.get("description");
 
   const [fonts] = await Promise.all([loadAssets()]);
 
@@ -74,7 +74,7 @@ export async function GET(request: Request) {
             >
               {title}
             </div>
-            <div
+            {/* <div
               style={{
                 fontWeight: 400,
                 textWrap: "balance",
@@ -82,7 +82,7 @@ export async function GET(request: Request) {
               tw="text-[40px] leading-[1] flex-grow-1 text-stone-400"
             >
               {description}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
