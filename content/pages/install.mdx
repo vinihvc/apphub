@@ -1,28 +1,28 @@
 ---
-title: How to install Package Managers
+title: How to install package managers
 ---
 
 import { SITE_CONFIG } from "@/config/site";
 
-Copy-to-clipboard commands on **{SITE_CONFIG.name}** use [**macOS**](#macos), [**Windows**](#windows), or [**Linux**](#linux). 
+Copy-to-clipboard commands on **{SITE_CONFIG.name}** work on [**macOS**](#macos), [**Windows**](#windows), and [**Linux**](#linux).
 
 ## macOS
 
-Run the official install script. 
+Run the official install script.
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Learn more on [Brew homepage](https://brew.sh/).
+Learn more on the [Homebrew website](https://brew.sh/).
 
 ## Windows
 
-**winget** is already installed on Windows 11.
+**WinGet** is already installed on Windows 11.
 
-On **Windows 10**, install the latest [App Installer](https://apps.microsoft.com/detail/9nblggh4nns1) from the Microsoft Store
+On **Windows 10**, install the latest [App Installer](https://apps.microsoft.com/detail/9nblggh4nns1) from the Microsoft Store.
 
-If you prefer to install winget manually, open PowerShell or Command Prompt and run:
+If you prefer to install WinGet manually, open PowerShell or Command Prompt and run:
 
 ```bash
 $progressPreference = 'silentlyContinue'
@@ -33,11 +33,12 @@ Write-Host "Using Repair-WinGetPackageManager cmdlet to bootstrap WinGet..."
 Repair-WinGetPackageManager -AllUsers
 Write-Host "Done."
 ```
-Learn more on [Winget documentation](https://learn.microsoft.com/en-us/windows/package-manager/winget/).
+
+Learn more in the [WinGet documentation](https://learn.microsoft.com/en-us/windows/package-manager/winget/).
 
 ## Linux
 
-**Debian** and **Ubuntu** ship with **apt**. 
+**Debian** and **Ubuntu** ship with **apt**.
 
 Refresh your package index before installing software:
 

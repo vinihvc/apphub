@@ -48,5 +48,5 @@ export const createOgImageUrl = ({
   title,
   description,
 }: CreateOgImageUrlProps) => {
-  return `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
+  return `/api/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
 };

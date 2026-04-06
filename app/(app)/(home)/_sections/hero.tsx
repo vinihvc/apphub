@@ -26,7 +26,7 @@ export const HeroSection = (props: HeroSectionProps) => {
             <StarsIcon /> New apps
           </AnnouncementBadge>
           <AnnouncementTitle>
-            Visit the app page to install them
+            Browse Apps to add them to your install list
           </AnnouncementTitle>
         </Link>
       </Announcement>

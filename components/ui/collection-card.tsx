@@ -33,16 +33,18 @@ export const CollectionCard = (props: CollectionCardProps) => {
           "md:order-2": reverse,
         })}
       >
-        <NavLink
-          aria-label={`View collection ${data.title}`}
-          href={{ pathname: `/collections/${data.slug}` }}
-        >
-          <h3 className="font-bold text-2xl tracking-tight sm:text-3xl">
-            {data.title}
-          </h3>
-        </NavLink>
+        <div className="grid gap-1">
+          <NavLink
+            aria-label={`View collection ${data.title}`}
+            href={{ pathname: `/collections/${data.slug}` }}
+          >
+            <h3 className="font-bold text-2xl tracking-tight">{data.title}</h3>
+          </NavLink>
 
-        <p className="text-muted-foreground">{data.description}</p>
+          <div className="text-pretty text-muted-foreground">
+            {data.description}
+          </div>
+        </div>
 
         <div>
           <CopyCommand data={data.apps}>Copy command</CopyCommand>

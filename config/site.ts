@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
   url: "https://apps.vini.one",
   ogImage: "https://apps.vini.one/og.png",
   description:
-    "Your all-in-one curated app service. Discover, download, and enjoy premium apps.",
+    "Curated app catalog for your new machine. Pick the apps you want and copy one install command.",
   links: {
     vini: "https://vini.one",
   },

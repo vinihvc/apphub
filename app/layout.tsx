@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: `%s - ${SITE_CONFIG.name}`,
   },
   metadataBase: new URL(SITE_CONFIG.url),
-  keywords: ["Download", "Apps", "Software", "New"],
+  keywords: ["Download", "Apps", "Software", "macOS", "Homebrew"],
   authors: [
     {
       name: SITE_CONFIG.author,

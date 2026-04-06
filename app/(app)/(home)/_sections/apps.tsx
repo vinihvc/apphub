@@ -18,7 +18,7 @@ export const AppsSection = (props: React.ComponentProps<"section">) => {
             className="group inline-flex items-center gap-2 font-semibold"
             href="/apps"
           >
-            Recents added
+            Recently added
             <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </LinkOverlay>

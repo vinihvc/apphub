@@ -41,8 +41,7 @@ export const APPS: AppType[] = [
   {
     slug: "slack",
     name: "Slack",
-    description:
-      "A powerful communication platform that offers a focused and distraction-free communication experience.",
+    description: "A focused, distraction-free team communication platform.",
     developer: "Slack Technologies, Inc.",
     category: ["communication", "productivity"],
     platform: ["mac", "ios", "android", "windows", "linux"],
@@ -260,7 +259,7 @@ export const APPS: AppType[] = [
   {
     slug: "gimp",
     name: "GIMP",
-    description: "Free and open-source image editor",
+    description: "Free and open-source image editor.",
     developer: "GIMP",
     website: "https://www.gimp.org",
     category: ["photo-editor"],
@@ -275,7 +274,7 @@ export const APPS: AppType[] = [
   {
     slug: "orbstack",
     name: "OrbStack",
-    description: "Docker desktop alternative for Mac.",
+    description: "Docker Desktop alternative for Mac.",
     developer: "OrbStack",
     category: ["development", "docker"],
     platform: ["mac"],
@@ -379,7 +378,7 @@ export const APPS: AppType[] = [
   {
     slug: "mediamate",
     name: "MediaMate",
-    description: "Fresh visuals for Volume, Brightness and Now Playing.",
+    description: "Fresh visuals for Volume, Brightness, and Now Playing.",
     developer: "MediaMate",
     website: "https://wouter01.github.io/MediaMate",
     category: ["mac-utility"],
@@ -392,7 +391,7 @@ export const APPS: AppType[] = [
   {
     slug: "sentinel",
     name: "Sentinel",
-    description: "Sentinel is a GUI for controlling Gatekeeper and more.",
+    description: "GUI for controlling Gatekeeper and more.",
     developer: "Alin Lupascu",
     website: "https://itsalin.com/appInfo/?id=sentinel",
     category: ["mac-utility"],
@@ -405,8 +404,7 @@ export const APPS: AppType[] = [
   {
     slug: "mos",
     name: "Mos",
-    description:
-      "Mos is powerful tools allow your mouse to scroll smoothly on macOS.",
+    description: "Smooth mouse scrolling for macOS.",
     developer: "Mos",
     website: "https://mos.caldis.me",
     category: ["mac-utility"],

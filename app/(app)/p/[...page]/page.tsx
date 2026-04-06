@@ -6,12 +6,13 @@ import { createMetadata, createOgImageUrl } from "@/lib/metadata";
 import { pagesSource } from "@/lib/source";
 import { mdxComponents } from "@/mdx-components";
 
-export const generateStaticParams = () => {
-  return pagesSource.generateParams();
-};
+export const revalidate = false;
+export const dynamic = "force-static";
+
+export const generateStaticParams = () => pagesSource.generateParams();
 
 export const generateMetadata = async (
-  props: PageProps<"/[...page]">
+  props: PageProps<"/p/[...page]">
 ): Promise<Metadata> => {
   const params = await props.params;
 
@@ -34,7 +35,7 @@ export const generateMetadata = async (
   });
 };
 
-const CustomPage = async (props: PageProps<"/[...page]">) => {
+const CustomPage = async (props: PageProps<"/p/[...page]">) => {
   const params = await props.params;
 
   const page = pagesSource.getPage(params.page);

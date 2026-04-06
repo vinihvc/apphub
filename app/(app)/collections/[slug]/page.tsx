@@ -50,25 +50,27 @@ const AppDetailPage = async (props: PageProps<"/collections/[slug]">) => {
   }
 
   return (
-    <main className="container gap-4 py-12">
-      <HeroSection collection={collection} />
+    <main>
+      <div className="container py-12">
+        <HeroSection collection={collection} />
 
-      <Separator className="my-6" />
+        <Separator className="my-6" />
 
-      <div className="grid gap-4">
         <div className="grid gap-4">
-          <div className="flex items-center justify-between gap-2">
-            <h3 className="font-semibold text-lg">Included apps</h3>
+          <div className="grid gap-4">
+            <div className="flex items-center justify-between gap-2">
+              <h3 className="font-semibold text-lg">Included apps</h3>
 
-            <div className="flex justify-end">
-              <CopyCommand data={collection.apps}>Copy command</CopyCommand>
+              <div className="flex justify-end">
+                <CopyCommand data={collection.apps}>Copy command</CopyCommand>
+              </div>
             </div>
-          </div>
 
-          <div className="grid w-full gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {collection.apps.map((app) => (
-              <AppCard data={app} key={app.slug} />
-            ))}
+            <div className="grid w-full gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {collection.apps.map((app) => (
+                <AppCard data={app} key={app.slug} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

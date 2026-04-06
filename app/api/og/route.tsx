@@ -76,7 +76,7 @@ export async function GET(request: Request) {
             </div>
             <div
               style={{
-                fontWeight: 500,
+                fontWeight: 400,
                 textWrap: "balance",
               }}
               tw="text-[40px] leading-[1] flex-grow-1 text-stone-400"

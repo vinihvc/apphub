@@ -8,7 +8,7 @@ export const HEADER_LINKS = [
     label: "Collections",
   },
   {
-    href: "/install",
+    href: "/p/install",
     label: "Install",
   },
 ] as const;

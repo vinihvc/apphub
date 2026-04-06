@@ -16,7 +16,7 @@ export const HeroSection = () => {
       <div className="mx-auto flex w-full flex-col justify-between gap-4 sm:flex-row sm:items-center sm:gap-8">
         <SearchBlock
           className="max-w-md"
-          placeholder="e.g Cursor, Raycast, Firefox"
+          placeholder="e.g. Cursor, Raycast, Firefox"
         />
 
         <div className="flex items-center justify-end gap-2">
