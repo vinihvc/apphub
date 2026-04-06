@@ -3,11 +3,29 @@ import { persist } from "zustand/middleware";
 import type { AppType } from "@/content/apps";
 
 interface CartStore {
+  /**
+   * Add an app to the cart
+   */
   addToCart: (app: AppType) => void;
+  /**
+   * Clear the cart
+   */
   clearCart: () => void;
+  /**
+   * Get the number of apps in the cart
+   */
   getCartCount: () => number;
+  /**
+   * Check if an app is in the cart
+   */
   isInCart: (appSlug: string) => boolean;
+  /**
+   * The apps in the cart
+   */
   items: AppType[];
+  /**
+   * Remove an app from the cart
+   */
   removeFromCart: (appSlug: string) => void;
 }
 

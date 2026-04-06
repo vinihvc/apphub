@@ -61,7 +61,7 @@ const AppDetailPage = async (props: PageProps<"/collections/[slug]">) => {
             <h3 className="font-semibold text-lg">Included apps</h3>
 
             <div className="flex justify-end">
-              <CopyCommand data={collection.apps}>Copy commands</CopyCommand>
+              <CopyCommand data={collection.apps}>Copy command</CopyCommand>
             </div>
           </div>
 

@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
 @import "./prose.css";
 
 @import "tw-animate-css";
@@ -204,7 +206,6 @@
   }
 
   html {
-    --scrollbar-width: 0px;
     @apply antialiased scroll-smooth;
   }
 

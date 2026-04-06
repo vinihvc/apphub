@@ -1,6 +1,7 @@
 import { createRelativeLink } from "fumadocs-ui/mdx";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Prose } from "@/components/primitives/prose";
 import { createMetadata, createOgImageUrl } from "@/lib/metadata";
 import { pagesSource } from "@/lib/source";
 import { mdxComponents } from "@/mdx-components";
@@ -46,17 +47,20 @@ const CustomPage = async (props: PageProps<"/[...page]">) => {
 
   return (
     <main>
-      <div className="container py-12">
-        <h1 className="font-semibold text-xl">{page.data.title}</h1>
-        <h2 className="text-muted-foreground">{page.data.description}</h2>
+      <section className="bg-card">
+        <div className="container py-12">
+          <h1 className="font-semibold text-xl">{page.data.title}</h1>
+        </div>
+      </section>
 
-        <div className="prose">
+      <div className="container grid gap-8 py-8">
+        <Prose>
           <MDX
             components={mdxComponents({
               a: createRelativeLink(pagesSource, page),
             })}
           />
-        </div>
+        </Prose>
       </div>
     </main>
   );

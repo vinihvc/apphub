@@ -7,10 +7,6 @@ export const Prose = (props: React.ComponentProps<typeof ark.div>) => {
   const { className, ...rest } = props;
 
   return (
-    <ark.div
-      className={cn("prose container", className)}
-      data-slot="prose"
-      {...rest}
-    />
+    <ark.div className={cn("prose", className)} data-slot="prose" {...rest} />
   );
 };

@@ -7,7 +7,7 @@ import { Button } from "@/components/primitives/button";
 const CartButtonClient = dynamic(() => import("./cart-button-client"), {
   ssr: false,
   loading: () => (
-    <Button size="icon-xs" variant="outline">
+    <Button size="icon-md" variant="outline">
       <PlusIcon />
     </Button>
   ),

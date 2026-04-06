@@ -97,7 +97,7 @@
 
 .prose a:not(.not-prose a) {
   font-weight: 500;
-  color: var(--color-primary);
+  color: var(--color-foreground);
   text-decoration: underline;
   text-underline-offset: var(--spacing);
 }

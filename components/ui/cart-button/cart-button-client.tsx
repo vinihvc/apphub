@@ -3,8 +3,8 @@
 import { PlusIcon } from "lucide-react";
 import { Button } from "@/components/primitives/button";
 import type { AppType } from "@/content/apps";
-import { useCartStore } from "@/lib/cart";
 import { cn } from "@/lib/cn";
+import { useCartStore } from "@/store/cart";
 
 interface CartButtonClientProps extends React.ComponentProps<typeof Button> {
   /**
@@ -43,13 +43,13 @@ const CartButtonClient = (props: CartButtonClientProps) => {
       className={cn(
         "hidden sm:inline-flex",
         {
-          "border-destructive/32 bg-destructive/5 text-destructive shadow-destructive/24 hover:bg-destructive/10 hover:text-destructive [&_svg]:rotate-45":
+          "border-destructive/32 bg-destructive/5 text-destructive shadow-destructive/24 hover:bg-destructive/10 hover:text-destructive dark:bg-destructive/10 [&_svg]:rotate-45":
             isInCart,
         },
         className
       )}
       onClick={handleAddToCart}
-      size="icon-xs"
+      size="icon-md"
       variant="outline"
       {...rest}
     >

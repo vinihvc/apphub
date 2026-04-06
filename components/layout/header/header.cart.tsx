@@ -11,7 +11,7 @@ import {
   PopoverTrigger,
 } from "@/components/primitives/popover";
 import { CopyCommand } from "@/components/ui/copy-command";
-import { useCartStore } from "@/lib/cart";
+import { useCartStore } from "@/store/cart";
 import { CartItem } from "./header.cart-item";
 
 const HeaderCart = () => {
@@ -56,7 +56,7 @@ const HeaderCart = () => {
       </PopoverTrigger>
 
       <PopoverContent className="w-full p-0 sm:min-w-80">
-        <div className="border-b p-4">
+        <div className="border-b p-3">
           <div className="flex items-center justify-between">
             <h3 className="font-semibold">Apps ({cartCount})</h3>
             {cartCount > 0 && (
@@ -80,7 +80,7 @@ const HeaderCart = () => {
 
         {items.length > 0 && (
           <PopoverFooter>
-            <CopyCommand className="w-full" data={items} size="sm">
+            <CopyCommand className="w-full" data={items} size="lg">
               Copy script
             </CopyCommand>
           </PopoverFooter>

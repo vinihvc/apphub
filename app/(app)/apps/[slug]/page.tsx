@@ -76,7 +76,7 @@ const AppDetailPage = async (props: PageProps<"/apps/[slug]">) => {
 
             <CopyCommand data={app} size="icon-md" variant="outline" />
 
-            <CartButton data={app} size="icon-md" variant="default" />
+            <CartButton data={app} size="icon-md" />
           </div>
         </div>
 

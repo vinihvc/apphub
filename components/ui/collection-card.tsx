@@ -45,7 +45,7 @@ export const CollectionCard = (props: CollectionCardProps) => {
         <p className="text-muted-foreground">{data.description}</p>
 
         <div>
-          <CopyCommand data={data.apps}>Copy commands</CopyCommand>
+          <CopyCommand data={data.apps}>Copy command</CopyCommand>
         </div>
       </div>
 
