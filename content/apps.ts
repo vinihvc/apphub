@@ -107,8 +107,8 @@ export const APPS: AppType[] = [
     developer: "Granola",
     category: ["productivity"],
     platform: ["mac", "windows", "linux"],
-    website: "https://granola.app",
-    download: "https://granola.app",
+    website: "https://www.granola.ai/",
+    download: "https://www.granola.ai/",
     command: {
       mac: "granola",
       windows: "granola",
