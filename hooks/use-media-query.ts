@@ -83,7 +83,7 @@ export interface MediaQueryInput {
   pointer?: "coarse" | "fine";
 }
 
-const useMediaQuery = (
+export const useMediaQuery = (
   query: BreakpointQuery | MediaQueryInput | (string & {})
 ): boolean => {
   const mediaQuery = parseQuery(query);
