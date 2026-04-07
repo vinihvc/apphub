@@ -29,6 +29,10 @@ interface PlatformContextType {
    * The platform of the user
    */
   platform: PlatformType;
+  /**
+   * Set the platform of the user
+   */
+  setPlatform: (platform: PlatformType) => void;
 }
 
 const PlatformContext = React.createContext({} as PlatformContextType);
@@ -72,6 +76,7 @@ export const PlatformProvider = (props: PlatformProviderProps) => {
         isLinux,
         isIos,
         isAndroid,
+        setPlatform,
       }}
     >
       {children}

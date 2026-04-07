@@ -4,6 +4,7 @@ import { CircleOff, LayoutGrid } from "lucide-react";
 import React from "react";
 import { Badge } from "@/components/primitives/badge";
 import { Button } from "@/components/primitives/button";
+import { ButtonGroup } from "@/components/primitives/button-group";
 import {
   Popover,
   PopoverContent,
@@ -11,6 +12,7 @@ import {
   PopoverTrigger,
 } from "@/components/primitives/popover";
 import { CopyCommand } from "@/components/ui/copy-command";
+import { ToggleOS } from "@/components/ui/toggle-os";
 import { useCartStore } from "@/store/cart";
 import { CartItem } from "./header.cart-item";
 
@@ -80,9 +82,12 @@ const HeaderCart = () => {
 
         {items.length > 0 && (
           <PopoverFooter>
-            <CopyCommand className="w-full" data={items} size="lg">
-              Copy script
-            </CopyCommand>
+            <ButtonGroup>
+              <ToggleOS size="icon-lg" />
+              <CopyCommand className="flex-1" data={items} size="lg">
+                Copy
+              </CopyCommand>
+            </ButtonGroup>
           </PopoverFooter>
         )}
       </PopoverContent>
