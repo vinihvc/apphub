@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import type React from "react";
 import { cn } from "@/lib/cn";
 
 interface NavLinkProps extends React.ComponentProps<typeof Link> {
@@ -18,8 +18,6 @@ export const NavLink = (props: NavLinkProps) => {
   const { href, exact = false, className, ...rest } = props;
 
   const pathname = usePathname();
-
-  const [isHovered, setIsHovered] = React.useState(false);
 
   const url = typeof href === "object" ? href.pathname : href;
 
@@ -39,8 +37,6 @@ export const NavLink = (props: NavLinkProps) => {
         className
       )}
       href={href}
-      onMouseEnter={() => setIsHovered(true)}
-      prefetch={isHovered ? true : null}
       {...rest}
     />
   );
